@@ -7,16 +7,31 @@ import Container from "react-bootstrap/Container";
 import Form from "react-bootstrap/Form";
 import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
+
+import Image from "next/image";
+
 const CosmicNavbar = () => {
   return (
     <header>
-      <Navbar expand="lg" className="bg-body-tertiary">
+      <Navbar
+        expand="lg"
+        className={`${classes["nav-container"]} bg-body-tertiary bg-primary navbar-light navbar`}
+      >
         <Container fluid>
-          <Navbar.Brand href="/" className="me-4">
+          <Navbar.Brand
+            href="/"
+            className={`${classes["nav-brand-title"]} me-4`}
+          >
+            <Image
+              src="/home/space-logo.png"
+              width={50}
+              height={50}
+              alt="Picture of the author"
+            />
             Cosmic Backyard
           </Navbar.Brand>
           <Navbar.Toggle aria-controls="navbarScroll" />
-          <Navbar.Collapse id="navbarScroll">
+          <Navbar.Collapse id="navbarScroll" bg="primary">
             <Nav className={`${classes.navlist} ml-2`}>
               <RenderNavbar />
             </Nav>

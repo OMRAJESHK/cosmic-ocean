@@ -10,3 +10,12 @@
     gap: 10px;
     align-items: center;
   }
+
+  .nav-brand-title{
+    font-weight: 600;
+    font-family: 'Montserrat', sans-serif;
+  }
+
+  .nav-container{
+    line-height: 3;
+  }

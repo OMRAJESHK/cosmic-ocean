@@ -27,6 +27,7 @@ export default function RootLayout({ children }) {
       </Head>
       <body>
         <CosmicNavbar />
+        {/*  */}
         <main>{children}</main>
       </body>
     </html>

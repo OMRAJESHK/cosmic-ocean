@@ -1,11 +1,11 @@
-import React from "react";
+import React, { Fragment } from "react";
 import BannerSection from "./banner";
 
 const Home = () => {
   return (
-    <div>
+    <Fragment>
       <BannerSection />
-    </div>
+    </Fragment>
   );
 };
 

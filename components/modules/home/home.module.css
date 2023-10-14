@@ -1,27 +1,89 @@
+.container {
+  margin: 1rem 0.5rem;
+}
 .banner-section {
-	position: relative;
-	display: table;
-	width: 100%;
-	background: rgba(99,214,250,1);
-	/* ms ( IE 10.0+ ) */
-	background: -ms-radial-gradient(ellipse closest-side at 50% 50%, rgba(99,214,250,1) 0.14%, rgba(56,184,224,1) 99.61% );
-	/* WebKit (Chrome 10.0+, safari 5.1+ )*/
-	background: -webkit-radial-gradient(ellipse closest-side at 50% 50%, rgba(99,214,250,1) 0.14%, rgba(56,184,224,1) 99.61% );
-	/* Moz ( Moz 3.6+ )*/
-	background: -moz-radial-gradient(ellipse closest-side at 50% 50%, rgba(99,214,250,1) 0.14%, rgba(56,184,224,1) 99.61% );
-	/* Opera ( opera 11.6+ )*/
-	background: -o-radial-gradient(ellipse closest-side at 50% 50%, rgba(99,214,250,1) 0.14%, rgba(56,184,224,1) 99.61% );
-	/* W3C Markup */
-	background: radial-gradient(ellipse closest-side at 50% 50%, rgba(99,214,250,1) 0.14%, rgba(56,184,224,1) 99.61% );
-	height: 70vh;
+  position: relative;
+  display: table;
+  width: 100%;
+  background: rgba(99, 214, 250, 1);
+  /* ms ( IE 10.0+ ) */
+  background: -ms-radial-gradient(
+    ellipse closest-side at 50% 50%,
+    rgba(99, 214, 250, 1) 0.14%,
+    rgba(56, 184, 224, 1) 99.61%
+  );
+  /* WebKit (Chrome 10.0+, safari 5.1+ )*/
+  background: -webkit-radial-gradient(
+    ellipse closest-side at 50% 50%,
+    rgba(99, 214, 250, 1) 0.14%,
+    rgba(56, 184, 224, 1) 99.61%
+  );
+  /* Moz ( Moz 3.6+ )*/
+  background: -moz-radial-gradient(
+    ellipse closest-side at 50% 50%,
+    rgba(99, 214, 250, 1) 0.14%,
+    rgba(56, 184, 224, 1) 99.61%
+  );
+  /* Opera ( opera 11.6+ )*/
+  background: -o-radial-gradient(
+    ellipse closest-side at 50% 50%,
+    rgba(99, 214, 250, 1) 0.14%,
+    rgba(56, 184, 224, 1) 99.61%
+  );
+  /* W3C Markup */
+  background: radial-gradient(
+    ellipse closest-side at 50% 50%,
+    rgba(99, 214, 250, 1) 0.14%,
+    rgba(56, 184, 224, 1) 99.61%
+  );
+  height: 80vh;
 }
 
 .banner-content {
-	display: table-cell;
-	vertical-align: middle;
-	color: #FFF;
-	text-align: center;
-	font-size: 18px;
-	font-weight: normal;
-	padding: 0 3%;
+  display: table-cell;
+  vertical-align: middle;
+  color: #fff;
+  text-align: center;
+  font-size: 18px;
+  font-weight: normal;
+  padding: 0 3%;
+}
+
+.solar-system-wrapper {
+  display: column;
+  flex-direction: column-reverse;
+}
+.article-wrapper{
+	display: flex;
+    flex-direction: column-reverse;
+}
+
+@media (min-width: 320px) {
+  /* smartphones, iPhone, portrait 480x320 phones */
+}
+@media (min-width: 481px) {
+  /* portrait e-readers (Nook/Kindle), smaller tablets @ 600 or @ 640 wide. */
+
+}
+@media (min-width: 641px) {
+  /* portrait tablets, portrait iPad, landscape e-readers, landscape 800x480 or 854x480 phones */
+  .article-wrapper{
+	display: flex;
+    flex-direction: column;
+}
+  .solar-system-wrapper {
+	display: flex;
+  }
+}
+@media (min-width: 961px) {
+  /* tablet, landscape iPad, lo-res laptops ands desktops */
+  .container {
+    margin: 1rem 15rem;
+  }
+}
+@media (min-width: 1025px) {
+  /* big landscape tablets, laptops, and desktops */
+}
+@media (min-width: 1281px) {
+  /* hi-res laptops and desktops */
 }

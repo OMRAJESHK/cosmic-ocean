@@ -36,7 +36,8 @@ const CosmicNavbar = () => {
               height={50}
               alt="Picture of the author"
             />
-            Cosmic Ocean
+
+            <span>Cosmic Ocean</span>
           </Navbar.Brand>
           <Navbar.Toggle aria-controls="navbarScroll" />
           <Navbar.Collapse id="navbarScroll" bg="primary">

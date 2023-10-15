@@ -49,41 +49,147 @@
   padding: 0 3%;
 }
 
-.solar-system-wrapper {
-  display: column;
-  flex-direction: column-reverse;
-}
-.article-wrapper{
-	display: flex;
-    flex-direction: column-reverse;
+/* The Solar system - styles */
+
+.article-wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
 }
 
+.img-wrapper {
+  width: 100%;
+  height: 100%;
+}
+
+
+.solar-system-img {
+  
+  object-fit: fill;
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 10px;
+}
+.solar-system-desc-wrapper{
+  text-align: justify;
+}
+.solar-system-img:hover {
+  box-shadow: 0 0 2px 1px rgba(4, 140, 185, 0.5);
+}
+
+.accordion-body{
+  padding:1rem
+}
+
+
+/* The Celestials - styles */
+
+.celestials-card-body{
+  padding: 0;
+}
+.celestials-wrapper{
+  display: flex;
+  gap: 10px;
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+.celestials-wrapper > div{
+  flex-basis: 100%;
+}
+.celestials-item-wrapper{
+  display: flex;    
+  gap: 10px;
+  height: 100%;
+}
+
+.celestials-item-wrapper > div:first-child{
+  flex-basis: 30%;
+}
+
+/* Quote section */
+.otro-blockquote{
+  font-size: 1.4em;
+  width:100%;
+  height: 100%;
+  font-family:Open Sans;
+  font-style:italic;
+  color: #555555;
+  padding:1.2em 30px 1.2em 75px;
+  border-left:8px solid #78C0A8 ;
+  line-height:1.6;
+  position: relative;
+  background:#EDEDED;
+}
+.otro-blockquote::before{
+  font-family:Arial;
+  content: "\201C";
+  color:#78C0A8;
+  font-size:4em;
+  position: absolute;
+  left: 10px;
+  top:-10px;
+}
+
+.otro-blockquote::after{
+  content: '';
+}
+
+.otro-blockquote span{
+  display:block;
+  color:#333333;
+  font-style: normal;
+  font-weight: bold;
+  margin-top:1em;
+}
 @media (min-width: 320px) {
   /* smartphones, iPhone, portrait 480x320 phones */
+  .accordion-body{
+    padding:5px;
+  }
 }
 @media (min-width: 481px) {
   /* portrait e-readers (Nook/Kindle), smaller tablets @ 600 or @ 640 wide. */
-
+  .article-wrapper:nth-child(2){
+    flex-direction: column;
+  }
+  
 }
 @media (min-width: 641px) {
   /* portrait tablets, portrait iPad, landscape e-readers, landscape 800x480 or 854x480 phones */
-  .article-wrapper{
-	display: flex;
-    flex-direction: column;
-}
+  .article-wrapper {
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: flex-start;
+  }
+  .article-wrapper > * {
+    flex-basis: 50%;
+  }
   .solar-system-wrapper {
-	display: flex;
+    display: flex;
+    row-gap: 15px;
+    flex-wrap: wrap;
+  }
+  .article-wrapper:nth-child(2){
+    flex-direction: row-reverse;
+  }
+
+  .celestials-wrapper > div{
+    flex-basis: 49%;
   }
 }
 @media (min-width: 961px) {
   /* tablet, landscape iPad, lo-res laptops ands desktops */
-  .container {
-    margin: 1rem 15rem;
-  }
+  
 }
 @media (min-width: 1025px) {
   /* big landscape tablets, laptops, and desktops */
+  .container {
+    margin: 1rem 10rem;
+  }
 }
 @media (min-width: 1281px) {
   /* hi-res laptops and desktops */
+  .container {
+    margin: 1rem 15rem;
+  }
 }

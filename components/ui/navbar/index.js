@@ -7,10 +7,18 @@ import Container from "react-bootstrap/Container";
 import Form from "react-bootstrap/Form";
 import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
+import { useRouter } from "next/navigation";
 
 import Image from "next/image";
+import { pageRoutes } from "@/routes/routes";
 
 const CosmicNavbar = () => {
+  const router = useRouter();
+
+  const onSearchHandler = () => {
+    router.push(pageRoutes.spacesearch);
+  };
+
   return (
     <header>
       <Navbar
@@ -28,7 +36,8 @@ const CosmicNavbar = () => {
               height={50}
               alt="Picture of the author"
             />
-            Cosmic Backyard
+
+            <span>Cosmic Ocean</span>
           </Navbar.Brand>
           <Navbar.Toggle aria-controls="navbarScroll" />
           <Navbar.Collapse id="navbarScroll" bg="primary">
@@ -43,11 +52,13 @@ const CosmicNavbar = () => {
             <Form className="d-flex">
               <Form.Control
                 type="search"
-                placeholder="Search"
+                placeholder="search..."
                 className="me-2"
                 aria-label="Search"
               />
-              <Button variant="outline-success">Search</Button>
+              <Button variant="outline-success" onClick={onSearchHandler}>
+                Search
+              </Button>
             </Form>
           </Navbar.Collapse>
         </Container>

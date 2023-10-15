@@ -14,6 +14,7 @@
   .nav-brand-title{
     font-weight: 600;
     font-family: 'Montserrat', sans-serif;
+    display: flex;
   }
 
   .nav-container{

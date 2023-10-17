@@ -8,6 +8,7 @@ export const apiBaseUrl = `${baseUrl}/api`;
 // https://api.nasa.gov/neo/rest/v1/feed?start_date=2015-09-07&end_date=2015-09-08&api_key=ZGRpnMltsDmQ4Z6NyY551gR7FpNozTyE4Cc3RWb6
 
 // https://api.nasa.gov/mars-photos/api/v1/rovers/curiosity/photos?sol=1000&api_key=ZGRpnMltsDmQ4Z6NyY551gR7FpNozTyE4Cc3RWb6
+// https://api.nasa.gov/mars-photos/api/v1/rovers/opportunity/photos?sol=3975&api_key=ZGRpnMltsDmQ4Z6NyY551gR7FpNozTyE4Cc3RWb6&date=2023-10-16
 // https://api.nasa.gov/mars-photos/api/v1/rovers/curiosity/photos?sol=1000&camera=fhaz&api_key=DEMO_KEY
 // https://api.nasa.gov/mars-photos/api/v1/rovers/curiosity/photos?sol=1000&page=2&api_key=ZGRpnMltsDmQ4Z6NyY551gR7FpNozTyE4Cc3RWb6 pagination
 // https://api.nasa.gov/mars-photos/api/v1/rovers/curiosity/photos?earth_date=2017-6-3&api_key=DEMO_KEY

@@ -4,6 +4,33 @@ export const apiBaseUrl = `${baseUrl}/api`;
 // https://api.nasa.gov/
 
 // https://api.nasa.gov/planetary/apod?api_key=${process.env.API_URL}&date=2023-10-13
+
+/* 
+  https://api.nasa.gov/ - for Docs
+  https://images.nasa.gov/docs/images.nasa.gov_api_docs.pdf
+  
+  Neo - Feed
+  -------------
+  Retrieve a list of Asteroids based on their closest approach date to Earth.
+  GET https://api.nasa.gov/neo/rest/v1/feed?start_date=START_DATE&end_date=END_DATE&api_key=API_KEY
+*/
+
+/* 
+  Neo - Lookup
+  -------------
+  Lookup a specific Asteroid based on its NASA JPL small body (SPK-ID) ID
+  GET https://api.nasa.gov/neo/rest/v1/neo/
+*/
+
+/* 
+  Neo - Browse
+  -------------
+  Browse the overall Asteroid data-set
+  GET https://api.nasa.gov/neo/rest/v1/neo/browse/
+*/
+
+//https://images-api.nasa.gov/search?q=jwst&page=1
+
 // https://api.nasa.gov/neo/rest/v1/neo/browse?api_key=ZGRpnMltsDmQ4Z6NyY551gR7FpNozTyE4Cc3RWb6
 // https://api.nasa.gov/neo/rest/v1/feed?start_date=2015-09-07&end_date=2015-09-08&api_key=ZGRpnMltsDmQ4Z6NyY551gR7FpNozTyE4Cc3RWb6
 
@@ -19,7 +46,7 @@ export const getUrl = (location) => {
 
 const apiLocations = {
   SEARCH: (q) =>
-    getUrl(`${process.env.NASA_SEARCH_BASE_URL}/search?q=${q}&page=1`),
+    getUrl(`${process.env.NASA_SEARCH_BASE_URL}search?q=${q}&page=1`),
   USER_ME: () => getUrl(`${apiBaseUrl}/auth/me`),
   GET_ASSET: () => getUrl(`${apiBaseUrl}/asset`),
   PUT_ASSET: (id) => getUrl(`${apiBaseUrl}/asset/${id}`),

@@ -1,0 +1,101 @@
+.container {
+  margin: 1rem 0.5rem;
+}
+
+.neo-card-body {
+  display: flex;
+  gap: 10px;
+  flex-direction: column;
+}
+
+.neo-orbital-class-wrapper {
+  display: flex;
+  gap: 10px;
+  flex-direction: column;
+}
+
+.orbital-class-item-wrapper {
+  flex-basis: 100%;
+}
+.orbital-class-item--text {
+  flex-basis: 100%;
+}
+
+.orbital-class-item--img {
+  flex-basis: 100%;
+}
+
+.neo-table{
+  width: 100%;
+}
+.neo-table thead{
+  background-color: red;
+  color:white
+}
+.neo-table thead th{
+  text-align: center;
+  border: 1px solid white;
+}
+.neo-table tbody td{
+  text-align: center;
+  border: 1px solid white;
+}
+@media (min-width: 320px) {
+}
+@media (min-width: 481px) {
+ 
+}
+@media (min-width: 641px) {
+}
+@media (min-width: 961px) {
+  .orbital-class-item--text {
+    flex-basis: 80%;
+  }
+
+  .orbital-class-item--img {
+    flex-basis: 18%;
+  }
+}
+@media (min-width: 1025px) {
+  .container {
+    margin: 1rem 10rem;
+  }
+
+  .orbital-class-item-wrapper {
+    flex-basis: 49%;
+  }
+
+  .orbital-class-item--text {
+    flex-basis: 100%;
+  }
+
+  .orbital-class-item--img {
+    flex-basis: 100%;
+  }
+ 
+}
+@media (min-width: 1281px) {
+  .container {
+    margin: 1rem 15rem;
+  }
+  .orbital-class-item--text {
+    flex-basis: 100%;
+  }
+
+  .orbital-class-item--img {
+    flex-basis: 100%;
+  }
+}
+
+@media (min-width: 1581px) {
+  .container {
+    margin: 1rem 15rem;
+  }
+  .orbital-class-item--text {
+    flex-basis: 80%;
+  }
+
+  .orbital-class-item--img {
+    flex-basis: 18%;
+  }
+}

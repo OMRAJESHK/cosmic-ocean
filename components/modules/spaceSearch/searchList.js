@@ -19,12 +19,8 @@ const SearchList = () => {
                   />
                 </div>
                 <div>
-                  <span></span>
                   <Card.Title>Special title treatment</Card.Title>
-                  <Card.Text>
-                    With supporting text below as a natural lead-in to
-                    additional content.
-                  </Card.Text>
+                  <Card.Text>photographor name and date</Card.Text>
                 </div>
               </div>
             </Card.Body>
@@ -40,10 +36,7 @@ const SearchList = () => {
                 </div>
                 <div>
                   <Card.Title>Special title treatment</Card.Title>
-                  <Card.Text>
-                    With supporting text below as a natural lead-in to
-                    additional content.
-                  </Card.Text>
+                  <Card.Text>photographor name and date</Card.Text>
                 </div>
               </div>
             </Card.Body>
@@ -60,10 +53,7 @@ const SearchList = () => {
                 <div>
                   <span></span>
                   <Card.Title>Special title treatment</Card.Title>
-                  <Card.Text>
-                    With supporting text below as a natural lead-in to
-                    additional content.
-                  </Card.Text>
+                  <Card.Text>photographor name and date</Card.Text>
                 </div>
               </div>
             </Card.Body>

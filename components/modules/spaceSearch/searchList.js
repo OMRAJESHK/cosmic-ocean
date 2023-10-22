@@ -3,6 +3,7 @@ import Pagination from "react-bootstrap/Pagination";
 
 import Card from "react-bootstrap/Card";
 import classes from "./spaceSearch.module.css";
+import CustomPagination from "@/components/ui/pagination/customPagination";
 
 const SearchList = () => {
   return (
@@ -61,7 +62,11 @@ const SearchList = () => {
         </div>
       </Card.Body>
       <Card.Footer className={classes["space-search-footer-wrapper"]}>
-        <Pagination className={classes["space-search-pagination-wrapper"]}>
+        <CustomPagination
+          rowCount={123}
+          onClick={(pagination) => console.log(pagination)}
+        />
+        {/* <Pagination className={classes["space-search-pagination-wrapper"]}>
           <Pagination.First />
           <Pagination.Prev />
           <Pagination.Item>{1}</Pagination.Item>
@@ -77,7 +82,7 @@ const SearchList = () => {
           <Pagination.Item>{20}</Pagination.Item>
           <Pagination.Next />
           <Pagination.Last />
-        </Pagination>
+        </Pagination> */}
       </Card.Footer>
     </Card>
   );

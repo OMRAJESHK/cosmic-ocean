@@ -1,5 +1,6 @@
 import "./globals.css";
 import "bootstrap/dist/css/bootstrap.min.css";
+import "react-datepicker/dist/react-datepicker.css";
 import CosmicNavbar from "@/components/ui/navbar";
 import Head from "next/head";
 

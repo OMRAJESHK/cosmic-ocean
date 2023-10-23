@@ -1,24 +1,28 @@
 "use client";
-import React from "react";
+import React, { useState } from "react";
 import Card from "react-bootstrap/Card";
 import Form from "react-bootstrap/Form";
 import Flexbox from "@/components/ui/flexbox/flexbox";
 import classes from "./marsExploration.module.css";
-import Tooltip from "react-bootstrap/Tooltip";
-import OverlayTrigger from "react-bootstrap/OverlayTrigger";
+
+import MarsImageGallery from "./marsImageGallery";
+import { roverCameras, rovers } from "./constants";
 
 const MarsExploration = () => {
-  const renderTooltip = (props) => <Tooltip {...props}>Simple tooltip</Tooltip>;
+  const [selectedRoverCameras, setselectedRoverCameras] =
+    useState(roverCameras);
+  const onRoverChangeHandler = (e) => {
+    const cameras = roverCameras.filter((camera) =>
+      camera.rover.includes(e.target.value)
+    );
+    setselectedRoverCameras(cameras);
+  };
 
   return (
     <div>
       <h2>MarsExploration</h2>
-      <Flexbox
-        gap={10}
-        justifyContent="initial"
-        classProp={classes["mars-rover-wrapper"]}
-      >
-        <Card className={classes["mars-rover-wrapper-item"]}>
+      <Flexbox gap={10} justifyContent="initial">
+        <Card className={classes["rover-gallery-wrapper"]}>
           <Card.Header>
             <Card.Title>Rover</Card.Title>
             <Flexbox gap={10} justifyContent="space-between">
@@ -32,10 +36,13 @@ const MarsExploration = () => {
                 <Form.Select
                   aria-label="Rover"
                   className={classes["rover-select"]}
+                  onChange={onRoverChangeHandler}
                 >
-                  <option value="1">Curiocity</option>
-                  <option value="2">Opportunity</option>
-                  <option value="3">Spirit</option>
+                  {rovers.map((rover) => (
+                    <option key={rover.value} value={rover.value}>
+                      {rover.name}
+                    </option>
+                  ))}
                 </Form.Select>
               </Flexbox>
               <Flexbox
@@ -48,9 +55,11 @@ const MarsExploration = () => {
                   aria-label="Camera"
                   className={classes["camera-select"]}
                 >
-                  <option value="1">ABCD</option>
-                  <option value="2">MNOP</option>
-                  <option value="3">WXYZ</option>
+                  {selectedRoverCameras.map((camera) => (
+                    <option key={camera.value} value={camera.value}>
+                      {camera.name}
+                    </option>
+                  ))}
                 </Form.Select>
               </Flexbox>
               <Flexbox
@@ -58,53 +67,53 @@ const MarsExploration = () => {
                 gap={10}
                 classProp={classes["sol-input-wrapper"]}
               >
-                <OverlayTrigger
-                  placement="right"
-                  delay={{ show: 250, hide: 400 }}
-                  overlay={renderTooltip}
-                >
-                  <>
-                    <label>Sol</label>
-                    <Form.Control
-                      type="number"
-                      maxLength={4}
-                      id="sol-input"
-                      className={classes["sol-input"]}
-                    />
-                  </>
-                </OverlayTrigger>
+                <label>Sol</label>
+                <Form.Control
+                  type="number"
+                  maxLength={4}
+                  id="sol-input"
+                  className={classes["sol-input"]}
+                />
               </Flexbox>
             </Flexbox>
           </Card.Header>
-          <Card.Body></Card.Body>
+          <Card.Body>
+            <MarsImageGallery />
+          </Card.Body>
         </Card>
-        <div className={classes["rover-modal-wrapper"]}>
-          <div>
+        <div className={classes["rover-model-wrapper"]}>
+          <div className={classes["rover-model"]}>
             <iframe
               src="https://mars.nasa.gov/gltf_embed/24584"
               width="100%"
               height="500px"
             />
           </div>
-          <label>the rover modal</label>
+          <Flexbox justifyContent="initial">
+            <div className={classes["model-flex-item-wrapper"]}>
+              <h5>Is Active</h5>
+              <label>Yes</label>
+              <hr />
+              <h5>Launch Date</h5>
+              <label>AMOR</label>
+              <hr />
+            </div>
+            <div className={classes["model-flex-item-wrapper"]}>
+              <h5>Landing Date</h5>
+              <label>2.1234 km</label>
+              <hr />
+              <h5>Landing Site</h5>
+              <label>Gale crater</label>
+              <hr />
+            </div>
+          </Flexbox>
+          <p>
+            <strong>*Sol</strong> is a solar day on Mars.A sol is slightly
+            longer than an Earth day. It is approximately 24 hours, 39 minutes,
+            35 seconds long
+          </p>
         </div>
       </Flexbox>
-      <h1>Features to add</h1>
-      <ul>
-        <li>landing_date</li>
-        <li>launch_date</li>
-        <li>total_photos</li>
-        <li>Explore Mars by sol(Day on Mars) </li>
-        <li>Explore Mars by Earth equivalent date for sol</li>
-        <li>Search by Rovers(Curiosity, opportunity, spirit)</li>
-        <li>Pagination</li>
-        <li>Search Mars by camera </li>
-        <li>List of camera is different for different rover</li>
-        <li>
-          useful data from api - image, camera name, camera full_name,
-          earth_date
-        </li>
-      </ul>
     </div>
   );
 };

@@ -6,6 +6,10 @@ import "bootstrap/dist/css/bootstrap.min.css";
 // React datepicker
 import "react-datepicker/dist/react-datepicker.css";
 
+/* React Slick */
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
+
 import CosmicNavbar from "@/components/ui/navbar";
 
 export const metadata = {

@@ -7,6 +7,7 @@ import CustomTableFoot from "./customTableFoot";
 
 const CustomTable = (props) => {
   const {
+    pagination = true,
     columns = [],
     rows = [],
     onClick = () => {},
@@ -16,6 +17,7 @@ const CustomTable = (props) => {
 
   return (
     <Table
+      responsive="lg"
       striped
       bordered
       hover
@@ -31,7 +33,7 @@ const CustomTable = (props) => {
         />
       )}
 
-      {rows.length > 0 && (
+      {pagination && rows.length > 0 && (
         <CustomTableFoot
           columnCount={columns.length}
           rowCount={rows.length}
@@ -52,6 +54,7 @@ CustomTable.propTypes = {
   rows: PropTypes.array,
   onClick: PropTypes.func,
   classProp: PropTypes.string,
+  pagination: PropTypes.bool,
 };
 
 export default CustomTable;

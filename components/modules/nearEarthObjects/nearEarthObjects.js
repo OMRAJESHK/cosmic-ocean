@@ -200,19 +200,6 @@ const NearEarthObjects = () => {
       >
         <NearEarthObject />
       </CustomModal>
-
-      <ul>
-        <li>From Date and To Date</li>
-        <li>
-          Retrieve a list of Asteroids based on their closest approach date to
-          Earth.
-        </li>
-        <li>
-          Lookup a specific Asteroid based on its NASA JPL small body (SPK-ID)
-          ID
-        </li>
-        <li>Browse the overall Asteroid data-set</li>
-      </ul>
     </div>
   );
 };

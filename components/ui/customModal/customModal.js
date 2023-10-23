@@ -5,6 +5,7 @@ import Modal from "react-bootstrap/Modal";
 
 const CustomModal = (props) => {
   const {
+    size = "lg",
     show = false,
     onHide = () => {},
     title = "Modal heading",
@@ -14,7 +15,7 @@ const CustomModal = (props) => {
     <Modal
       show={show}
       onHide={onHide}
-      size="lg"
+      size={size}
       aria-labelledby="contained-modal-title-vcenter"
       centered
     >
@@ -29,6 +30,10 @@ const CustomModal = (props) => {
   );
 };
 
-CustomModal.propTypes = { onHide: PropTypes.func, show: PropTypes.bool };
+CustomModal.propTypes = {
+  size: PropTypes.string,
+  onHide: PropTypes.func,
+  show: PropTypes.bool,
+};
 
 export default CustomModal;

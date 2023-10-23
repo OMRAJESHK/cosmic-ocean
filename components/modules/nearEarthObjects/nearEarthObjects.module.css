@@ -69,6 +69,10 @@
 .earth-astroid-wrapper{
   padding: 1rem;
 }
+
+.neo-details-flex-item-wrapper{
+  flex-grow: 1;
+}
 @keyframes astroid {
   0%{
      transform: rotate(0deg);
@@ -158,10 +162,10 @@
     flex-basis: 20%;
   }
   .lookup-select-wrapper{
-    flex-basis: 20%;
+    flex-basis: 24%;
   }
   .lookup-date-wrapper{
-    flex-basis: 20%;
+    flex-basis: 24%;
   }
 }
 

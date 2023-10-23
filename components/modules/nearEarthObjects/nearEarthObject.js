@@ -7,6 +7,8 @@ import Astroid from "@/assets/svgs/astroid";
 import Flexbox from "@/components/ui/flexbox/flexbox";
 
 import earth from "../../../assets/images/neo/earth.png";
+import CustomTable from "@/components/ui/customTable";
+import { closeApproachesColumns, closeApproachesRows } from "./constants";
 
 const NearEarthObject = () => {
   return (
@@ -32,8 +34,8 @@ const NearEarthObject = () => {
       </Flexbox>
       <h4>433 Eros (A898 PA)</h4>
 
-      <Flexbox>
-        <div>
+      <Flexbox justifyContent="initial">
+        <div className={classes["neo-details-flex-item-wrapper"]}>
           <h5>Orbital Class</h5>
           <label>AMOR</label>
           <hr />
@@ -41,7 +43,7 @@ const NearEarthObject = () => {
           <label>2.1234 km</label>
           <hr />
         </div>
-        <div>
+        <div className={classes["neo-details-flex-item-wrapper"]}>
           <h5>Is Potentially Hazardious</h5>
           <label>false</label>
           <hr />
@@ -52,9 +54,19 @@ const NearEarthObject = () => {
       </Flexbox>
       <div>
         <h5>Close Approaches</h5>
-        table
+        <CustomTable
+          classProp={classes["neo-table"]}
+          columns={closeApproachesColumns}
+          rows={closeApproachesRows}
+          pagination={false}
+        />
         <h5>Future Encounters</h5>
-        table
+        <CustomTable
+          classProp={classes["neo-table"]}
+          columns={closeApproachesColumns}
+          rows={closeApproachesRows}
+          pagination={false}
+        />
       </div>
     </div>
   );

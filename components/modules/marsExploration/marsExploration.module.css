@@ -1,0 +1,19 @@
+.rover-select, .camera-select,.sol-input{
+  width: 12rem;
+}
+
+.mars-rover-wrapper-item{
+  flex-basis: 50%;
+}
+
+.rover-select-wrapper, .camera-select-wrapper{
+  flex-basis: 30%;
+}
+
+.sol-input-wrapper{
+  flex-basis: 30%;
+}
+
+.rover-modal-wrapper{
+  flex-grow:1
+}

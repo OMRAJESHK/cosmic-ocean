@@ -1,8 +1,12 @@
 import "./globals.css";
+
+// React bootstrap
 import "bootstrap/dist/css/bootstrap.min.css";
+
+// React datepicker
 import "react-datepicker/dist/react-datepicker.css";
+
 import CosmicNavbar from "@/components/ui/navbar";
-import Head from "next/head";
 
 export const metadata = {
   title: "Cosmic Ocean | The absence of evidence is not evidence of absence.",
@@ -12,20 +16,6 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
-      <Head>
-        <link
-          rel="stylesheet"
-          href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
-          integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM"
-          crossOrigin="anonymous"
-        />
-        <link rel="preconnect" href="https://fonts.googleapis.com" />
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin />
-        <link
-          href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;1,100;1,200;1,300;1,400;1,500;1,600;1,700&family=Orbitron:wght@400;500;600&display=swap"
-          rel="stylesheet"
-        />
-      </Head>
       <body>
         <CosmicNavbar />
         {/*  */}

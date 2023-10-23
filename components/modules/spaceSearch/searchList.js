@@ -3,6 +3,7 @@ import Pagination from "react-bootstrap/Pagination";
 
 import Card from "react-bootstrap/Card";
 import classes from "./spaceSearch.module.css";
+import CustomPagination from "@/components/ui/pagination/customPagination";
 
 const SearchList = () => {
   return (
@@ -19,12 +20,8 @@ const SearchList = () => {
                   />
                 </div>
                 <div>
-                  <span></span>
                   <Card.Title>Special title treatment</Card.Title>
-                  <Card.Text>
-                    With supporting text below as a natural lead-in to
-                    additional content.
-                  </Card.Text>
+                  <Card.Text>photographor name and date</Card.Text>
                 </div>
               </div>
             </Card.Body>
@@ -40,10 +37,7 @@ const SearchList = () => {
                 </div>
                 <div>
                   <Card.Title>Special title treatment</Card.Title>
-                  <Card.Text>
-                    With supporting text below as a natural lead-in to
-                    additional content.
-                  </Card.Text>
+                  <Card.Text>photographor name and date</Card.Text>
                 </div>
               </div>
             </Card.Body>
@@ -60,10 +54,7 @@ const SearchList = () => {
                 <div>
                   <span></span>
                   <Card.Title>Special title treatment</Card.Title>
-                  <Card.Text>
-                    With supporting text below as a natural lead-in to
-                    additional content.
-                  </Card.Text>
+                  <Card.Text>photographor name and date</Card.Text>
                 </div>
               </div>
             </Card.Body>
@@ -71,7 +62,11 @@ const SearchList = () => {
         </div>
       </Card.Body>
       <Card.Footer className={classes["space-search-footer-wrapper"]}>
-        <Pagination className={classes["space-search-pagination-wrapper"]}>
+        <CustomPagination
+          rowCount={123}
+          onClick={(pagination) => console.log(pagination)}
+        />
+        {/* <Pagination className={classes["space-search-pagination-wrapper"]}>
           <Pagination.First />
           <Pagination.Prev />
           <Pagination.Item>{1}</Pagination.Item>
@@ -87,7 +82,7 @@ const SearchList = () => {
           <Pagination.Item>{20}</Pagination.Item>
           <Pagination.Next />
           <Pagination.Last />
-        </Pagination>
+        </Pagination> */}
       </Card.Footer>
     </Card>
   );

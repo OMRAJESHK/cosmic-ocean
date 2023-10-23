@@ -1,7 +1,3 @@
-import React from "react";
-
-const NearEarthObjects = () => {
-  return <div>NearEarthObjects</div>;
-};
+import NearEarthObjects from "./nearEarthObjects";
 
 export default NearEarthObjects;

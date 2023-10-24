@@ -1,4 +1,29 @@
+.apod-img-wrapper{
+  position: relative;
+  width: 100%;
+  height: 600px;
+}
 
+.apod-wrapper{
+  display: flex;
+}
+.img-card-wrapper{
+  height: auto; width: 60rem;
+  flex-basis: 49%;
+}
+.img-gallery-item-wrapper{
+  flex-basis: 49%;
+}
+.img-gallery-wrapper{
+  position: relative;
+  height: 120px;
+}
+.gallery-img{
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  padding: 0.1rem;
+}
 @media (min-width: 320px) {
   
 }

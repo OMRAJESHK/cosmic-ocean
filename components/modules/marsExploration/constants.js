@@ -1,7 +1,19 @@
 export const rovers = [
-  { name: "Curiosity", value: "curiosity" },
-  { name: "Opportunity", value: "opportunity" },
-  { name: "Spirit", value: "spirit" },
+  {
+    name: "Curiosity",
+    value: "curiosity",
+    model: "https://mars.nasa.gov/gltf_embed/24584",
+  },
+  {
+    name: "Opportunity",
+    value: "opportunity",
+    model: "https://mars.nasa.gov/gltf_embed/24883",
+  },
+  {
+    name: "Spirit",
+    value: "spirit",
+    model: "https://mars.nasa.gov/gltf_embed/24883",
+  },
 ];
 export const roverCameras = [
   {

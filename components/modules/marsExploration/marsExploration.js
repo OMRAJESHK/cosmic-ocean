@@ -11,11 +11,15 @@ import { roverCameras, rovers } from "./constants";
 const MarsExploration = () => {
   const [selectedRoverCameras, setselectedRoverCameras] =
     useState(roverCameras);
+  const [roverModel, setRoverModel] = useState(rovers[0].model);
   const onRoverChangeHandler = (e) => {
+    const { value } = e.target;
+    const selectedRover = rovers.find((rover) => rover.value === value);
     const cameras = roverCameras.filter((camera) =>
-      camera.rover.includes(e.target.value)
+      camera.rover.includes(value)
     );
     setselectedRoverCameras(cameras);
+    setRoverModel(selectedRover.model);
   };
 
   return (
@@ -66,6 +70,7 @@ const MarsExploration = () => {
                 alignItems="center"
                 gap={10}
                 classProp={classes["sol-input-wrapper"]}
+                title="3760 is the max value"
               >
                 <label>Sol</label>
                 <Form.Control
@@ -83,11 +88,7 @@ const MarsExploration = () => {
         </Card>
         <div className={classes["rover-model-wrapper"]}>
           <div className={classes["rover-model"]}>
-            <iframe
-              src="https://mars.nasa.gov/gltf_embed/24584"
-              width="100%"
-              height="500px"
-            />
+            <iframe src={roverModel} width="100%" height="500px" />
           </div>
           <Flexbox justifyContent="initial">
             <div className={classes["model-flex-item-wrapper"]}>

@@ -11,9 +11,11 @@ const Flexbox = (props) => {
     flexDirection = "row",
     classProp = "",
     children,
+    title = "",
   } = props;
   return (
     <div
+      title={title}
       className={`${classes.flex} ${classProp && classProp}`}
       style={{ gap: `${gap}px`, justifyContent, alignItems, flexDirection }}
     >
@@ -24,6 +26,7 @@ const Flexbox = (props) => {
 
 Flexbox.propTypes = {
   gap: PropTypes.number,
+  title:PropTypes.string,
   classProp: PropTypes.string,
   justifyContent: PropTypes.string,
   alignItems: PropTypes.string,

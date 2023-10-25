@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import PropTypes from "prop-types";
 import Image from "next/image";
+import loading from "@/assets/gifs/loading.gif";
 
 const CustomImage = (props) => {
   const [isLoading, setIsLoading] = useState(true);
@@ -29,14 +30,15 @@ const CustomImage = (props) => {
     setError(true);
     onError();
   };
-  console.log("isLoadingisLoading", src, isLoading, error);
+
   return (
     <>
-      {!error && (
+      {error ? (
+        <p>Image Failed</p>
+      ) : (
         <Image
-          //   style={{ display: isLoading || error ? "none" : "block" }}
           className={`${classProp && classProp}`}
-          src={src}
+          src={isLoading ? loading : src}
           alt={alt}
           width={width}
           height={height}
@@ -45,8 +47,6 @@ const CustomImage = (props) => {
           {...restProps}
         />
       )}
-      {isLoading && <p>Loading...</p>}
-      {error && <p>Image Failed</p>}
     </>
   );
 };

@@ -26,7 +26,7 @@ const Flexbox = (props) => {
 
 Flexbox.propTypes = {
   gap: PropTypes.number,
-  title:PropTypes.string,
+  title: PropTypes.string,
   classProp: PropTypes.string,
   justifyContent: PropTypes.string,
   alignItems: PropTypes.string,

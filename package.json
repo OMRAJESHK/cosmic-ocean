@@ -7,13 +7,15 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "cowtalks": "cowsay well hello"
+    "cowtalks": "cowsay well hello",
+    "prepare": "husky install",
+    "prettier:fix":"npx prettier --write **/*.js",
+    "prettier:file": "npx prettier \"{app, components, api}/**/*.js\" --write"
   },
   "dependencies": {
     "autoprefixer": "10.4.15",
     "bootstrap": "^5.3.1",
     "cowsay": "^1.5.0",
-    "eslint": "8.47.0",
     "eslint-config-next": "13.4.19",
     "next": "13.4.19",
     "postcss": "8.4.28",
@@ -23,5 +25,18 @@
     "react-dom": "18.2.0",
     "react-slick": "^0.29.0",
     "slick-carousel": "^1.8.1"
+  },
+  "devDependencies": {
+    "babel-eslint": "^10.1.0",
+    "eslint": "^8.52.0",
+    "eslint-config-prettier": "^9.0.0",
+    "eslint-plugin-import": "^2.29.0",
+    "eslint-plugin-jsx-a11y": "^6.7.1",
+    "eslint-plugin-prettier": "^5.0.1",
+    "eslint-plugin-react": "^7.33.2",
+    "eslint-plugin-react-hooks": "^4.6.0",
+    "husky": "^8.0.0",
+    "lint-staged": "^15.0.2",
+    "prettier": "^3.0.3"
   }
 }

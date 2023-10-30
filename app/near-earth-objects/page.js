@@ -1,8 +1,9 @@
 import React from "react";
 import NearEarthObjects from "@/components/modules/nearEarthObjects";
 
-const NearEarthObjectsPage = () => {
+function NearEarthObjectsPage() {
+  const a = "a";
   return <NearEarthObjects />;
-};
+}
 
 export default NearEarthObjectsPage;

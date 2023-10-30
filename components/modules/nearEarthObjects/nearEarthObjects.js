@@ -101,9 +101,9 @@ const NearEarthObjects = () => {
                 <div className={classes["orbital-class-item--text"]}>
                   <Card.Title>Greater than 1 AU</Card.Title>
                   <Card.Text>
-                    Apollo asteroids have orbits that cross Earth&apos;s orbit. Their
-                    eccentric orbits bring them near Earth. They have a wide
-                    range of perihelion distances.
+                    Apollo asteroids have orbits that cross Earth&apos;s orbit.
+                    Their eccentric orbits bring them near Earth. They have a
+                    wide range of perihelion distances.
                   </Card.Text>
                 </div>
                 <div className={classes["orbital-class-item--img"]}>
@@ -125,8 +125,8 @@ const NearEarthObjects = () => {
                   <Card.Title>less than 1 AU</Card.Title>
                   <Card.Text>
                     Aten asteroids are similar to Apollo asteroids. Tthey spend
-                    more time within Earth&apos;s orbit. They often have orbits that
-                    bring them within Earth&apos;s vicinity.
+                    more time within Earth&apos;s orbit. They often have orbits
+                    that bring them within Earth&apos;s vicinity.
                   </Card.Text>
                 </div>
                 <div className={classes["orbital-class-item--img"]}>

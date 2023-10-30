@@ -52,11 +52,11 @@ const NearEarthObjects = () => {
                 <div className={classes["orbital-class-item--text"]}>
                   <Card.Title>Less than 1 astronomical unit</Card.Title>
                   <Card.Text>
-                    These NEOs have orbits that entirely lie within Earth's
+                    These NEOs have orbits that entirely lie within Earth&apos;s
                     orbit. In other words, they stay closer to the Sun than
                     Earth. The semi-major axis of their orbits is less than 1
                     astronomical unit (AU), and they never venture beyond
-                    Earth's orbit.
+                    Earth&apos;s orbit.
                   </Card.Text>
                 </div>
                 <div className={classes["orbital-class-item--img"]}>
@@ -78,9 +78,9 @@ const NearEarthObjects = () => {
                   <Card.Title>Between 1.017 and 1.3 AU</Card.Title>
                   <Card.Text>
                     Amor asteroids have orbits that approach but do not cross
-                    Earth's orbit. Their orbits typically have a perihelion
+                    Earth&apos;s orbit. Their orbits typically have a perihelion
                     distance (closest approach to the Sun). They come close to
-                    Earth's orbit without intersecting it.
+                    Earth&apos;s orbit without intersecting it.
                   </Card.Text>
                 </div>
                 <div className={classes["orbital-class-item--img"]}>
@@ -101,7 +101,7 @@ const NearEarthObjects = () => {
                 <div className={classes["orbital-class-item--text"]}>
                   <Card.Title>Greater than 1 AU</Card.Title>
                   <Card.Text>
-                    Apollo asteroids have orbits that cross Earth's orbit. Their
+                    Apollo asteroids have orbits that cross Earth&apos;s orbit. Their
                     eccentric orbits bring them near Earth. They have a wide
                     range of perihelion distances.
                   </Card.Text>
@@ -125,8 +125,8 @@ const NearEarthObjects = () => {
                   <Card.Title>less than 1 AU</Card.Title>
                   <Card.Text>
                     Aten asteroids are similar to Apollo asteroids. Tthey spend
-                    more time within Earth's orbit. They often have orbits that
-                    bring them within Earth's vicinity.
+                    more time within Earth&apos;s orbit. They often have orbits that
+                    bring them within Earth&apos;s vicinity.
                   </Card.Text>
                 </div>
                 <div className={classes["orbital-class-item--img"]}>

@@ -16,7 +16,7 @@ const MarsExploration = () => {
     const { value } = e.target;
     const selectedRover = rovers.find((rover) => rover.value === value);
     const cameras = roverCameras.filter((camera) =>
-      camera.rover.includes(value)
+      camera.rover.includes(value),
     );
     setselectedRoverCameras(cameras);
     setRoverModel(selectedRover.model);

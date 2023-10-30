@@ -1,10 +1,9 @@
-// import MarsExploration from "@/components/modules/marsExploration";
-const MarsExploration = import("@/components/modules/marsExploration");
-import React from "react";
+import React from 'react';
+import MarsExploration from '@/components/modules/marsExploration';
 
-const MarsExplorationPage = () => {
+function MarsExplorationPage() {
   console.log("hello");
   return <MarsExploration />;
-};
+}
 
 export default MarsExplorationPage;

@@ -13,8 +13,8 @@ const CustomImage = (props) => {
     width = 50,
     height = 50,
     classProp = "",
-    onLoad,
-    onError,
+    onLoad = () => {},
+    onError = () => {},
     restProps,
   } = props;
 
@@ -59,6 +59,7 @@ CustomImage.propTypes = {
   height: PropTypes.number,
   onLoad: PropTypes.func,
   onError: PropTypes.func,
+  restProps: PropTypes.object,
 };
 
 export default CustomImage;

@@ -31,7 +31,10 @@ Flexbox.propTypes = {
   justifyContent: PropTypes.string,
   alignItems: PropTypes.string,
   flexDirection: PropTypes.string,
-  children: PropTypes.node,
+  children: PropTypes.oneOfType([
+    PropTypes.arrayOf(PropTypes.node),
+    PropTypes.node,
+  ]),
 };
 
 export default Flexbox;

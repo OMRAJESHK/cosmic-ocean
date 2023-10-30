@@ -8,7 +8,9 @@
     "start": "next start",
     "lint": "next lint",
     "cowtalks": "cowsay well hello",
-    "prepare": "husky install"
+    "prepare": "husky install",
+    "prettier:fix":"npx prettier --write **/*.js",
+    "format:file": "npx prettier \"{app, components, api}/**/*.js\" --write"
   },
   "dependencies": {
     "autoprefixer": "10.4.15",

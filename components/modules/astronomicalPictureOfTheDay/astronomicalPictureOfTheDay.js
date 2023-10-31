@@ -7,38 +7,50 @@ import Flexbox from "@/components/ui/flexbox/flexbox";
 import CustomModal from "@/components/ui/customModal";
 import FullscreenApod from "./fullscreenApod";
 import { GET, withCatch } from "@/api/services";
+import apiLocations from "@/api/apiDirectory";
+
+function getLastFourDates(currentDate) {
+  let lastFourDates = [];
+  [0, 1, 2, 3, 4].forEach((dateItem) => {
+    const date = new Date(currentDate);
+    date.setDate(currentDate.getDate() - dateItem);
+    lastFourDates = [...lastFourDates, date.toISOString().split("T")[0]];
+  });
+  return lastFourDates;
+}
 
 const AstronomicalPictureOfTheDay = () => {
   const [modalShow, setModalShow] = useState(false);
   const [apodState, setApodState] = useState([]);
 
   const onCardClickHandler = () => {
-    console.log("hi");
     setModalShow(true);
   };
 
-  const getApod = async () => {
-    try {
-      const { error, response } = await withCatch(
-        GET,
-        "http://localhost:3000/api/apod",
-      );
-      if (response.status === 200) {
-        setApodState([response.data]);
-        return response.data;
+  const getApods = async () => {
+    const currentDate = new Date();
+    const lastFourDates = getLastFourDates(currentDate);
+    lastFourDates.forEach(async (curdate) => {
+      try {
+        const { error, response } = await withCatch(
+          GET,
+          apiLocations.GET_APOD(curdate),
+        );
+        if (response.status === 200) {
+          setApodState((prev) => [...prev, response.data]);
+        }
+      } catch (err) {
+        console.error("error", err);
+        // setApodState([]);
       }
-      if (error) {
-        setApodState([]);
-      }
-    } catch (err) {
-      console.log("error", err);
-      setApodState([]);
-    }
+    });
   };
   useEffect(() => {
-    getApod();
+    getApods();
+    return () => {
+      setApodState([]);
+    };
   }, []);
-  console.log("apodState", apodState);
 
   return (
     <div className={classes["apod-wrapper"]}>
@@ -68,76 +80,33 @@ const AstronomicalPictureOfTheDay = () => {
           </Card.ImgOverlay>
         </Card>
         <Flexbox gap={10} classProp={classes["img-gallery-item-wrapper"]}>
-          <Card className={classes["img-gallery-item-card-wrapper"]}>
-            <div className={classes["img-gallery-wrapper"]}>
-              <CustomImage
-                src="https://apod.nasa.gov/apod/image/2310/M33_Triangulum1024.jpg"
-                alt="photo"
-                classProp={classes["gallery-img"]}
-                width={400}
-                height={400}
-                onLoad={() => {}}
-                onError={() => {}}
-              />
-            </div>
-            <Card.Body>
-              <Card.Title> The Astronomical Picture Of The Day</Card.Title>
-              <Card.Text>2023-Oct-10</Card.Text>
-            </Card.Body>
-          </Card>
-          <Card className={classes["img-gallery-item-card-wrapper"]}>
-            <div className={classes["img-gallery-wrapper"]}>
-              <CustomImage
-                src="https://apod.nasa.gov/apod/image/2310/M33_Triangulum1024.jpg"
-                alt="photo"
-                classProp={classes["gallery-img"]}
-                width={400}
-                height={400}
-                onLoad={() => {}}
-                onError={() => {}}
-              />
-            </div>
-            <Card.Body>
-              <Card.Title> The Astronomical Picture Of The Day</Card.Title>
-              <Card.Text>2023-Oct-10</Card.Text>
-            </Card.Body>
-          </Card>
-
-          <Card className={classes["img-gallery-item-card-wrapper"]}>
-            <div className={classes["img-gallery-wrapper"]}>
-              <CustomImage
-                src="https://apod.nasa.gov/apod/image/2310/M33_Triangulum1024.jpg"
-                alt="photo"
-                classProp={classes["gallery-img"]}
-                width={400}
-                height={400}
-                onLoad={() => {}}
-                onError={() => {}}
-              />
-            </div>
-            <Card.Body>
-              <Card.Title> The Astronomical Picture Of The Day</Card.Title>
-              <Card.Text>2023-Oct-10</Card.Text>
-            </Card.Body>
-          </Card>
-
-          <Card className={classes["img-gallery-item-card-wrapper"]}>
-            <div className={classes["img-gallery-wrapper"]}>
-              <CustomImage
-                src="https://apod.nasa.gov/apod/image/2310/M33_Triangulum1024.jpg"
-                alt="photo"
-                classProp={classes["gallery-img"]}
-                width={400}
-                height={400}
-                onLoad={() => {}}
-                onError={() => {}}
-              />
-            </div>
-            <Card.Body>
-              <Card.Title>The Astronomical Picture Of The Day</Card.Title>
-              <Card.Text>2023-Oct-10</Card.Text>
-            </Card.Body>
-          </Card>
+          {apodState?.length > 0 &&
+            apodState.map((apod, index) => {
+              if (index > 0) {
+                return (
+                  <Card
+                    key={index}
+                    className={classes["img-gallery-item-card-wrapper"]}
+                  >
+                    <div className={classes["img-gallery-wrapper"]}>
+                      <CustomImage
+                        src={apod.url}
+                        alt="photo"
+                        classProp={classes["gallery-img"]}
+                        width={400}
+                        height={400}
+                        onLoad={() => {}}
+                        onError={() => {}}
+                      />
+                    </div>
+                    <Card.Body>
+                      <Card.Title>{apod.title}</Card.Title>
+                      <Card.Text>{apod.date}</Card.Text>
+                    </Card.Body>
+                  </Card>
+                );
+              }
+            })}
         </Flexbox>
       </Flexbox>
 
@@ -147,7 +116,10 @@ const AstronomicalPictureOfTheDay = () => {
         onHide={() => setModalShow(false)}
         fullscreen
       >
-        <FullscreenApod apodState={apodState[0]} src="https://apod.nasa.gov/apod/image/2310/M33_Triangulum1024.jpg" />
+        <FullscreenApod
+          apodState={apodState[0]}
+          src="https://apod.nasa.gov/apod/image/2310/M33_Triangulum1024.jpg"
+        />
       </CustomModal>
     </div>
   );

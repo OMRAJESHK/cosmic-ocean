@@ -10,8 +10,6 @@ const httpCall =
 
     try {
       const response = await axios.request(options);
-      console.log("response==>", url, response);
-
       return Promise.resolve(response);
     } catch (err) {
       return Promise.reject(err);

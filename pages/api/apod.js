@@ -1,12 +1,9 @@
 import apiLocations from "@/api/apiDirectory";
 import { GET, withCatch } from "@/api/services";
 
-const getApodApi = async () => {
+const getApodApi = async (date) => {
   try {
-    const { error, response } = await withCatch(
-      GET,
-      apiLocations.APOD("2023-10-10"),
-    );
+    const { error, response } = await withCatch(GET, apiLocations.APOD(date));
     if (response?.status === 200) {
       return response.data;
     }
@@ -21,6 +18,7 @@ const getApodApi = async () => {
 };
 
 export default async function handler(req, res) {
-  const apodResponse = await getApodApi();
+  const { date } = req.query;
+  const apodResponse = await getApodApi(date);
   res.status(200).json(apodResponse);
 }

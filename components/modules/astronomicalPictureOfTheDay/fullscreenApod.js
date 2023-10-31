@@ -3,17 +3,16 @@ import { Card } from "react-bootstrap";
 import PropTypes from "prop-types";
 import CustomImage from "@/components/ui/customImage";
 import classes from "./apod.module.css";
-import Flexbox from "@/components/ui/flexbox/flexbox";
 
 const FullscreenApod = ({ apodState = {} }) => {
   return (
     <Card>
       <Card.Body>
         <Card.Title>{apodState.title}</Card.Title>
-        <Flexbox gap={10}>
-          <Card.Text>{apodState.copyright}</Card.Text>
-          <Card.Text>{apodState.date}</Card.Text>
-        </Flexbox>
+        <div>
+          <span>{apodState.copyright}</span>
+          <span>{apodState.date}</span>
+        </div>
         <Card.Text>{apodState.explanation ?? ""}</Card.Text>
       </Card.Body>
       <div className={classes["fullscreen-img-gallery-wrapper"]}>

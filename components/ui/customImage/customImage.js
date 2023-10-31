@@ -31,7 +31,6 @@ const CustomImage = (props) => {
     onError();
   };
 
-  console.log("srcsrcsrc", src);
   return (
     <>
       {error ? (

@@ -1,5 +1,5 @@
-export const baseUrl = "http://localhost:5000";
-export const apiBaseUrl = `${baseUrl}/api`;
+export const baseUrl = "http://localhost:3000";
+export const apiBaseUrl = `${baseUrl}/api/`;
 
 // https://api.nasa.gov/
 
@@ -45,6 +45,7 @@ export const getUrl = (location) => {
 };
 
 const apiLocations = {
+  GET_APOD: (date) => getUrl(`${apiBaseUrl}apod?date=${date}`),
   SEARCH: (q) =>
     getUrl(`${process.env.NASA_SEARCH_BASE_URL}search?q=${q}&page=1`),
   APOD: (date) =>

@@ -1,19 +1,44 @@
 "use client";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import classes from "./apod.module.css";
 import Card from "react-bootstrap/Card";
 import CustomImage from "@/components/ui/customImage";
 import Flexbox from "@/components/ui/flexbox/flexbox";
 import CustomModal from "@/components/ui/customModal";
 import FullscreenApod from "./fullscreenApod";
+import { GET, withCatch } from "@/api/services";
 
 const AstronomicalPictureOfTheDay = () => {
   const [modalShow, setModalShow] = useState(false);
+  const [apodState, setApodState] = useState([]);
 
   const onCardClickHandler = () => {
     console.log("hi");
     setModalShow(true);
   };
+
+  const getApod = async () => {
+    try {
+      const { error, response } = await withCatch(
+        GET,
+        "http://localhost:3000/api/apod",
+      );
+      if (response.status === 200) {
+        setApodState([response.data]);
+        return response.data;
+      }
+      if (error) {
+        setApodState([]);
+      }
+    } catch (err) {
+      console.log("error", err);
+      setApodState([]);
+    }
+  };
+  useEffect(() => {
+    getApod();
+  }, []);
+  console.log("apodState", apodState);
 
   return (
     <div className={classes["apod-wrapper"]}>
@@ -24,7 +49,7 @@ const AstronomicalPictureOfTheDay = () => {
         >
           <div className={classes["apod-img-wrapper"]}>
             <CustomImage
-              src="https://apod.nasa.gov/apod/image/2310/M33_Triangulum1024.jpg"
+              src={apodState[0]?.url ?? ""}
               alt="photo"
               classProp={classes["apod-hero-img"]}
               width={900}
@@ -35,11 +60,10 @@ const AstronomicalPictureOfTheDay = () => {
           </div>
           <Card.ImgOverlay>
             <h3 className={classes["apod-hero-img-desc"]}>
-              Some quick example text to build on the card title and make up the
-              bulk of the card&apos;s content.
+              {apodState[0]?.title ?? ""}
             </h3>
             <Card.Text className={classes["apod-hero-img-desc"]}>
-              copyright - Rajesh
+              {`copyright - ${apodState[0]?.copyright ?? ""}`}
             </Card.Text>
           </Card.ImgOverlay>
         </Card>
@@ -123,7 +147,7 @@ const AstronomicalPictureOfTheDay = () => {
         onHide={() => setModalShow(false)}
         fullscreen
       >
-        <FullscreenApod src="https://apod.nasa.gov/apod/image/2310/M33_Triangulum1024.jpg" />
+        <FullscreenApod apodState={apodState[0]} src="https://apod.nasa.gov/apod/image/2310/M33_Triangulum1024.jpg" />
       </CustomModal>
     </div>
   );

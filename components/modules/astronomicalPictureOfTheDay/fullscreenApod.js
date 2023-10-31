@@ -3,17 +3,22 @@ import { Card } from "react-bootstrap";
 import PropTypes from "prop-types";
 import CustomImage from "@/components/ui/customImage";
 import classes from "./apod.module.css";
+import Flexbox from "@/components/ui/flexbox/flexbox";
 
-const FullscreenApod = ({ src = "" }) => {
+const FullscreenApod = ({ apodState = {} }) => {
   return (
     <Card>
       <Card.Body>
-        <Card.Text>{`The Astronomical Picture Of The Day. the shoet discription of the fullscreen image`}</Card.Text>
-        <Card.Text>2023-Oct-10</Card.Text>
+        <Card.Title>{apodState.title}</Card.Title>
+        <Flexbox gap={10}>
+          <Card.Text>{apodState.copyright}</Card.Text>
+          <Card.Text>{apodState.date}</Card.Text>
+        </Flexbox>
+        <Card.Text>{apodState.explanation ?? ""}</Card.Text>
       </Card.Body>
       <div className={classes["fullscreen-img-gallery-wrapper"]}>
         <CustomImage
-          src={src}
+          src={apodState.hdurl}
           alt="photo"
           width={1100}
           height={1100}
@@ -25,7 +30,7 @@ const FullscreenApod = ({ src = "" }) => {
 };
 
 FullscreenApod.propTypes = {
-  src: PropTypes.string.isRequired,
+  apodState: PropTypes.string.isRequired,
 };
 
 export default FullscreenApod;

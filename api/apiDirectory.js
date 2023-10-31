@@ -47,9 +47,10 @@ export const getUrl = (location) => {
 const apiLocations = {
   SEARCH: (q) =>
     getUrl(`${process.env.NASA_SEARCH_BASE_URL}search?q=${q}&page=1`),
-  USER_ME: () => getUrl(`${apiBaseUrl}/auth/me`),
-  GET_ASSET: () => getUrl(`${apiBaseUrl}/asset`),
-  PUT_ASSET: (id) => getUrl(`${apiBaseUrl}/asset/${id}`),
+  APOD: (date) =>
+    getUrl(
+      `${process.env.NASA_BASE_URL}planetary/apod?api_key=${process.env.NASA_API_TOKEN}&date=${date}`,
+    ),
 };
 
 export default apiLocations;

@@ -2,13 +2,15 @@ import React, { useState } from "react";
 import PropTypes from "prop-types";
 import Image from "next/image";
 import loading from "@/assets/gifs/loading.gif";
+import NotFound from "@/assets/svgs/notFound";
+import Flexbox from "../flexbox/flexbox";
 
 const CustomImage = (props) => {
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState(false);
 
   const {
-    src = "#",
+    src = "",
     alt = "photo",
     width = 50,
     height = 50,
@@ -19,8 +21,6 @@ const CustomImage = (props) => {
   } = props;
 
   const onImageLoad = () => {
-    console.log("onloading", src, isLoading);
-
     setIsLoading(false);
     setError(false);
     onLoad();
@@ -31,14 +31,21 @@ const CustomImage = (props) => {
     onError();
   };
 
+  console.log("srcsrcsrc", src);
   return (
     <>
       {error ? (
-        <p>Image Failed</p>
+        <Flexbox
+          justifyContent="center"
+          alignItems="center"
+          styleProp={{ height: "100%" }}
+        >
+          <NotFound width={500} height={300} />
+        </Flexbox>
       ) : (
         <Image
           className={`${classProp && classProp}`}
-          src={isLoading ? loading : src}
+          src={isLoading || !src ? loading : src}
           alt={alt}
           width={width}
           height={height}
@@ -47,6 +54,7 @@ const CustomImage = (props) => {
           {...restProps}
         />
       )}
+      {loading && <div></div>}
     </>
   );
 };

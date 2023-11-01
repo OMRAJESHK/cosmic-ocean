@@ -11,7 +11,6 @@ import NotFound from "@/assets/svgs/notFound";
 const MarsImageGallery = (props) => {
   const { marsPhotos = [], isLoading } = props;
 
-  console.log("marsPhotosmarsPhotos", marsPhotos);
   const [nav1, setNav1] = useState(null);
   const [nav2, setNav2] = useState(null);
 

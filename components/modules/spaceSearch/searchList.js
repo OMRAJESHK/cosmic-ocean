@@ -1,65 +1,58 @@
-import React from "react";
-import Pagination from "react-bootstrap/Pagination";
+import React, { useState } from "react";
+import PropTypes from "prop-types";
 
 import Card from "react-bootstrap/Card";
 import classes from "./spaceSearch.module.css";
 import CustomPagination from "@/components/ui/pagination/customPagination";
+import CustomModal from "@/components/ui/customModal";
+import SearchListItem from "./searchListItem";
 
-const SearchList = () => {
+const SearchList = (props) => {
+  const { queryResults } = props;
+  console.log("queryResults", queryResults);
+  const [modalShow, setModalShow] = useState(false);
+  const [selectedQueryItem, setSelectedQueryItem] = useState({});
+
+  const onqueryItemClickHandler = (selectedItem) => {
+    setSelectedQueryItem(selectedItem);
+    setModalShow(true);
+  };
   return (
     <Card>
       <Card.Body>
         <div className={classes["space-search-list-wrapper"]}>
-          <Card>
-            <Card.Body className={classes["space-search-list-card-body"]}>
-              <div className={classes["space-search-list-item-wrapper"]}>
-                <div>
-                  <img
-                    src="https://plus.unsplash.com/premium_photo-1696863122595-f980e13edf88?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxlZGl0b3JpYWwtZmVlZHw3fHx8ZW58MHx8fHx8&auto=format&fit=crop&w=800&q=60"
-                    alt=""
-                  />
-                </div>
-                <div>
-                  <Card.Title>Special title treatment</Card.Title>
-                  <Card.Text>photographor name and date</Card.Text>
-                </div>
-              </div>
-            </Card.Body>
-          </Card>
-          <Card>
-            <Card.Body className={classes["space-search-list-card-body"]}>
-              <div className={classes["space-search-list-item-wrapper"]}>
-                <div>
-                  <img
-                    src="https://images.unsplash.com/photo-1693132038772-7ad13c7bad9a?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxlZGl0b3JpYWwtZmVlZHw1fHx8ZW58MHx8fHx8&auto=format&fit=crop&w=800&q=60"
-                    alt=""
-                  />
-                </div>
-                <div>
-                  <Card.Title>Special title treatment</Card.Title>
-                  <Card.Text>photographor name and date</Card.Text>
-                </div>
-              </div>
-            </Card.Body>
-          </Card>
-          <Card>
-            <Card.Body className={classes["space-search-list-card-body"]}>
-              <div className={classes["space-search-list-item-wrapper"]}>
-                <div>
-                  <img
-                    src="https://plus.unsplash.com/premium_photo-1696863122595-f980e13edf88?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxlZGl0b3JpYWwtZmVlZHw3fHx8ZW58MHx8fHx8&auto=format&fit=crop&w=800&q=60"
-                    alt=""
-                  />
-                </div>
-                <div>
-                  <span></span>
-                  <Card.Title>Special title treatment</Card.Title>
-                  <Card.Text>photographor name and date</Card.Text>
-                </div>
-              </div>
-            </Card.Body>
-          </Card>
+          {queryResults?.length > 0 &&
+            queryResults.map((queryResult) => {
+              const desc = queryResult?.data[0]?.description;
+              return (
+                <Card
+                  key={queryResult?.data[0].nasa_id}
+                  onClick={() => onqueryItemClickHandler(queryResult)}
+                >
+                  <Card.Body className={classes["space-search-list-card-body"]}>
+                    <div className={classes["space-search-list-item-wrapper"]}>
+                      <div className={classes["query-item-img-wrapper"]}>
+                        <img src={queryResult?.links[0]?.href} alt="" />
+                      </div>
+                      <div className={classes["query-item-text-wrapper"]}>
+                        <Card.Title>{queryResult.data[0]?.title}</Card.Title>
+                        <Card.Text dangerouslySetInnerHTML={{ __html: desc }} />
+                      </div>
+                    </div>
+                  </Card.Body>
+                </Card>
+              );
+            })}
         </div>
+        <CustomModal
+          title={""}
+          // title={selectedQueryItem?.data[0]?.title || ""}
+          show={modalShow}
+          onHide={() => setModalShow(false)}
+          fullscreen
+        >
+          <SearchListItem selectedQueryItem={selectedQueryItem} />
+        </CustomModal>
       </Card.Body>
       <Card.Footer className={classes["space-search-footer-wrapper"]}>
         <CustomPagination
@@ -87,5 +80,5 @@ const SearchList = () => {
     </Card>
   );
 };
-
+SearchList.propTypes = { queryResults: PropTypes.array };
 export default SearchList;

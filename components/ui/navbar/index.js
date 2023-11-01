@@ -1,5 +1,5 @@
 "use client";
-import React from "react";
+import React, { useState } from "react";
 import Button from "react-bootstrap/Button";
 import classes from "./navbar.module.css";
 import RenderNavbar from "./renderNavbar";
@@ -8,17 +8,21 @@ import Form from "react-bootstrap/Form";
 import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
 import { useRouter } from "next/navigation";
-
 import Image from "next/image";
 import { pageRoutes } from "@/routes/routes";
 
 const CosmicNavbar = () => {
+  const [query, setQuery] = useState("");
   const router = useRouter();
 
   const onSearchHandler = () => {
-    router.push(pageRoutes.spacesearch);
+    router.push(`${pageRoutes.spacesearch}?query=${query}`);
   };
 
+  const onQueryChangeHandler = (e) => {
+    const { value } = e.target;
+    setQuery(value);
+  };
   return (
     <header>
       <Navbar
@@ -55,6 +59,7 @@ const CosmicNavbar = () => {
                 placeholder="search..."
                 className="me-2"
                 aria-label="Search"
+                onChange={onQueryChangeHandler}
               />
               <Button variant="outline-success" onClick={onSearchHandler}>
                 Search

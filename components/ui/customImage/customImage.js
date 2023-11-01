@@ -1,13 +1,13 @@
 import React, { useState } from "react";
 import PropTypes from "prop-types";
 import Image from "next/image";
-import loading from "@/assets/gifs/loading.gif";
 import NotFound from "@/assets/svgs/notFound";
 import Flexbox from "../flexbox/flexbox";
+import Loader from "../loader";
 
 const CustomImage = (props) => {
   const [isLoading, setIsLoading] = useState(true);
-  const [error, setError] = useState(false);
+  const [isError, setIsError] = useState(false);
 
   const {
     src = "",
@@ -22,29 +22,22 @@ const CustomImage = (props) => {
 
   const onImageLoad = () => {
     setIsLoading(false);
-    setError(false);
+    setIsError(false);
     onLoad();
   };
   const onImageError = () => {
     setIsLoading(false);
-    setError(true);
+    setIsError(true);
     onError();
   };
 
   return (
     <>
-      {error ? (
-        <Flexbox
-          justifyContent="center"
-          alignItems="center"
-          styleProp={{ height: "100%" }}
-        >
-          <NotFound width={500} height={300} />
-        </Flexbox>
-      ) : (
+      {isLoading && !src && <Loader height={"100%"}/>}
+      {!isError && src && (
         <Image
           className={`${classProp && classProp}`}
-          src={isLoading || !src ? loading : src}
+          src={src}
           alt={alt}
           width={width}
           height={height}
@@ -53,7 +46,15 @@ const CustomImage = (props) => {
           {...restProps}
         />
       )}
-      {loading && <div></div>}
+      {isError && (
+        <Flexbox
+          justifyContent="center"
+          alignItems="center"
+          styleProp={{ height: "100%" }}
+        >
+          <NotFound width={500} height={300} />
+        </Flexbox>
+      )}
     </>
   );
 };

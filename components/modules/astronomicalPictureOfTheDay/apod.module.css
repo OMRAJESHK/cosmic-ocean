@@ -27,6 +27,7 @@
 
 .fullscreen-img-gallery-wrapper{
   height: 100vh;
+  padding: 0px;
 }
 .fullscreen-img-gallery{
   object-fit: fill;
@@ -71,6 +72,11 @@
   }
   .img-gallery-item-wrapper{
     flex-basis: 49%;
+  }
+   
+  .fullscreen-img-gallery-wrapper{
+    height: 100vh;
+    padding: 1rem 15rem 1rem 15rem;
   }
 }
 @media (min-width: 1281px) {

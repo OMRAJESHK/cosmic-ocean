@@ -6,8 +6,8 @@ import CustomImage from "@/components/ui/customImage";
 import Flexbox from "@/components/ui/flexbox/flexbox";
 import CustomModal from "@/components/ui/customModal";
 import FullscreenApod from "./fullscreenApod";
-import { GET, withCatch } from "@/api/services";
 import apiLocations from "@/api/apiDirectory";
+import axios from "axios";
 
 function getLastFourDates(currentDate) {
   let lastFourDates = [];
@@ -19,30 +19,48 @@ function getLastFourDates(currentDate) {
   return lastFourDates;
 }
 
+export const multiApiCall = async (apis = []) => {
+  const apiResults = [];
+  if (apis.length < 0) return [];
+  apis.map((api) => {
+    const res = axios.get(api);
+    apiResults.push(res);
+  });
+  return apiResults;
+};
+
+function getMultiApis(lastFourDates) {
+  let urlList = [];
+  lastFourDates.forEach((date) => {
+    urlList = [...urlList, apiLocations.GET_APOD(date)];
+  });
+  return urlList;
+}
 const AstronomicalPictureOfTheDay = () => {
   const [modalShow, setModalShow] = useState(false);
   const [apodState, setApodState] = useState([]);
+  const [selectedApod, setSelectedApod] = useState({});
 
-  const onCardClickHandler = () => {
+  const onCardClickHandler = (id) => {
     setModalShow(true);
+    const selected = apodState.find((apod) => apod.id === id);
+    setSelectedApod(selected);
   };
 
   const getApods = async () => {
     const currentDate = new Date();
     const lastFourDates = getLastFourDates(currentDate);
-    lastFourDates.forEach(async (curdate) => {
-      try {
-        const { error, response } = await withCatch(
-          GET,
-          apiLocations.GET_APOD(curdate),
-        );
-        if (response.status === 200) {
-          setApodState((prev) => [...prev, response.data]);
+    const multiApis = getMultiApis(lastFourDates);
+    const resultResponses = await multiApiCall(multiApis);
+    Promise.allSettled(resultResponses).then((result) => {
+      result.map(async ({ status, value }) => {
+        if (status === "fulfilled" && value?.status === 200) {
+          setApodState((prev) => [
+            ...prev,
+            { ...value?.data, id: crypto.randomUUID() },
+          ]);
         }
-      } catch (err) {
-        console.error("error", err);
-        // setApodState([]);
-      }
+      });
     });
   };
   useEffect(() => {
@@ -57,7 +75,7 @@ const AstronomicalPictureOfTheDay = () => {
       <Flexbox gap={20}>
         <Card
           className={classes["img-card-wrapper"]}
-          onClick={onCardClickHandler}
+          onClick={() => onCardClickHandler(apodState[0]?.id)}
         >
           <div className={classes["apod-img-wrapper"]}>
             <CustomImage
@@ -66,8 +84,6 @@ const AstronomicalPictureOfTheDay = () => {
               classProp={classes["apod-hero-img"]}
               width={900}
               height={900}
-              onLoad={() => {}}
-              onError={() => console.log("Image Loading Failed...!")}
             />
           </div>
           <Card.ImgOverlay>
@@ -85,8 +101,9 @@ const AstronomicalPictureOfTheDay = () => {
               if (index > 0) {
                 return (
                   <Card
-                    key={index}
+                    key={apod.id}
                     className={classes["img-gallery-item-card-wrapper"]}
+                    onClick={() => onCardClickHandler(apod.id)}
                   >
                     <div className={classes["img-gallery-wrapper"]}>
                       <CustomImage
@@ -116,10 +133,7 @@ const AstronomicalPictureOfTheDay = () => {
         onHide={() => setModalShow(false)}
         fullscreen
       >
-        <FullscreenApod
-          apodState={apodState[0]}
-          src="https://apod.nasa.gov/apod/image/2310/M33_Triangulum1024.jpg"
-        />
+        <FullscreenApod apodState={selectedApod} />
       </CustomModal>
     </div>
   );

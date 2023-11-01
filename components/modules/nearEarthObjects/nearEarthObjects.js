@@ -34,7 +34,7 @@ const NearEarthObjects = () => {
     setModalShow(true);
   };
   return (
-    <div className={classes["container"]}>
+    <div className={classes["neo-wrapper"]}>
       <h2>
         Near-Earth Objects (NEOs) are a group of celestial objects that have
         orbits that bring them into proximity with Earth. NEOs can be classified

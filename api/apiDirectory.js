@@ -46,11 +46,16 @@ export const getUrl = (location) => {
 
 const apiLocations = {
   GET_APOD: (date) => getUrl(`${apiBaseUrl}apod?date=${date}`),
+  GET_MARS_PHOTOS: () => getUrl(`${apiBaseUrl}marsExploration`),
   SEARCH: (q) =>
     getUrl(`${process.env.NASA_SEARCH_BASE_URL}search?q=${q}&page=1`),
   APOD: (date) =>
     getUrl(
       `${process.env.NASA_BASE_URL}planetary/apod?api_key=${process.env.NASA_API_TOKEN}&date=${date}`,
+    ),
+  MARS_PHOTOS: (rover) =>
+    getUrl(
+      `${process.env.NASA_MARS_BASE_API}${rover}/photos?api_key=${process.env.NASA_API_TOKEN}`,
     ),
 };
 

@@ -9,10 +9,13 @@ const CustomModal = (props) => {
     show = false,
     onHide = () => {},
     title = "Modal heading",
+    fullscreen = undefined,
     children,
   } = props;
+
   return (
     <Modal
+      fullscreen={fullscreen}
       show={show}
       onHide={onHide}
       size={size}
@@ -31,9 +34,15 @@ const CustomModal = (props) => {
 };
 
 CustomModal.propTypes = {
+  title: PropTypes.string,
   size: PropTypes.string,
   onHide: PropTypes.func,
   show: PropTypes.bool,
+  fullscreen: PropTypes.oneOfType([PropTypes.string, PropTypes.bool]),
+  children: PropTypes.oneOfType([
+    PropTypes.arrayOf(PropTypes.node),
+    PropTypes.node,
+  ]),
 };
 
 export default CustomModal;

@@ -9,11 +9,12 @@
     "lint": "next lint",
     "cowtalks": "cowsay well hello",
     "prepare": "husky install",
-    "prettier:fix":"npx prettier --write **/*.js",
+    "prettier:fix": "npx prettier --write **/*.js",
     "prettier:file": "npx prettier \"{app, components, api}/**/*.js\" --write"
   },
   "dependencies": {
     "autoprefixer": "10.4.15",
+    "axios": "^1.6.0",
     "bootstrap": "^5.3.1",
     "cowsay": "^1.5.0",
     "eslint-config-next": "13.4.19",

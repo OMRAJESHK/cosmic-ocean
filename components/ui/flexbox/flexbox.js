@@ -10,6 +10,7 @@ const Flexbox = (props) => {
     alignItems = "flex-start",
     flexDirection = "row",
     classProp = "",
+    styleProp = {},
     children,
     title = "",
   } = props;
@@ -17,7 +18,13 @@ const Flexbox = (props) => {
     <div
       title={title}
       className={`${classes.flex} ${classProp && classProp}`}
-      style={{ gap: `${gap}px`, justifyContent, alignItems, flexDirection }}
+      style={{
+        gap: `${gap}px`,
+        justifyContent,
+        alignItems,
+        flexDirection,
+        ...styleProp,
+      }}
     >
       {children}
     </div>
@@ -28,10 +35,14 @@ Flexbox.propTypes = {
   gap: PropTypes.number,
   title: PropTypes.string,
   classProp: PropTypes.string,
+  styleProp: PropTypes.object,
   justifyContent: PropTypes.string,
   alignItems: PropTypes.string,
   flexDirection: PropTypes.string,
-  children: PropTypes.node,
+  children: PropTypes.oneOfType([
+    PropTypes.arrayOf(PropTypes.node),
+    PropTypes.node,
+  ]),
 };
 
 export default Flexbox;

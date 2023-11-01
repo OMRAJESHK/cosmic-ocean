@@ -1,4 +1,4 @@
-.container {
+.neo-wrapper {
   margin: 1rem 0.5rem;
 }
 
@@ -122,10 +122,6 @@
   }
 }
 @media (min-width: 1025px) {
-  .container {
-    margin: 1rem 10rem;
-  }
-
   .orbital-class-item-wrapper {
     flex-basis: 49%;
   }
@@ -170,8 +166,8 @@
 }
 
 @media (min-width: 1581px) {
-  .container {
-    margin: 1rem 15rem;
+  .neo-wrapper {
+    margin: 5rem 10rem 1rem 10rem;
   }
   .orbital-class-item--text {
     flex-basis: 80%;

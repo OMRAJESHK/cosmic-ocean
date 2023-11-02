@@ -6,7 +6,7 @@ import classes from "./nearEarthObjects.module.css";
 import Astroid from "@/assets/svgs/astroid";
 import Flexbox from "@/components/ui/flexbox/flexbox";
 
-import earth from "../../../assets/images/neo/earth.png";
+import earth from "assets/images/neo/earth.png";
 import CustomTable from "@/components/ui/customTable";
 import { closeApproachesColumns, closeApproachesRows } from "./constants";
 

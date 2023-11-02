@@ -1,22 +1,32 @@
 "use client";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Form from "react-bootstrap/Form";
 
 import Card from "react-bootstrap/Card";
 
 import classes from "./nearEarthObjects.module.css";
 import Flexbox from "@/components/ui/flexbox/flexbox";
+import CustomImage from "@/components/ui/customImage";
 import CustomDatePicker from "@/components/ui/customDatePicker";
 import CustomTable from "@/components/ui/customTable/customTable";
 import { neoTableColumns, neoTableRows } from "./constants";
 import CustomModal from "@/components/ui/customModal";
 import NearEarthObject from "./nearEarthObject";
+import amor from "assets/images/neo/amor-class.png";
+import apollo from "assets/images/neo/apollo-class.png";
+import aten from "assets/images/neo/aten-class.png";
+import atira from "assets/images/neo/atira-class.png";
+import { GET, withCatch } from "@/api/services";
+import apiLocations from "@/api/apiDirectory";
 
 const NearEarthObjects = () => {
   const currentDate = new Date();
   const [startDate, setStartDate] = useState(currentDate);
   const [endDate, setEndDate] = useState(currentDate);
   const [modalShow, setModalShow] = useState(false);
+  const [neoData, setNeoData] = useState([]);
+  const [isLoading, setIsLoading] = useState(true);
+  const [page, setPage] = useState(1);
 
   const onStartChangeHandler = (date) => {
     setStartDate(date);
@@ -33,16 +43,47 @@ const NearEarthObjects = () => {
     console.log("rowid=>", rowid);
     setModalShow(true);
   };
+
+  const getNeos = async (params = { start_date, end_date, page }) => {
+    try {
+      const { error, response } = await withCatch(
+        GET,
+        apiLocations.GET_NEO(),
+        params,
+      );
+      if (response?.status === 200) {
+        setNeoData(response?.data ?? []);
+        setIsLoading(false);
+        return;
+      }
+    } catch (err) {
+      console.error("error", err);
+      setIsLoading(false);
+      setNeoData([]);
+    }
+  };
+
+  useEffect(() => {
+    const params = {
+      start_date: "2015-09-07",
+      end_date: "2015-09-08",
+      page,
+    };
+    getNeos(params);
+  }, []);
+  console.log("pagination=>", neoData);
+
   return (
     <div className={classes["neo-wrapper"]}>
-      <h2>
-        Near-Earth Objects (NEOs) are a group of celestial objects that have
-        orbits that bring them into proximity with Earth. NEOs can be classified
-        into three main categories: asteroids, comets, and meteoroids. These
-        objects are of particular interest to scientists and astronomers because
-        of their potential to impact Earth and the valuable insights they can
-        provide about the early solar system.
-      </h2>
+      <h2>Near-Earth Objects (NEOs)</h2>
+      <p>
+        Are a group of celestial objects that have orbits that bring them into
+        proximity with Earth. NEOs can be classified into three main categories:
+        asteroids, comets, and meteoroids. These objects are of particular
+        interest to scientists and astronomers because of their potential to
+        impact Earth and the valuable insights they can provide about the early
+        solar system.
+      </p>
       <Flexbox gap={10}>
         <div className={classes["orbital-class-item-wrapper"]}>
           <Card>
@@ -50,7 +91,7 @@ const NearEarthObjects = () => {
             <Card.Body className={classes["orbital-class-item"]}>
               <Flexbox gap={10} alignItems="stretch">
                 <div className={classes["orbital-class-item--text"]}>
-                  <Card.Title>Less than 1 astronomical unit</Card.Title>
+                  <Card.Title>Less than 1 Astronomical Unit</Card.Title>
                   <Card.Text>
                     These NEOs have orbits that entirely lie within Earth&apos;s
                     orbit. In other words, they stay closer to the Sun than
@@ -60,9 +101,12 @@ const NearEarthObjects = () => {
                   </Card.Text>
                 </div>
                 <div className={classes["orbital-class-item--img"]}>
-                  <img
-                    src="https://plus.unsplash.com/premium_photo-1696863122595-f980e13edf88?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxlZGl0b3JpYWwtZmVlZHw3fHx8ZW58MHx8fHx8&auto=format&fit=crop&w=800&q=60"
-                    alt=""
+                  <CustomImage
+                    src={atira ?? ""}
+                    alt="photo"
+                    classProp={classes["apod-hero-img"]}
+                    width={900}
+                    height={900}
                   />
                 </div>
               </Flexbox>
@@ -75,7 +119,9 @@ const NearEarthObjects = () => {
             <Card.Body className={classes["orbital-class-item"]}>
               <Flexbox gap={10} alignItems="stretch">
                 <div className={classes["orbital-class-item--text"]}>
-                  <Card.Title>Between 1.017 and 1.3 AU</Card.Title>
+                  <Card.Title>
+                    Between 1.017 and 1.3 Astronomical Unit
+                  </Card.Title>
                   <Card.Text>
                     Amor asteroids have orbits that approach but do not cross
                     Earth&apos;s orbit. Their orbits typically have a perihelion
@@ -84,9 +130,12 @@ const NearEarthObjects = () => {
                   </Card.Text>
                 </div>
                 <div className={classes["orbital-class-item--img"]}>
-                  <img
-                    src="https://plus.unsplash.com/premium_photo-1696863122595-f980e13edf88?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxlZGl0b3JpYWwtZmVlZHw3fHx8ZW58MHx8fHx8&auto=format&fit=crop&w=800&q=60"
-                    alt=""
+                  <CustomImage
+                    src={amor ?? ""}
+                    alt="photo"
+                    classProp={classes["apod-hero-img"]}
+                    width={900}
+                    height={900}
                   />
                 </div>
               </Flexbox>
@@ -99,7 +148,7 @@ const NearEarthObjects = () => {
             <Card.Body className={classes["orbital-class-item"]}>
               <Flexbox gap={10} alignItems="stretch">
                 <div className={classes["orbital-class-item--text"]}>
-                  <Card.Title>Greater than 1 AU</Card.Title>
+                  <Card.Title>Greater than 1 Astronomical Unit</Card.Title>
                   <Card.Text>
                     Apollo asteroids have orbits that cross Earth&apos;s orbit.
                     Their eccentric orbits bring them near Earth. They have a
@@ -107,9 +156,12 @@ const NearEarthObjects = () => {
                   </Card.Text>
                 </div>
                 <div className={classes["orbital-class-item--img"]}>
-                  <img
-                    src="https://plus.unsplash.com/premium_photo-1696863122595-f980e13edf88?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxlZGl0b3JpYWwtZmVlZHw3fHx8ZW58MHx8fHx8&auto=format&fit=crop&w=800&q=60"
-                    alt=""
+                  <CustomImage
+                    src={apollo ?? ""}
+                    alt="photo"
+                    classProp={classes["apod-hero-img"]}
+                    width={900}
+                    height={900}
                   />
                 </div>
               </Flexbox>
@@ -122,7 +174,7 @@ const NearEarthObjects = () => {
             <Card.Body className={classes["orbital-class-item"]}>
               <Flexbox gap={10} alignItems="stretch">
                 <div className={classes["orbital-class-item--text"]}>
-                  <Card.Title>less than 1 AU</Card.Title>
+                  <Card.Title>less than 1 Astronomical Unit</Card.Title>
                   <Card.Text>
                     Aten asteroids are similar to Apollo asteroids. Tthey spend
                     more time within Earth&apos;s orbit. They often have orbits
@@ -130,9 +182,12 @@ const NearEarthObjects = () => {
                   </Card.Text>
                 </div>
                 <div className={classes["orbital-class-item--img"]}>
-                  <img
-                    src="https://plus.unsplash.com/premium_photo-1696863122595-f980e13edf88?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxlZGl0b3JpYWwtZmVlZHw3fHx8ZW58MHx8fHx8&auto=format&fit=crop&w=800&q=60"
-                    alt=""
+                  <CustomImage
+                    src={aten ?? ""}
+                    alt="photo"
+                    classProp={classes["apod-hero-img"]}
+                    width={900}
+                    height={900}
                   />
                 </div>
               </Flexbox>
@@ -154,8 +209,8 @@ const NearEarthObjects = () => {
                 aria-label="LookUp"
                 className={classes["lookup-select"]}
               >
-                <option value="1">Closest Approach</option>
-                <option value="2">All NEOs</option>
+                <option value={0}>Closest Approach</option>
+                <option value={1}>All NEOs</option>
               </Form.Select>
             </Flexbox>
 

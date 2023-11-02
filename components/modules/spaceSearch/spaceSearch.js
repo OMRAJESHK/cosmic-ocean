@@ -9,25 +9,23 @@ import { GET, withCatch } from "@/api/services";
 import apiLocations from "@/api/apiDirectory";
 
 const SpaceSearch = () => {
+  const DEFAULT_ACTIVE = 1;
   const searchParams = useSearchParams();
   const searchQuery = searchParams.get("query");
   const [query, setQuery] = useState(searchQuery);
   const [queryResults, setQueryResults] = useState([]);
-  const [page, setPage] = useState(1);
-  const onQuerySubmit = (e) => {
-    e.preventDefault();
-    if (query.length !== 0) getQueryResults();
-  };
+  const [page, setPage] = useState(DEFAULT_ACTIVE);
+  const [isLoading, setIsLoading] = useState(true);
 
   const onQueryChangeHandler = (e) => {
     const { value } = e.target;
     setQuery(value);
   };
 
-  const getQueryResults = async () => {
-    const payload = { q: query, page };
-
+  const getQueryResults = async (payload) => {
     try {
+      setQueryResults([]);
+      setIsLoading(true);
       const { error, response } = await withCatch(
         GET,
         apiLocations.GET_SPACE_SEARCH(),
@@ -35,20 +33,33 @@ const SpaceSearch = () => {
       );
       if (response?.status === 200) {
         setQueryResults(response?.data ?? []);
+        setIsLoading(false);
         return;
       }
     } catch (err) {
       console.log("error", err);
       setQueryResults([]);
+      setIsLoading(false);
     }
   };
+
+  const onBackClickHandler = () => {
+    if (page <= DEFAULT_ACTIVE) setPage(DEFAULT_ACTIVE);
+    else setPage((prev) => prev - 1);
+  };
+  const onNextClickHandler = () => {
+    setPage((prev) => prev + 1);
+  };
+
   useEffect(() => {
-    getQueryResults();
-  }, []);
+    const payload = { q: query, page };
+    getQueryResults(payload);
+  }, [query, page]);
+
   return (
     <div className={classes["space-search-wrapper"]}>
       <h1>Search Results</h1>
-      <form onSubmit={onQuerySubmit}>
+      <form>
         <Flexbox alignItems="center">
           <input
             type="search"
@@ -57,17 +68,14 @@ const SpaceSearch = () => {
             onChange={onQueryChangeHandler}
             className={classes["space-search-input"]}
           />
-          <Button
-            variant="primary"
-            size="sm"
-            type="submit"
-            className={classes["space-search-submit"]}
-          >
-            Search
-          </Button>
         </Flexbox>
       </form>
-      <SearchList queryResults={queryResults} />
+      <SearchList
+        isLoading={isLoading}
+        queryResults={queryResults}
+        onBack={onBackClickHandler}
+        onNext={onNextClickHandler}
+      />
     </div>
   );
 };

@@ -2,14 +2,16 @@ import React, { useState } from "react";
 import PropTypes from "prop-types";
 
 import Card from "react-bootstrap/Card";
+import Button from "react-bootstrap/Button";
 import classes from "./spaceSearch.module.css";
-import CustomPagination from "@/components/ui/pagination/customPagination";
 import CustomModal from "@/components/ui/customModal";
 import SearchListItem from "./searchListItem";
+import Loader from "@/components/ui/loader";
 
 const SearchList = (props) => {
-  const { queryResults } = props;
+  const { isLoading, queryResults, onBack, onNext } = props;
   console.log("queryResults", queryResults);
+  const rowLength = queryResults?.length ?? 0;
   const [modalShow, setModalShow] = useState(false);
   const [selectedQueryItem, setSelectedQueryItem] = useState({});
 
@@ -17,11 +19,12 @@ const SearchList = (props) => {
     setSelectedQueryItem(selectedItem);
     setModalShow(true);
   };
+
   return (
-    <Card>
+    <Card className={classes["search-list-wrapper"]}>
       <Card.Body>
         <div className={classes["space-search-list-wrapper"]}>
-          {queryResults?.length > 0 &&
+          {rowLength > 0 &&
             queryResults.map((queryResult) => {
               const desc = queryResult?.data[0]?.description;
               return (
@@ -36,49 +39,54 @@ const SearchList = (props) => {
                       </div>
                       <div className={classes["query-item-text-wrapper"]}>
                         <Card.Title>{queryResult.data[0]?.title}</Card.Title>
-                        <Card.Text dangerouslySetInnerHTML={{ __html: desc }} />
+                        <Card.Text
+                          dangerouslySetInnerHTML={{ __html: desc }}
+                          className={classes["search-listitem-text"]}
+                        />
                       </div>
                     </div>
                   </Card.Body>
                 </Card>
               );
             })}
+          {!isLoading && rowLength === 0 && (
+            <p className={classes["no-records-found-text"]}>No Records Found</p>
+          )}
+          {isLoading && <Loader />}
         </div>
-        <CustomModal
-          title={""}
-          // title={selectedQueryItem?.data[0]?.title || ""}
-          show={modalShow}
-          onHide={() => setModalShow(false)}
-          fullscreen
-        >
-          <SearchListItem selectedQueryItem={selectedQueryItem} />
-        </CustomModal>
+        {Object.keys(selectedQueryItem).length > 0 && (
+          <CustomModal
+            title={selectedQueryItem?.data[0]?.title || ""}
+            show={modalShow}
+            onHide={() => setModalShow(false)}
+            fullscreen
+          >
+            <SearchListItem selectedQueryItem={selectedQueryItem} />
+          </CustomModal>
+        )}
       </Card.Body>
-      <Card.Footer className={classes["space-search-footer-wrapper"]}>
-        <CustomPagination
-          rowCount={123}
-          onClick={(pagination) => console.log(pagination)}
-        />
-        {/* <Pagination className={classes["space-search-pagination-wrapper"]}>
-          <Pagination.First />
-          <Pagination.Prev />
-          <Pagination.Item>{1}</Pagination.Item>
-          <Pagination.Ellipsis />
-
-          <Pagination.Item>{10}</Pagination.Item>
-          <Pagination.Item>{11}</Pagination.Item>
-          <Pagination.Item active>{12}</Pagination.Item>
-          <Pagination.Item>{13}</Pagination.Item>
-          <Pagination.Item disabled>{14}</Pagination.Item>
-
-          <Pagination.Ellipsis />
-          <Pagination.Item>{20}</Pagination.Item>
-          <Pagination.Next />
-          <Pagination.Last />
-        </Pagination> */}
-      </Card.Footer>
+      {rowLength > 0 && (
+        <Card.Footer className={classes["space-search-footer-wrapper"]}>
+          <Button
+            variant="primary"
+            size="sm"
+            className={classes["space-search-back"]}
+            onClick={onBack}
+          >
+            Back
+          </Button>
+          <Button variant="primary" size="sm" onClick={onNext}>
+            Next
+          </Button>
+        </Card.Footer>
+      )}
     </Card>
   );
 };
-SearchList.propTypes = { queryResults: PropTypes.array };
+SearchList.propTypes = {
+  isLoading: PropTypes.bool,
+  queryResults: PropTypes.array,
+  onBack: PropTypes.func,
+  onNext: PropTypes.func,
+};
 export default SearchList;

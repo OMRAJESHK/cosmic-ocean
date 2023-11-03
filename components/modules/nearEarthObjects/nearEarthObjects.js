@@ -1,15 +1,12 @@
 "use client";
 import React, { useState, useEffect } from "react";
-import Form from "react-bootstrap/Form";
-
 import Card from "react-bootstrap/Card";
 
 import classes from "./nearEarthObjects.module.css";
 import Flexbox from "@/components/ui/flexbox/flexbox";
 import CustomImage from "@/components/ui/customImage";
-import CustomDatePicker from "@/components/ui/customDatePicker";
 import CustomTable from "@/components/ui/customTable/customTable";
-import { neoTableColumns, neoTableRows } from "./constants";
+import { neoTableColumns } from "./constants";
 import CustomModal from "@/components/ui/customModal";
 import NearEarthObject from "./nearEarthObject";
 import amor from "assets/images/neo/amor-class.png";
@@ -20,20 +17,12 @@ import { GET, withCatch } from "@/api/services";
 import apiLocations from "@/api/apiDirectory";
 
 const NearEarthObjects = () => {
-  const currentDate = new Date();
-  const [startDate, setStartDate] = useState(currentDate);
-  const [endDate, setEndDate] = useState(currentDate);
+  const DEFAULT_ACTIVE = 1;
   const [modalShow, setModalShow] = useState(false);
   const [neoData, setNeoData] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
-  const [page, setPage] = useState(1);
-
-  const onStartChangeHandler = (date) => {
-    setStartDate(date);
-  };
-  const onEndChangeHandler = (date) => {
-    setEndDate(date);
-  };
+  const [page, setPage] = useState(DEFAULT_ACTIVE);
+  const [selectedRow, setSelectedRow] = useState({});
 
   const onTablePagination = (pagination) => {
     console.log("pagination=>", pagination);
@@ -41,18 +30,55 @@ const NearEarthObjects = () => {
 
   const onRowClickHandler = (rowid) => {
     console.log("rowid=>", rowid);
+    const row = neoData.find((noe) => noe.id === rowid);
+    setSelectedRow(row);
     setModalShow(true);
   };
 
-  const getNeos = async (params = { start_date, end_date, page }) => {
+  const formatDecimal = (number) => {
+    const formattedNumber = Number(number).toFixed(2) || number;
+    return formattedNumber;
+  };
+  const formatNeoData = (neoResponse = []) => {
+    let updatedNeoData = [];
+    if (neoResponse.length > 0) {
+      neoResponse.forEach((neo) => {
+        const param = {
+          id: neo.id,
+          name: neo.name,
+          estimated_diameter: `${formatDecimal(
+            neo.estimated_diameter.kilometers.estimated_diameter_min,
+          )} KM - ${formatDecimal(
+            neo.estimated_diameter.kilometers.estimated_diameter_max,
+          )} KM`,
+          perihelion_distance:
+            `${formatDecimal(neo.orbital_data?.perihelion_distance)} AU` || "",
+          aphelion_distance:
+            `${formatDecimal(neo.orbital_data?.aphelion_distance)} AU` || "",
+          is_potentially_hazardous_asteroid:
+            neo.is_potentially_hazardous_asteroid,
+          orbital_period: neo.orbital_data.orbital_period,
+          orbit_class: neo.orbital_data.orbit_class.orbit_class_type,
+          orbit_class_range: neo.orbital_data.orbit_class.orbit_class_range,
+        };
+        updatedNeoData = [...updatedNeoData, param];
+      });
+      return updatedNeoData;
+    }
+    return updatedNeoData;
+  };
+  const getNeos = async (params) => {
     try {
+      setNeoData([]);
+      setIsLoading(true);
       const { error, response } = await withCatch(
         GET,
         apiLocations.GET_NEO(),
         params,
       );
       if (response?.status === 200) {
-        setNeoData(response?.data ?? []);
+        const formattedData = formatNeoData(response?.data?.near_earth_objects);
+        setNeoData(formattedData);
         setIsLoading(false);
         return;
       }
@@ -63,14 +89,18 @@ const NearEarthObjects = () => {
     }
   };
 
+  const onBackClickHandler = () => {
+    if (page <= DEFAULT_ACTIVE) setPage(DEFAULT_ACTIVE);
+    else setPage((prev) => prev - 1);
+  };
+  const onNextClickHandler = () => {
+    setPage((prev) => prev + 1);
+  };
+
   useEffect(() => {
-    const params = {
-      start_date: "2015-09-07",
-      end_date: "2015-09-08",
-      page,
-    };
+    const params = { page };
     getNeos(params);
-  }, []);
+  }, [page]);
   console.log("pagination=>", neoData);
 
   return (
@@ -197,54 +227,20 @@ const NearEarthObjects = () => {
       </Flexbox>
       <Card>
         <Card.Header>
-          <Flexbox alignItems="center" gap={10}>
-            <label className={`${classes["table-card-label"]}`}>NEO</label>
-            <Flexbox
-              alignItems="center"
-              gap={10}
-              classProp={classes["lookup-select-wrapper"]}
-            >
-              <label>LookUp</label>
-              <Form.Select
-                aria-label="LookUp"
-                className={classes["lookup-select"]}
-              >
-                <option value={0}>Closest Approach</option>
-                <option value={1}>All NEOs</option>
-              </Form.Select>
-            </Flexbox>
-
-            <Flexbox
-              alignItems="center"
-              gap={10}
-              classProp={classes["lookup-date-wrapper"]}
-            >
-              <label>From Date</label>
-              <CustomDatePicker
-                selectedDate={startDate}
-                onChange={onStartChangeHandler}
-              />
-            </Flexbox>
-            <Flexbox
-              alignItems="center"
-              gap={10}
-              classProp={classes["lookup-date-wrapper"]}
-            >
-              <label>End Date &nbsp;</label>
-              <CustomDatePicker
-                selectedDate={endDate}
-                onChange={onEndChangeHandler}
-              />
-            </Flexbox>
-          </Flexbox>
+          <label className={`${classes["table-card-label"]}`}>
+            Near-Earth Objects LookUp
+          </label>
         </Card.Header>
         <Card.Body className={classes["orbital-class-item"]}>
           <CustomTable
+            isLoading={isLoading}
             classProp={classes["neo-table"]}
             columns={neoTableColumns}
-            rows={neoTableRows}
+            rows={neoData}
             onChange={onTablePagination}
             onRowClick={onRowClickHandler}
+            onBack={onBackClickHandler}
+            onNext={onNextClickHandler}
           />
         </Card.Body>
       </Card>
@@ -253,7 +249,7 @@ const NearEarthObjects = () => {
         show={modalShow}
         onHide={() => setModalShow(false)}
       >
-        <NearEarthObject />
+        <NearEarthObject selectedRow={selectedRow} />
       </CustomModal>
     </div>
   );

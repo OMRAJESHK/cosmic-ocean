@@ -13,7 +13,6 @@ const getNeoApi = async (params) => {
     );
 
     if (response?.status === 200) {
-      console.log("server->", payload, apiLocations.NEO(lookUp), response.data);
       return response.data;
     }
     if (error) {

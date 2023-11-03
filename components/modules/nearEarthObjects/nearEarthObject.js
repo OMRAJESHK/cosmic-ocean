@@ -1,6 +1,7 @@
 "use client";
 import React from "react";
 import Image from "next/image";
+import PropTypes from "prop-types";
 
 import classes from "./nearEarthObjects.module.css";
 import Astroid from "@/assets/svgs/astroid";
@@ -10,7 +11,8 @@ import earth from "assets/images/neo/earth.png";
 import CustomTable from "@/components/ui/customTable";
 import { closeApproachesColumns, closeApproachesRows } from "./constants";
 
-const NearEarthObject = () => {
+const NearEarthObject = ({ selectedRow = {} }) => {
+  console.log("selectedRow", selectedRow);
   return (
     <div>
       <Flexbox
@@ -32,7 +34,7 @@ const NearEarthObject = () => {
           <Astroid size={5} />
         </div>
       </Flexbox>
-      <h4>433 Eros (A898 PA)</h4>
+      <h4>{selectedRow?.name || ""}</h4>
 
       <Flexbox justifyContent="initial">
         <div className={classes["neo-details-flex-item-wrapper"]}>
@@ -72,4 +74,7 @@ const NearEarthObject = () => {
   );
 };
 
+NearEarthObject.propTypes = {
+  selectedRow: PropTypes.object,
+};
 export default NearEarthObject;

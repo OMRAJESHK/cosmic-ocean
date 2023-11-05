@@ -23,6 +23,10 @@
 
 .orbital-class-item--img {
   flex-basis: 100%;
+  object-fit: fill;
+}
+.orbital-class-item--img img{
+  object-fit: fill;
 }
 
 .neo-table{
@@ -59,7 +63,16 @@
   flex-basis: 100%;
 }
 .neo-table{
-  margin-bottom: 0;
+  margin-bottom: 10px;
+}
+.earth-img-wrapper{
+  animation: astroid 30s linear infinite;
+  flex-grow: 0;
+}
+.neo-distance-wrapper{
+  flex-grow: 2;
+  margin: 10px;
+  text-align: center;
 }
 .astroidsvg-wrapper{
   animation: astroid 5s linear infinite;
@@ -68,11 +81,21 @@
 
 .earth-astroid-wrapper{
   padding: 1rem;
+  padding-top: 0px;
 }
 
 .neo-details-flex-item-wrapper{
   flex-grow: 1;
+  flex-basis: 50%;
 }
+.neo-details-desc-wrapper{
+  flex-basis: 100%;
+}
+.neo-details-desc-wrapper i{
+  display: block;
+  color: var(--grey)
+}
+
 @keyframes astroid {
   0%{
      transform: rotate(0deg);
@@ -102,15 +125,15 @@
   .lookup-date-wrapper{
     flex-basis: 49%;
   }
-}
-@media (min-width: 961px) {
   .orbital-class-item--text {
     flex-basis: 80%;
   }
-
   .orbital-class-item--img {
     flex-basis: 18%;
   }
+}
+@media (min-width: 961px) {
+ 
   .table-card-label{
     flex-basis: 30%;
   }
@@ -119,6 +142,9 @@
   }
   .lookup-date-wrapper{
     flex-basis: 20%;
+  }
+  .neo-details-desc-wrapper{
+    flex-basis: 50%;
   }
 }
 @media (min-width: 1025px) {
@@ -142,6 +168,7 @@
   .lookup-date-wrapper{
     flex-basis: 49%;
   }
+ 
 }
 @media (min-width: 1281px) {
   .container {

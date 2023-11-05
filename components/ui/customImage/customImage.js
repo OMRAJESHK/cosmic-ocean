@@ -17,6 +17,7 @@ const CustomImage = (props) => {
     classProp = "",
     onLoad = () => {},
     onError = () => {},
+    styleProp = {},
     restProps,
   } = props;
 
@@ -33,7 +34,7 @@ const CustomImage = (props) => {
 
   return (
     <>
-      {isLoading && !src && <Loader height={"100%"}/>}
+      {isLoading && !src && <Loader height={"100%"} />}
       {!isError && src && (
         <Image
           className={`${classProp && classProp}`}
@@ -43,6 +44,7 @@ const CustomImage = (props) => {
           height={height}
           onLoad={onImageLoad}
           onError={onImageError}
+          style={styleProp}
           {...restProps}
         />
       )}
@@ -63,6 +65,7 @@ CustomImage.propTypes = {
   src: PropTypes.string,
   alt: PropTypes.string,
   classProp: PropTypes.string,
+  styleProp: PropTypes.object,
   width: PropTypes.number,
   height: PropTypes.number,
   onLoad: PropTypes.func,

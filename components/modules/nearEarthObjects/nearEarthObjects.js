@@ -15,6 +15,7 @@ import aten from "assets/images/neo/aten-class.png";
 import atira from "assets/images/neo/atira-class.png";
 import { GET, withCatch } from "@/api/services";
 import apiLocations from "@/api/apiDirectory";
+import { formatDecimal } from "@/utils/commons";
 
 const NearEarthObjects = () => {
   const DEFAULT_ACTIVE = 1;
@@ -35,10 +36,6 @@ const NearEarthObjects = () => {
     setModalShow(true);
   };
 
-  const formatDecimal = (number) => {
-    const formattedNumber = Number(number).toFixed(2) || number;
-    return formattedNumber;
-  };
   const formatNeoData = (neoResponse = []) => {
     let updatedNeoData = [];
     if (neoResponse.length > 0) {
@@ -56,10 +53,14 @@ const NearEarthObjects = () => {
           aphelion_distance:
             `${formatDecimal(neo.orbital_data?.aphelion_distance)} AU` || "",
           is_potentially_hazardous_asteroid:
-            neo.is_potentially_hazardous_asteroid,
-          orbital_period: neo.orbital_data.orbital_period,
+            neo.is_potentially_hazardous_asteroid ? "YES" : "NO",
+          orbital_period: parseInt(neo.orbital_data.orbital_period),
           orbit_class: neo.orbital_data.orbit_class.orbit_class_type,
           orbit_class_range: neo.orbital_data.orbit_class.orbit_class_range,
+          close_approach_data: neo?.close_approach_data,
+          neo_diameter: neo.estimated_diameter,
+          first_observation_date: neo.orbital_data.first_observation_date,
+          last_observation_date: neo.orbital_data.last_observation_date,
         };
         updatedNeoData = [...updatedNeoData, param];
       });
@@ -245,7 +246,8 @@ const NearEarthObjects = () => {
         </Card.Body>
       </Card>
       <CustomModal
-        title="NEO Details"
+        title={selectedRow?.name || ""}
+        subtitle={`${selectedRow.orbit_class} - Orbit Class ${selectedRow.orbit_class_range} - Orbit Range`}
         show={modalShow}
         onHide={() => setModalShow(false)}
       >

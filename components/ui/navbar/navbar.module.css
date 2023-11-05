@@ -1,3 +1,21 @@
+.brand-wrapper{
+  display: flex;
+  text-decoration: none;
+  align-items: center;
+  gap: 5px;
+  margin-right: 10px;
+  color:var(--grey)
+}
+.brand-wrapper span{
+  font-weight: 700;
+}
+
+a.nav-link:active{
+  color:var(--orange) !important;
+}
+.active-link{
+  color:var(--orange) !important;
+}
 .nav-link{
     text-decoration: none;
     padding-left: var(--bs-nav-link-padding-y) var(--bs-nav-link-padding-x);
@@ -9,14 +27,23 @@
     display: flex;
     gap: 10px;
     align-items: center;
+    font-weight: 600;
   }
 
   .nav-brand-title{
-    font-weight: 600;
-    font-family: 'Montserrat', sans-serif;
+    font-weight: 700;
     display: flex;
   }
 
   .nav-container{
     line-height: 3;
+  }
+
+  .brand-img-wrapper{
+    position: relative;
+    width: 100%;
+    height: 4rem;
+  }
+  .brand-img{
+    object-fit: fill;
   }

@@ -10,7 +10,6 @@ import Loader from "@/components/ui/loader";
 
 const SearchList = (props) => {
   const { isLoading, queryResults, onBack, onNext } = props;
-  console.log("queryResults", queryResults);
   const rowLength = queryResults?.length ?? 0;
   const [modalShow, setModalShow] = useState(false);
   const [selectedQueryItem, setSelectedQueryItem] = useState({});

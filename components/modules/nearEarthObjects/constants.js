@@ -8,22 +8,7 @@ export const neoTableColumns = [
 ];
 
 export const closeApproachesColumns = [
-  { id: 1, key: "estimated_distance", name: "Estimated Distance" },
-  { id: 2, key: "close_approach_data", name: "Close Approach Date" },
-  { id: 4, key: "relative_velocity", name: "Relative Velocity" },
-];
-
-export const closeApproachesRows = [
-  {
-    id: 1,
-    estimated_distance: "433 Eros (A898 PA)",
-    close_approach_data: "1909-08-21",
-    relative_velocity: "3.4460290151 km/s",
-  },
-  {
-    id: 2,
-    estimated_distance: "433 Eros (A898 PA)",
-    close_approach_data: "1909-08-21",
-    relative_velocity: "3.4460290151 km/s",
-  },
+  { id: 1, key: "close_approach_date_full", name: "Close Approach Date" },
+  { id: 2, key: "relative_velocity", name: "Relative Velocity" },
+  { id: 3, key: "miss_distance", name: "Miss Distance" },
 ];

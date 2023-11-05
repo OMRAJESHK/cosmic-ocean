@@ -112,8 +112,6 @@ const AstronomicalPictureOfTheDay = () => {
                         classProp={classes["gallery-img"]}
                         width={400}
                         height={400}
-                        onLoad={() => {}}
-                        onError={() => {}}
                       />
                     </div>
                     <Card.Body>
@@ -124,6 +122,59 @@ const AstronomicalPictureOfTheDay = () => {
                 );
               }
             })}
+
+          {(!apodState || apodState.length === 0) && (
+            <Flexbox gap={10}>
+              <Card className={classes["img-gallery-item-card-wrapper"]}>
+                <div
+                  className={classes["img-gallery-wrapper"]}
+                  style={{ height: "21.5rem" }}
+                >
+                  <CustomImage
+                    classProp={classes["gallery-img"]}
+                    width={10}
+                    height={10}
+                  />
+                </div>
+              </Card>
+              <Card className={classes["img-gallery-item-card-wrapper"]}>
+                <div
+                  className={classes["img-gallery-wrapper"]}
+                  style={{ height: "21.5rem" }}
+                >
+                  <CustomImage
+                    classProp={classes["gallery-img"]}
+                    width={10}
+                    height={10}
+                  />
+                </div>
+              </Card>
+              <Card className={classes["img-gallery-item-card-wrapper"]}>
+                <div
+                  className={classes["img-gallery-wrapper"]}
+                  style={{ height: "21.5rem" }}
+                >
+                  <CustomImage
+                    classProp={classes["gallery-img"]}
+                    width={10}
+                    height={10}
+                  />
+                </div>
+              </Card>
+              <Card className={classes["img-gallery-item-card-wrapper"]}>
+                <div
+                  className={classes["img-gallery-wrapper"]}
+                  style={{ height: "21.5rem" }}
+                >
+                  <CustomImage
+                    classProp={classes["gallery-img"]}
+                    width={10}
+                    height={10}
+                  />
+                </div>
+              </Card>
+            </Flexbox>
+          )}
         </Flexbox>
       </Flexbox>
 

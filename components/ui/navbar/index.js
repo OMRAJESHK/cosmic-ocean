@@ -8,12 +8,13 @@ import Form from "react-bootstrap/Form";
 import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
 import { useRouter } from "next/navigation";
-import Image from "next/image";
 import { pageRoutes } from "@/routes/routes";
+import CustomImage from "../customImage";
+import Link from "next/link";
 
 const CosmicNavbar = () => {
-  const [query, setQuery] = useState("");
   const router = useRouter();
+  const [query, setQuery] = useState("");
 
   const onSearchHandler = () => {
     router.push(`${pageRoutes.spacesearch}?query=${query}`);
@@ -30,19 +31,20 @@ const CosmicNavbar = () => {
         className={`${classes["nav-container"]} bg-body-tertiary bg-primary navbar-light navbar`}
       >
         <Container fluid>
-          <Navbar.Brand
-            href="/"
-            className={`${classes["nav-brand-title"]} me-4`}
-          >
-            <Image
-              src="/home/space-logo.png"
-              width={50}
-              height={50}
-              alt="Picture of the author"
-            />
-
+          <Link href="/" className={classes["brand-wrapper"]}>
+            <div className={classes["apod-img-wrapper"]}>
+              <div className={classes["brand-img-wrapper"]}>
+                <CustomImage
+                  src="/home/cosmic-ocean-logo.png"
+                  alt="brand Logo"
+                  classProp={classes["brand-img"]}
+                  width={100}
+                  height={100}
+                />
+              </div>
+            </div>
             <span>Cosmic Ocean</span>
-          </Navbar.Brand>
+          </Link>
           <Navbar.Toggle aria-controls="navbarScroll" />
           <Navbar.Collapse id="navbarScroll" bg="primary">
             <Nav className={`${classes.navlist} ml-2`}>

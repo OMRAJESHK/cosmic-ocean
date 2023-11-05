@@ -2,12 +2,14 @@ import React from "react";
 import PropTypes from "prop-types";
 import Button from "react-bootstrap/Button";
 import Modal from "react-bootstrap/Modal";
+import classes from "./customModal.module.css";
 
 const CustomModal = (props) => {
   const {
     size = "lg",
     show = false,
     onHide = () => {},
+    subtitle = "",
     title = "Modal heading",
     fullscreen = undefined,
     children,
@@ -23,7 +25,10 @@ const CustomModal = (props) => {
       centered
     >
       <Modal.Header closeButton>
-        <Modal.Title id="contained-modal-title-vcenter">{title}</Modal.Title>
+        <div>
+          <Modal.Title id="contained-modal-title-vcenter">{title}</Modal.Title>
+          <p className={classes["modal-subtitle"]}>{subtitle}</p>
+        </div>
       </Modal.Header>
       <Modal.Body>{children}</Modal.Body>
       <Modal.Footer>
@@ -35,6 +40,7 @@ const CustomModal = (props) => {
 
 CustomModal.propTypes = {
   title: PropTypes.string,
+  subtitle: PropTypes.string,
   size: PropTypes.string,
   onHide: PropTypes.func,
   show: PropTypes.bool,

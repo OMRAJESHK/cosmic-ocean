@@ -1,15 +1,15 @@
 import React from "react";
 import PropTypes from "prop-types";
-import CustomPagination from "../pagination/customPagination";
+import BasicPagination from "../basicPagination";
 
 const CustomTableFoot = (props) => {
-  const { rowCount = 0, columnCount = 0, onClick = () => {} } = props;
+  const { columnCount = 0, onBack, onNext } = props;
 
   return (
     <tfoot>
       <tr>
         <td colSpan={columnCount}>
-          <CustomPagination rowCount={rowCount} onClick={onClick} />
+          <BasicPagination onBack={onBack} onNext={onNext} />
         </td>
       </tr>
     </tfoot>
@@ -18,8 +18,8 @@ const CustomTableFoot = (props) => {
 
 CustomTableFoot.propTypes = {
   columnCount: PropTypes.number,
-  rowCount: PropTypes.number,
-  onClick: PropTypes.func,
+  onBack: PropTypes.func,
+  onNext: PropTypes.func,
 };
 
 export default CustomTableFoot;

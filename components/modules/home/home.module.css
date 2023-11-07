@@ -2,56 +2,40 @@
   margin: 1rem 0.5rem;
 }
 .banner-section {
+  height: 80vh;
   position: relative;
   display: table;
   width: 100%;
-  background: rgba(99, 214, 250, 1);
+  background: rgb(0 0 0);
   /* ms ( IE 10.0+ ) */
-  background: -ms-radial-gradient(
-    ellipse closest-side at 50% 50%,
-    rgba(99, 214, 250, 1) 0.14%,
-    rgba(56, 184, 224, 1) 99.61%
-  );
+  background: -ms-radial-gradient( ellipse closest-side at 50% 50%, rgb(45 46 46) 0.14%, rgb(0 0 0) 99.61% );
   /* WebKit (Chrome 10.0+, safari 5.1+ )*/
-  background: -webkit-radial-gradient(
-    ellipse closest-side at 50% 50%,
-    rgba(99, 214, 250, 1) 0.14%,
-    rgba(56, 184, 224, 1) 99.61%
-  );
+  background: -webkit-radial-gradient( ellipse closest-side at 50% 50%, rgb(45 46 46) 0.14%, rgb(0 0 0) 99.61% );
   /* Moz ( Moz 3.6+ )*/
-  background: -moz-radial-gradient(
-    ellipse closest-side at 50% 50%,
-    rgba(99, 214, 250, 1) 0.14%,
-    rgba(56, 184, 224, 1) 99.61%
-  );
+  background: -moz-radial-gradient( ellipse closest-side at 50% 50%, rgb(45 46 46) 0.14%, rgb(0 0 0) 99.61% );
   /* Opera ( opera 11.6+ )*/
-  background: -o-radial-gradient(
-    ellipse closest-side at 50% 50%,
-    rgba(99, 214, 250, 1) 0.14%,
-    rgba(56, 184, 224, 1) 99.61%
-  );
+  background: -o-radial-gradient( ellipse closest-side at 50% 50%, rgb(45 46 46) 0.14%, rgb(0 0 0) 99.61% );
   /* W3C Markup */
-  background: radial-gradient(
-    ellipse closest-side at 50% 50%,
-    rgba(99, 214, 250, 1) 0.14%,
-    rgba(56, 184, 224, 1) 99.61%
-  );
+  background: radial-gradient( ellipse closest-side at 50% 50%, rgb(45 46 46) 0.14%, rgb(0 0 0) 99.61% );
   height: 80vh;
 }
 
 .banner-content {
   display: table-cell;
   vertical-align: middle;
-  color: #fff;
+  color: var(--orange);
   text-align: center;
   font-size: 18px;
   font-weight: normal;
   padding: 0 3%;
 }
-
+.banner-content h1{
+  font-weight:700;
+}
 /* The Solar system - styles */
 
 .article-wrapper {
+  padding : 1rem 1rem 0rem 1rem;
   display: flex;
   flex-direction: column;
   gap: 10px;
@@ -72,6 +56,7 @@
 }
 .solar-system-desc-wrapper{
   text-align: justify;
+  padding:1rem;
 }
 .solar-system-img:hover {
   box-shadow: 0 0 2px 1px rgba(4, 140, 185, 0.5);
@@ -104,6 +89,19 @@
 
 .celestials-item-wrapper > div:first-child{
   flex-basis: 30%;
+}
+.celestials-item-wrapper > div:nth-child(2){
+  flex-basis: 70%;
+}
+.celestials-desc-wrapper{
+  padding:1rem;
+  text-align: justify;
+}
+.solar-system-img-wrapper {
+  margin-right: 10px;
+  position: relative;
+  width: 100%;
+  height: 22rem;
 }
 
 /* Quote section */

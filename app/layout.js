@@ -29,9 +29,10 @@ export const metadata = {
 export default function RootLayout({ children = undefined }) {
   return (
     <html lang="en">
-      <body className={montserrat.className}>
+      <body className={`${montserrat.className} stars`}>
+        <div className="twinkling"></div>
         <CosmicNavbar />
-        <main>{children}</main>
+        <main style={{ position: "relative" }}>{children}</main>
       </body>
     </html>
   );

@@ -6,6 +6,7 @@ const nextConfig = {
       "mars.nasa.gov",
       "mars.jpl.nasa.gov",
       "images-assets.nasa.gov",
+      "youtube.com",
     ],
   },
 };

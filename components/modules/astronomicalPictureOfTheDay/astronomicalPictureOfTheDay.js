@@ -8,10 +8,11 @@ import CustomModal from "@/components/ui/customModal";
 import FullscreenApod from "./fullscreenApod";
 import apiLocations from "@/api/apiDirectory";
 import axios from "axios";
+import { GET, withCatch } from "@/api/services";
 
 function getLastFourDates(currentDate) {
   let lastFourDates = [];
-  [0, 1, 2, 3, 4].forEach((dateItem) => {
+  [1, 2, 3, 4].forEach((dateItem) => {
     const date = new Date(currentDate);
     date.setDate(currentDate.getDate() - dateItem);
     lastFourDates = [...lastFourDates, date.toISOString().split("T")[0]];
@@ -39,6 +40,7 @@ function getMultiApis(lastFourDates) {
 const AstronomicalPictureOfTheDay = () => {
   const [modalShow, setModalShow] = useState(false);
   const [apodState, setApodState] = useState([]);
+  const [heroApod, setheroApod] = useState({});
   const [selectedApod, setSelectedApod] = useState({});
 
   const onCardClickHandler = (id) => {
@@ -47,6 +49,25 @@ const AstronomicalPictureOfTheDay = () => {
     setSelectedApod(selected);
   };
 
+  const getHeroApod = async () => {
+    const currentDate = new Date().toISOString().split("T")[0];
+    try {
+      const { error, response } = await withCatch(
+        GET,
+        apiLocations.GET_APOD(currentDate),
+      );
+      if (response?.status === 200) {
+        setheroApod(response.data);
+      }
+      if (error) {
+        return [];
+      }
+      return [];
+    } catch (err) {
+      console.log("error", err);
+      return [];
+    }
+  };
   const getApods = async () => {
     const currentDate = new Date();
     const lastFourDates = getLastFourDates(currentDate);
@@ -65,63 +86,68 @@ const AstronomicalPictureOfTheDay = () => {
   };
   useEffect(() => {
     getApods();
+    getHeroApod();
     return () => {
       setApodState([]);
+      setheroApod({});
     };
   }, []);
 
   return (
     <div className={classes["apod-wrapper"]}>
       <Flexbox gap={20}>
-        <Card
-          className={classes["img-card-wrapper"]}
-          onClick={() => onCardClickHandler(apodState[0]?.id)}
-        >
+        <Card className={classes["img-card-wrapper"]}>
           <div className={classes["apod-img-wrapper"]}>
-            <CustomImage
-              src={apodState[0]?.url ?? ""}
-              alt="photo"
-              classProp={classes["apod-hero-img"]}
-              width={900}
-              height={900}
-            />
+            {heroApod?.media_type === "image" && (
+              <div onClick={() => onCardClickHandler(heroApod?.id)}>
+                <CustomImage
+                  src={heroApod?.url ?? ""}
+                  alt="photo"
+                  classProp={classes["apod-hero-img"]}
+                  width={900}
+                  height={900}
+                />
+                <Card.ImgOverlay>
+                  <h3 className={classes["apod-hero-img-desc"]}>
+                    {heroApod.title ?? ""}
+                  </h3>
+                  <Card.Text className={classes["apod-hero-img-desc"]}>
+                    {`copyright - ${heroApod.copyright ?? ""}`}
+                  </Card.Text>
+                </Card.ImgOverlay>
+              </div>
+            )}
+            {heroApod?.media_type === "video" && (
+              <object width="100%" height="100%">
+                <param name="movie" value={heroApod?.url ?? ""} />
+                <embed src={heroApod?.url ?? ""} width="100%" height="100%" />
+              </object>
+            )}
           </div>
-          <Card.ImgOverlay>
-            <h3 className={classes["apod-hero-img-desc"]}>
-              {apodState[0]?.title ?? ""}
-            </h3>
-            <Card.Text className={classes["apod-hero-img-desc"]}>
-              {`copyright - ${apodState[0]?.copyright ?? ""}`}
-            </Card.Text>
-          </Card.ImgOverlay>
         </Card>
         <Flexbox gap={10} classProp={classes["img-gallery-item-wrapper"]}>
           {apodState?.length > 0 &&
-            apodState.map((apod, index) => {
-              if (index > 0) {
-                return (
-                  <Card
-                    key={apod.id}
-                    className={classes["img-gallery-item-card-wrapper"]}
-                    onClick={() => onCardClickHandler(apod.id)}
-                  >
-                    <div className={classes["img-gallery-wrapper"]}>
-                      <CustomImage
-                        src={apod.url}
-                        alt="photo"
-                        classProp={classes["gallery-img"]}
-                        width={400}
-                        height={400}
-                      />
-                    </div>
-                    <Card.Body>
-                      <Card.Title>{apod.title}</Card.Title>
-                      <Card.Text>{apod.date}</Card.Text>
-                    </Card.Body>
-                  </Card>
-                );
-              }
-            })}
+            apodState.map((apod) => (
+              <Card
+                key={apod.id}
+                className={classes["img-gallery-item-card-wrapper"]}
+                onClick={() => onCardClickHandler(apod.id)}
+              >
+                <div className={classes["img-gallery-wrapper"]}>
+                  <CustomImage
+                    src={apod.url}
+                    alt="photo"
+                    classProp={classes["gallery-img"]}
+                    width={400}
+                    height={400}
+                  />
+                </div>
+                <Card.Body>
+                  <Card.Title>{apod.title}</Card.Title>
+                  <Card.Text>{apod.date}</Card.Text>
+                </Card.Body>
+              </Card>
+            ))}
 
           {(!apodState || apodState.length === 0) && (
             <Flexbox gap={10}>

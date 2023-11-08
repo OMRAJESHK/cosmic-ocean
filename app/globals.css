@@ -2,6 +2,7 @@
   --foreground-rgb: 0, 0, 0;
   --background-start-rgb: 214, 219, 220;
   --background-end-rgb: 255, 255, 255;
+  --white:#fff;
   --grey:#565656;
   --orange:#ff914d;
 }
@@ -66,7 +67,6 @@ img {
 @media (min-width: 1281px) {
 }
 
-
 .stars, .twinkling, .clouds {
   position: absolute;
   display: block;
@@ -112,3 +112,28 @@ img {
     background-position: 10000px 0;
   }
 }
+#solarSystemAccordion .accordion-button:after {
+  background-image: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='%23ffffff'><path fill-rule='evenodd' d='M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z'/></svg>") !important;
+}
+#solarSystemAccordion .accordion-button{
+  background-color: var(--orange);
+  color:var(--grey)
+}
+
+#solarSystemAccordion .accordion-item{
+  border: 1px solid var(--grey);
+}
+
+#solarSystemAccordion .accordion-button:focus {
+  z-index: 3;
+  border-color: var(--orange);
+  outline: 0;
+  box-shadow: var(--grey);
+}
+#solarSystemAccordion .accordion-header > button{
+  padding: 1.5rem;
+  font-weight: 700;
+ }
+ #solarSystemAccordion .accordion-body{
+   padding:1rem
+ }

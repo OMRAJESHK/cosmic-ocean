@@ -2,7 +2,8 @@ import React from "react";
 import { Card } from "react-bootstrap";
 import PropTypes from "prop-types";
 import CustomImage from "@/components/ui/customImage";
-import classes from "./apod.module.css";
+import classes from "../apod.module.css";
+import VideoPlayer from "./videoPlayer";
 
 const FullscreenApod = ({ apodState = {} }) => {
   return (
@@ -16,13 +17,18 @@ const FullscreenApod = ({ apodState = {} }) => {
         <Card.Text>{apodState.explanation ?? ""}</Card.Text>
       </Card.Body>
       <div className={classes["fullscreen-img-gallery-wrapper"]}>
-        <CustomImage
-          src={apodState.hdurl}
-          alt="photo"
-          width={1100}
-          height={1100}
-          classProp={classes["fullscreen-img-gallery"]}
-        />
+        {apodState.media_type === "image" && (
+          <CustomImage
+            src={apodState.url}
+            alt={apodState?.title}
+            classProp={classes["fullscreen-img-gallery"]}
+            width={1200}
+            height={1200}
+          />
+        )}
+        {apodState.media_type === "video" && (
+          <VideoPlayer name={apodState?.title} src={apodState?.url} />
+        )}
       </div>
     </Card>
   );

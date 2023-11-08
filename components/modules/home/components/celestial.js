@@ -2,15 +2,25 @@ import React from "react";
 import PropTypes from "prop-types";
 import { Card } from "react-bootstrap";
 import classes from "../home.module.css";
+import CustomImage from "@/components/ui/customImage";
+
+const CelestialImgWrapper = ({ src = "" }) => (
+  <div className={classes["celestial-img-wrapper"]}>
+    <CustomImage
+      src={src}
+      classProp={classes["solar-system-img"]}
+      width={100}
+      height={100}
+    />
+  </div>
+);
 
 const Celestial = ({ url, title, description }) => {
   return (
     <Card>
       <Card.Body className={classes["celestials-card-body"]}>
         <div className={classes["celestials-item-wrapper"]}>
-          <div>
-            <img src={url} alt={title} />
-          </div>
+          <CelestialImgWrapper src={url} />
           <div className={classes["celestials-desc-wrapper"]}>
             <Card.Title>{title}</Card.Title>
             <Card.Text>{description}</Card.Text>

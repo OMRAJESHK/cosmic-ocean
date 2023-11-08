@@ -3,7 +3,10 @@ import PropTypes from "prop-types";
 import { Accordion } from "react-bootstrap";
 import CustomImage from "@/components/ui/customImage";
 import classes from "../home.module.css";
-import solarSystem1 from "assets/images/home/solar-system-1.jpg";
+import solarSystem1 from "assets/images/home/solar-system-1.png";
+import solarSystem2 from "assets/images/home/solar-system-2.png";
+import solarSystem3 from "assets/images/home/solar-system-3.png";
+import solarSystem4 from "assets/images/home/solar-system-4.png";
 import { solarSystemDesc } from "../constants";
 
 const SolarSystemDescItem = ({ desc = "" }) => (
@@ -28,8 +31,8 @@ const SolarSystemImgWrapper = ({ src = "" }) => (
     <CustomImage
       src={src}
       classProp={classes["solar-system-img"]}
-      width={200}
-      height={200}
+      width={500}
+      height={500}
     />
   </div>
 );
@@ -54,7 +57,7 @@ const SolarSystem = () => {
               />
             </article>
             <article className={classes["article-wrapper"]}>
-              <SolarSystemImgWrapper src={solarSystem1} />
+              <SolarSystemImgWrapper src={solarSystem2} />
               <SolarSystemDescWrapper
                 data={solarSystemDesc.partA.filter((item) => item.id >= 3)}
               />
@@ -67,13 +70,13 @@ const SolarSystem = () => {
         <Accordion.Body className={classes["accordion-body"]}>
           <div className={classes["solar-system-wrapper"]}>
             <article className={classes["article-wrapper"]}>
-              <SolarSystemImgWrapper src={solarSystem1} />
+              <SolarSystemImgWrapper src={solarSystem3} />
               <SolarSystemDescWrapper
                 data={solarSystemDesc.partB.filter((item) => item.id < 3)}
               />
             </article>
             <article className={classes["article-wrapper"]}>
-              <SolarSystemImgWrapper src={solarSystem1} />
+              <SolarSystemImgWrapper src={solarSystem4} />
               <SolarSystemDescWrapper
                 data={solarSystemDesc.partB.filter((item) => item.id >= 3)}
               />

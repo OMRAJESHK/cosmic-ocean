@@ -13,7 +13,6 @@
     "prettier:file": "npx prettier \"{app, components, api}/**/*.js\" --write"
   },
   "dependencies": {
-    "@next/font": "^14.0.1",
     "autoprefixer": "10.4.15",
     "axios": "^1.6.0",
     "bootstrap": "^5.3.1",

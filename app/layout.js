@@ -1,7 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 import "./globals.css";
-import { Montserrat } from "@next/font/google";
+import { Montserrat } from "next/font/google";
 // React bootstrap
 import "bootstrap/dist/css/bootstrap.min.css";
 

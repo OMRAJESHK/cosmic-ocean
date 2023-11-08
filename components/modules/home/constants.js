@@ -1,3 +1,12 @@
+import mercury from "assets/images/home/mercury.png";
+import venus from "assets/images/home/venus.png";
+import mars from "assets/images/home/mars.png";
+import jupiter from "assets/images/home/jupiter.png";
+import saturn from "assets/images/home/saturn.png";
+import uranus from "assets/images/home/uranus.png";
+import neptune from "assets/images/home/neptune.png";
+import pluto from "assets/images/home/pluto.png";
+
 export const quotes = [
   {
     id: 0,
@@ -17,7 +26,7 @@ export const celestials = [
   {
     id: 0,
     title: "Mercury",
-    url: "https://images.unsplash.com/photo-1693132038772-7ad13c7bad9a?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxlZGl0b3JpYWwtZmVlZHw1fHx8ZW58MHx8fHx8&auto=format&fit=crop&w=800&q=60",
+    url: mercury,
     description: `The closest planet to the Sun and has no atmosphere,
     making it extremely hot during the day and cold at
     night. It takes 87.969 Earth days to complete an orbit.`,
@@ -25,7 +34,7 @@ export const celestials = [
   {
     id: 1,
     title: "Venus",
-    url: "https://images.unsplash.com/photo-1693132038772-7ad13c7bad9a?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxlZGl0b3JpYWwtZmVlZHw1fHx8ZW58MHx8fHx8&auto=format&fit=crop&w=800&q=60",
+    url: venus,
     description: `Venus is often called Earth's "sister planet" due to its
     similar size and composition, but it has a thick, toxic
     atmosphere primarily composed of carbon dioxide.`,
@@ -33,42 +42,42 @@ export const celestials = [
   {
     id: 2,
     title: "Mars",
-    url: "https://images.unsplash.com/photo-1693132038772-7ad13c7bad9a?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxlZGl0b3JpYWwtZmVlZHw1fHx8ZW58MHx8fHx8&auto=format&fit=crop&w=800&q=60",
+    url: mars,
     description: `Mars is often called the "Red Planet" due to its reddish appearance, caused by iron oxide (rust) on its surface.
     It has the largest volcano in the solar system, Olympus Mons.`,
   },
   {
     id: 3,
     title: "Jupiter",
-    url: "https://images.unsplash.com/photo-1693132038772-7ad13c7bad9a?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxlZGl0b3JpYWwtZmVlZHw1fHx8ZW58MHx8fHx8&auto=format&fit=crop&w=800&q=60",
+    url: jupiter,
     description: `Jupiter is the largest planet in our solar system and has more mass than all the other planets combined.
     It has a massive, iconic storm known as the Great Red Spot, which has been raging for at least 350 years.`,
   },
   {
     id: 4,
     title: "Saturn",
-    url: "https://images.unsplash.com/photo-1693132038772-7ad13c7bad9a?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxlZGl0b3JpYWwtZmVlZHw1fHx8ZW58MHx8fHx8&auto=format&fit=crop&w=800&q=60",
+    url: saturn,
     description: `Is famous for its magnificent ring system, composed of ice particles, rock, and dust. It has the second-largest moon in the solar system, Titan, 
     which has a thick atmosphere and methane lakes. Saturn's density is so low that it would float if you could find a body of water large enough.`,
   },
   {
     id: 5,
     title: "Uranus",
-    url: "https://images.unsplash.com/photo-1693132038772-7ad13c7bad9a?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxlZGl0b3JpYWwtZmVlZHw1fHx8ZW58MHx8fHx8&auto=format&fit=crop&w=800&q=60",
+    url: uranus,
     description: `Uranus is an ice giant planet with a unique feature: it rotates on its side, likely due to a massive collision in its distant past.
     Uranus's atmosphere contains hydrogen, helium, and methane, which gives it a blue-green color.`,
   },
   {
     id: 6,
     title: "Neptune",
-    url: "https://images.unsplash.com/photo-1693132038772-7ad13c7bad9a?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxlZGl0b3JpYWwtZmVlZHw1fHx8ZW58MHx8fHx8&auto=format&fit=crop&w=800&q=60",
+    url: neptune,
     description: `Is the farthest known planet in our solar system. It has the strongest winds in the solar system. Neptune's largest moon, Triton, orbits in the opposite direction of the planet's rotation, 
     indicating that it was likely captured from the Kuiper Belt`,
   },
   {
     id: 7,
     title: "Pluto",
-    url: "https://images.unsplash.com/photo-1693132038772-7ad13c7bad9a?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxlZGl0b3JpYWwtZmVlZHw1fHx8ZW58MHx8fHx8&auto=format&fit=crop&w=800&q=60",
+    url: pluto,
     description: `Pluto is no longer considered one of the major planets in our solar system. it was reclassified as a "dwarf planet". 
     Pluto is the largest object in the Kuiper Belt, a region beyond Neptune populated by icy bodies`,
   },

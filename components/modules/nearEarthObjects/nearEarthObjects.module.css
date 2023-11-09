@@ -18,111 +18,149 @@
   flex-basis: 100%;
 }
 .orbital-class-item--text {
+  color: var(--grey);
   flex-basis: 100%;
+}
+
+.orbital-class-item--text p{
+  text-align:justify;
 }
 
 .orbital-class-item--img {
   flex-basis: 100%;
   object-fit: fill;
 }
-.orbital-class-item--img img{
+.orbital-class-item--img img {
   object-fit: fill;
 }
 
-.neo-table{
+.neo-table {
   width: 100%;
 }
-.neo-table thead{
-  background-color: red;
-  color:white
+.neo-table thead tr th{
+  background-color: #f7d3bc;
+  color: var(--orange);
 }
-.neo-table thead th{
+.neo-table thead th {
   text-align: center;
   border: 1px solid white;
 }
-.neo-table tbody td{
+.neo-table tbody td {
   text-align: center;
   border: 1px solid white;
 }
-.datepickerr{
-  padding: .51rem;
+.datepickerr {
+  padding: 0.51rem;
   border-radius: 10px;
 }
 
-.lookup-select-wrapper{
+.lookup-select-wrapper {
   flex-basis: 100%;
 }
-.lookup-select{
+.lookup-select {
   width: 15rem;
 }
-.table-card-label{
+.table-card-label {
   flex-basis: 100%;
 }
 
-.lookup-date-wrapper{
+.lookup-date-wrapper {
   flex-basis: 100%;
 }
-.neo-table{
+.neo-table {
   margin-bottom: 10px;
 }
-.earth-img-wrapper{
+.earth-img-wrapper {
   animation: astroid 30s linear infinite;
-  flex-grow: 0;
+  flex-grow: 1;
 }
-.neo-distance-wrapper{
+.neo-distance-wrapper {
   flex-grow: 2;
   margin: 10px;
   text-align: center;
 }
-.astroidsvg-wrapper{
+.astroidsvg-wrapper {
   animation: astroid 5s linear infinite;
   width: fit-content;
 }
 
-.earth-astroid-wrapper{
+.earth-astroid-wrapper {
   padding: 1rem;
   padding-top: 0px;
 }
 
-.neo-details-flex-item-wrapper{
+.neo-details-flex-item-wrapper {
   flex-grow: 1;
   flex-basis: 50%;
 }
-.neo-details-desc-wrapper{
+.neo-details-desc-wrapper {
+  margin-bottom: 10px;
   flex-basis: 100%;
 }
-.neo-details-desc-wrapper i{
+.neo-details-desc-wrapper i {
   display: block;
-  color: var(--grey)
+  color: var(--orange);
+}
+.neo-details-desc-wrapper strong {
+  color: var(--grey);
 }
 
+.neo-title-wrapper {
+  margin-bottom: 2rem;
+  padding: 1rem;
+  border-radius: 10px;
+  background-color: var(--white);
+  width: 100%;
+}
+.neo-title-wrapper h2 {
+  color: var(--orange);
+}
+.orbit-class-title-wrapper {
+  padding: 1rem 0rem 0rem 1rem;
+  border-bottom: 1px solid var(--border);
+  background-color: #f8f8f8;
+}
+.orbit-class-title-wrapper h6{
+  color:var(--orange);
+  margin-bottom: 0;
+}
+.orbit-class-title-wrapper strong{
+  font-size: 15px;
+  color:var(--grey);
+}
+
+.neo-encounter-table-wrapper h5{
+  margin-top: 2rem;
+  font-weight: 600;
+  color:var(--orange)
+}
 @keyframes astroid {
-  0%{
-     transform: rotate(0deg);
-    }
- 100%{
-     transform: rotate(360deg);
-    }
- }
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
 @media (min-width: 481px) {
-  .table-card-label{
+  .table-card-label {
     flex-basis: 40%;
   }
-  .lookup-select-wrapper{
+  .lookup-select-wrapper {
     flex-basis: 71%;
   }
 }
 @media (min-width: 641px) {
-  .table-card-label{
+  .table-card-label {
     flex-basis: 49%;
   }
-  .lookup-select{
+  .lookup-select {
     width: 13rem;
   }
-  .lookup-select-wrapper{
+  .lookup-select-wrapper {
     flex-basis: 49%;
   }
-  .lookup-date-wrapper{
+  .lookup-date-wrapper {
     flex-basis: 49%;
   }
   .orbital-class-item--text {
@@ -133,23 +171,22 @@
   }
 }
 @media (min-width: 961px) {
- 
-  .table-card-label{
+  .table-card-label {
     flex-basis: 30%;
   }
-  .lookup-select-wrapper{
+  .lookup-select-wrapper {
     flex-basis: 20%;
   }
-  .lookup-date-wrapper{
+  .lookup-date-wrapper {
     flex-basis: 20%;
   }
-  .neo-details-desc-wrapper{
+  .neo-details-desc-wrapper {
     flex-basis: 50%;
   }
 }
 @media (min-width: 1025px) {
   .orbital-class-item-wrapper {
-    flex-basis: 49%;
+    flex-basis: 49.6%;
   }
 
   .orbital-class-item--text {
@@ -159,16 +196,15 @@
   .orbital-class-item--img {
     flex-basis: 100%;
   }
-  .table-card-label{
+  .table-card-label {
     flex-basis: 49%;
   }
-  .lookup-select-wrapper{
+  .lookup-select-wrapper {
     flex-basis: 49%;
   }
-  .lookup-date-wrapper{
+  .lookup-date-wrapper {
     flex-basis: 49%;
   }
- 
 }
 @media (min-width: 1281px) {
   .container {
@@ -181,13 +217,13 @@
   .orbital-class-item--img {
     flex-basis: 100%;
   }
-  .table-card-label{
+  .table-card-label {
     flex-basis: 20%;
   }
-  .lookup-select-wrapper{
+  .lookup-select-wrapper {
     flex-basis: 24%;
   }
-  .lookup-date-wrapper{
+  .lookup-date-wrapper {
     flex-basis: 24%;
   }
 }

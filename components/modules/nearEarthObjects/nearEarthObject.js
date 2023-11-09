@@ -9,51 +9,46 @@ import Flexbox from "@/components/ui/flexbox/flexbox";
 
 import earth from "assets/images/neo/earth.png";
 import CustomTable from "@/components/ui/customTable";
-import { closeApproachesColumns } from "./constants";
-import { formatDecimal } from "@/utils/commons";
+import {
+  closeApproachesColumns,
+  getCloseApproaches,
+  neoDetailsDesc,
+} from "./constants";
+import OrbitalTitle from "./components/orbitalTitle";
+
+const NeoDetailsDescWrapper = ({ title = "", value }) => {
+  return (
+    <div className={classes["neo-details-desc-wrapper"]}>
+      <i>{title}</i>
+      <strong>{value}</strong>
+    </div>
+  );
+};
+
+const NeoDistanceWrapper = ({ data = [], selectedRow = {} }) => {
+  if (data.length > 0)
+    return (
+      <div className={classes["neo-distance-wrapper"]}>
+        {data.map((description) => (
+          <NeoDetailsDescWrapper
+            key={description.id}
+            title={description.title}
+            value={selectedRow[description.value]}
+          />
+        ))}
+      </div>
+    );
+};
 
 const NearEarthObject = ({ selectedRow = {} }) => {
   const [closeApproach, setCloseApproach] = useState({ past: [], future: [] });
-
-  const getCloseApproach = () => {
-    const currentYear = new Date().getFullYear();
-    const closeApproachData = selectedRow?.close_approach_data || [];
-    const updatedApproaches = { past: [], future: [] };
-    const LIMIT = 5;
-    let pastCount = 0;
-    let futureCount = 0;
-
-    for (const item of closeApproachData) {
-      if (pastCount < LIMIT || futureCount < LIMIT) {
-        const itemDate = new Date(item.close_approach_date).getFullYear();
-        item.relative_velocity = `${formatDecimal(
-          item.relative_velocity.kilometers_per_second,
-        )} km/s`;
-        item.miss_distance = `${formatDecimal(
-          item.miss_distance.astronomical,
-          4,
-        )} AU`;
-        if (itemDate < currentYear) {
-          if (pastCount < LIMIT) {
-            updatedApproaches.past = [...updatedApproaches.past, item];
-            pastCount++;
-          }
-        } else {
-          if (futureCount < LIMIT) {
-            updatedApproaches.future = [...updatedApproaches.future, item];
-            futureCount++;
-          }
-        }
-      } else {
-        break;
-      }
-    }
-
-    setCloseApproach(updatedApproaches);
-  };
+  const neoDescriptions = neoDetailsDesc.filter((item) => item.id >= 3);
 
   useEffect(() => {
-    getCloseApproach();
+    if (Object.keys(selectedRow).length > 0) {
+      const closeApproaches = getCloseApproaches(selectedRow);
+      setCloseApproach(closeApproaches);
+    }
   }, []);
 
   return (
@@ -72,18 +67,10 @@ const NearEarthObject = ({ selectedRow = {} }) => {
           />
         </div>
         <div className={classes["neo-distance-wrapper"]}>
-          <div className={classes["neo-details-desc-wrapper"]}>
-            <i>Orbital Period (in days)</i>
-            <strong>{selectedRow.orbital_period}</strong>
-          </div>
-          <div className={classes["neo-details-desc-wrapper"]}>
-            <i>Perihelion Distance</i>
-            <strong>{selectedRow.perihelion_distance}</strong>
-          </div>
-          <div className={classes["neo-details-desc-wrapper"]}>
-            <i>Aphelion Distance</i>
-            <strong>{selectedRow.aphelion_distance}</strong>
-          </div>
+          <NeoDistanceWrapper
+            data={neoDetailsDesc.filter((item) => item.id < 3)}
+            selectedRow={selectedRow}
+          />
         </div>
         <div className={classes["astroidsvg-wrapper"]}>
           <Astroid size={10} />
@@ -91,32 +78,21 @@ const NearEarthObject = ({ selectedRow = {} }) => {
           <Astroid size={5} />
         </div>
       </Flexbox>
-
       <Flexbox>
-        <div className={classes["neo-details-desc-wrapper"]}>
-          <i>Is Potentially Hazardious</i>
-          <strong>{selectedRow.is_potentially_hazardous_asteroid}</strong>
-          <hr />
-        </div>
-        <div className={classes["neo-details-desc-wrapper"]}>
-          <i>Estimated Diameter</i>
-          <strong>{selectedRow.estimated_diameter}</strong>
-          <hr />
-        </div>
-
-        <div className={classes["neo-details-desc-wrapper"]}>
-          <i>First Observed</i>
-          <strong>{selectedRow.first_observation_date}</strong>
-          <hr />
-        </div>
-        <div className={classes["neo-details-desc-wrapper"]}>
-          <i>Last Observed</i>
-          <strong>{selectedRow.last_observation_date}</strong>
-          <hr />
-        </div>
+        {neoDescriptions.map((neoDescription) => (
+          <div
+            key={neoDescription.id}
+            className={classes["neo-details-desc-wrapper"]}
+          >
+            <OrbitalTitle
+              title={neoDescription.title}
+              subTitle={selectedRow[neoDescription.value]}
+            />
+          </div>
+        ))}
       </Flexbox>
 
-      <div>
+      <div className={classes["neo-encounter-table-wrapper"]}>
         <h5>Close Approaches</h5>
         <CustomTable
           classProp={classes["neo-table"]}
@@ -137,6 +113,14 @@ const NearEarthObject = ({ selectedRow = {} }) => {
 };
 
 NearEarthObject.propTypes = {
+  selectedRow: PropTypes.object,
+};
+NeoDetailsDescWrapper.propTypes = {
+  title: PropTypes.string,
+  value: PropTypes.string,
+};
+NeoDistanceWrapper.propTypes = {
+  data: PropTypes.array,
   selectedRow: PropTypes.object,
 };
 export default NearEarthObject;

@@ -2,6 +2,7 @@ import React from "react";
 import PropTypes from "prop-types";
 import classes from "../marsExploration.module.css";
 import Flexbox from "@/components/ui/flexbox/flexbox";
+import OrbitalTitle from "../../nearEarthObjects/components/orbitalTitle";
 
 const ModelItemWrapper = ({ children = undefined }) => {
   return <div className={classes["model-flex-item-wrapper"]}>{children}</div>;
@@ -21,20 +22,21 @@ const RoverInfoWrapper = ({ roverObj = {} }) => {
     <div className={classes["rover-additional-info-wrapper"]}>
       <Flexbox justifyContent="initial">
         <ModelItemWrapper>
-          <ModelItem
-            label="Is Active"
-            value={roverObj?.isActive ? "Yes" : "No"}
+          <OrbitalTitle
+            title="Is Active"
+            subTitle={roverObj?.isActive ? "Yes" : "No"}
           />
-          <ModelItem label="Landing Site" value={roverObj?.landingSite} />
+          <OrbitalTitle title="Landing Site" subTitle={roverObj?.landingSite} />
         </ModelItemWrapper>
         <ModelItemWrapper>
-          <ModelItem label="Launch Date" value={roverObj?.launchDate} />
-          <ModelItem label="Landing Date" value={roverObj?.landingDate} />
+          <OrbitalTitle title="Launch Date" subTitle={roverObj?.launchDate} />
+          <OrbitalTitle title="Landing Date" subTitle={roverObj?.landingDate} />
         </ModelItemWrapper>
       </Flexbox>
       <p className={classes["sol-info"]}>
-        <strong>*Sol</strong> is a solar day on Mars.A sol is slightly longer
-        than an Earth day.
+        <strong>*Sol</strong> is a solar day on Mars. A sol is slightly longer
+        than an Earth day. It is approximately 24 hours, 39 minutes, 35 seconds
+        long
       </p>
     </div>
   );

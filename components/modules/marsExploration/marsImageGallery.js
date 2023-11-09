@@ -1,4 +1,3 @@
-import Image from "next/image";
 import React, { useState } from "react";
 import Slider from "react-slick";
 import classes from "./marsExploration.module.css";
@@ -14,40 +13,6 @@ const MarsImageGallery = (props) => {
   const [nav1, setNav1] = useState(null);
   const [nav2, setNav2] = useState(null);
 
-  const settings = {
-    dots: true,
-    infinite: true,
-    speed: 500,
-    slidesToShow: 1,
-    slidesToScroll: 1,
-  };
-
-  //   function SampleNextArrow(props) {
-  //     const { className, style, onClick } = props;
-  //     return (
-  //       <div
-  //         className={className}
-  //         style={{ ...style, display: "block", backgroundColor: "red" }}
-  //         onClick={onClick}
-  //       />
-  //     );
-  //   }
-
-  function SampleNextArrow(props) {
-    return <div onClick={props.onClick}>&gt;</div>;
-  }
-
-  function SamplePrevArrow(props) {
-    const { className, style, onClick } = props;
-    return (
-      <div
-        className={className}
-        style={{ ...style, display: "block", background: "green" }}
-        onClick={onClick}
-      />
-    );
-  }
-
   return (
     <div>
       {isLoading && <Loader height="600px" />}
@@ -62,12 +27,7 @@ const MarsImageGallery = (props) => {
       )}
       {marsPhotos?.length > 0 && (
         <div>
-          <Slider
-            asNavFor={nav2}
-            ref={(slider1) => setNav1(slider1)}
-            // nextArrow={<SampleNextArrow />}
-            // prevArrow={<SamplePrevArrow />}
-          >
+          <Slider asNavFor={nav2} ref={(slider1) => setNav1(slider1)}>
             {marsPhotos.map((marsPhoto) => {
               return (
                 <div key={marsPhoto.id}>
@@ -114,7 +74,7 @@ const MarsImageGallery = (props) => {
     </div>
   );
 };
-MarsImageGallery.propType = {
+MarsImageGallery.propTypes = {
   marsPhotos: PropTypes.array,
   isLoading: PropTypes.bool,
 };

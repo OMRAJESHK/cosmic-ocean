@@ -5,10 +5,10 @@ import classes from "../apod.module.css";
 import Flexbox from "@/components/ui/flexbox/flexbox";
 import { Card } from "react-bootstrap";
 
-const GalleryLoader = ({ apodState = [] }) => {
+const GalleryLoader = ({ isLoading = [] }) => {
   return (
     <Fragment>
-      {(!apodState || apodState.length === 0) && (
+      {isLoading && (
         <Flexbox gap={10}>
           {[1, 2, 3, 4].map((item) => (
             <Card
@@ -32,5 +32,5 @@ const GalleryLoader = ({ apodState = [] }) => {
     </Fragment>
   );
 };
-GalleryLoader.propTypes = { apodState: PropTypes.array };
+GalleryLoader.propTypes = { isLoading: PropTypes.bool };
 export default GalleryLoader;

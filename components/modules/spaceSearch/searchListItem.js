@@ -27,6 +27,19 @@ const SearchListItem = (props) => {
               <p>{selectedQueryItem?.data[0]?.date_created.split("T")[0]}</p>
               <p>{selectedQueryItem?.data[0]?.secondary_creator || ""}</p>
               <Card.Text dangerouslySetInnerHTML={{ __html: desc }} />
+              {selectedQueryItem.data[0]?.location && (
+                <>
+                  <span>Credit : </span>
+                  <strong>{`${selectedQueryItem.data[0]?.location}`}yui</strong>
+                </>
+              )}
+              <br />
+              {selectedQueryItem.data[0]?.photographer && (
+                <>
+                  <span>Location : </span>
+                  <i>{selectedQueryItem.data[0]?.photographer}</i>
+                </>
+              )}
             </div>
           </Flexbox>
         </article>

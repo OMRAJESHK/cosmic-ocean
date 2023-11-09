@@ -43,6 +43,7 @@ const MarsExploration = () => {
 
   const getMarsPhotos = async (params = {}) => {
     try {
+      // eslint-disable-next-line no-unused-vars
       const { error, response } = await withCatch(
         GET,
         apiLocations.GET_MARS_PHOTOS(),
@@ -108,7 +109,10 @@ const MarsExploration = () => {
       <Flexbox gap={10} justifyContent="initial">
         <Card className={classes["rover-gallery-wrapper"]}>
           <Card.Header>
-            <Card.Title>Mars Exploration</Card.Title>
+            <div className={classes["mars-title-wrapper"]}>
+              <h2>Mars Exploration</h2>
+            </div>
+            <Card.Title></Card.Title>
             <Flexbox gap={10} justifyContent="space-between">
               <Select
                 label="Rover"

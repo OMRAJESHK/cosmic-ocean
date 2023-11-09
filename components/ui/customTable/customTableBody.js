@@ -28,5 +28,8 @@ CustomTableBody.propTypes = {
   rows: PropTypes.array,
   onRowClick: PropTypes.func,
 };
+TD.propTypes = {
+  row: PropTypes.object,
+};
 
 export default CustomTableBody;

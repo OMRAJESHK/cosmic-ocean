@@ -8,13 +8,24 @@ const BasicPagination = ({ onBack, onNext }) => {
     <Fragment>
       <Flexbox justifyContent="center">
         <Button
-          variant="primary"
-          style={{ marginRight: "1rem" }}
+          variant="warning"
+          style={{
+            marginRight: "1rem",
+            backgroundColor: "var(--orange)",
+            color: "var(--white)",
+          }}
           onClick={onBack}
         >
           Back
         </Button>
-        <Button variant="primary" onClick={onNext}>
+        <Button
+          variant="warning"
+          onClick={onNext}
+          style={{
+            backgroundColor: "var(--orange)",
+            color: "var(--white)",
+          }}
+        >
           Next
         </Button>
       </Flexbox>

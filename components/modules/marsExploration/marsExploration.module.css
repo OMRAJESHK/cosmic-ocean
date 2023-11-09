@@ -1,3 +1,15 @@
+.mars-title-wrapper{
+  padding: .5rem;
+  padding-bottom: 0;
+  border-radius: 10px;
+  background-color: var(--white);
+  width: 100%;
+  color:var(--orange);
+}
+.mars-title-wrapper h2{
+  padding: 0;
+  margin: 0;
+}
 .mars-exploration-wrapper {
   margin: 1rem 0.5rem;
 }
@@ -67,7 +79,8 @@
 }
 
 .sol-info{
-  margin-bottom: 0;
+  margin: 2rem 1rem 0rem 1rem;
+  color:var(--orange)
 }
 
 .slider-container {

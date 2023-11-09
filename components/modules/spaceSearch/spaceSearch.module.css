@@ -1,3 +1,11 @@
+.title-wrapper{
+  margin-bottom: 2rem;
+  padding: 1rem;
+  border-radius: 10px;
+  background-color: var(--white);
+  width: 65%;
+  color:var(--orange)
+}
 .space-search-list-wrapper {
   display: flex;
   gap: 10px;
@@ -24,7 +32,7 @@
   display: inline;
   width: 65%;
   height: 50px;
-  padding: 0.4rem;
+  padding: 1rem;
   margin: 0.8rem 1rem 0.6rem 0rem;
   border-radius: 5px;
   border: 1px solid #dee2e6;

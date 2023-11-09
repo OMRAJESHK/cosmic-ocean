@@ -1,56 +1,24 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import PropTypes from "prop-types";
 import CustomImage from "@/components/ui/customImage";
 import classes from "../apod.module.css";
-import apiLocations from "@/api/apiDirectory";
-import { GET, withCatch } from "@/api/services";
 import { Card } from "react-bootstrap";
 import VideoPlayer from "./videoPlayer";
+import Loader from "@/components/ui/loader";
 
-const HeroImage = ({ onClick = () => {} }) => {
-  const [heroApod, setheroApod] = useState({});
-
-  const getHeroApod = async () => {
-    const currentDate = new Date().toISOString().split("T")[0];
-    try {
-      const { error, response } = await withCatch(
-        GET,
-        apiLocations.GET_APOD(currentDate),
-      );
-
-      if (response?.status === 200) {
-        const resp = response.data;
-
-        if (resp.id === undefined) resp.id = crypto.randomUUID();
-
-        setheroApod(resp);
-      }
-      if (error) {
-        return [];
-      }
-      return [];
-    } catch (err) {
-      console.log("error", err);
-      return [];
-    }
-  };
-
-  useEffect(() => {
-    getHeroApod();
-    return () => {
-      setheroApod({});
-    };
-  }, []);
+const HeroImage = ({ isLoading = false, heroApod, onClick = () => {} }) => {
+  const copyrightText = `${heroApod?.copyright ? heroApod.copyright : ""}`;
   return (
     <div className={classes["apod-media-wrapper"]}>
+      {isLoading && <Loader height="44.6rem" />}
       {heroApod?.media_type === "image" && (
         <div
           className={classes["apod-img-wrapper"]}
-          onClick={() => onClick(heroApod?.id, true)}
+          onClick={() => onClick(heroApod?.id)}
         >
           <CustomImage
             src={heroApod?.url ?? ""}
-            alt="photo"
+            alt={heroApod.title}
             classProp={classes["apod-hero-img"]}
             width={800}
             height={800}
@@ -60,7 +28,7 @@ const HeroImage = ({ onClick = () => {} }) => {
               {heroApod.title ?? ""}
             </h3>
             <Card.Text className={classes["apod-hero-img-desc"]}>
-              {`copyright - ${heroApod.copyright ?? ""}`}
+              {copyrightText}
             </Card.Text>
           </Card.ImgOverlay>
         </div>
@@ -72,6 +40,10 @@ const HeroImage = ({ onClick = () => {} }) => {
   );
 };
 
-HeroImage.propTypes = {};
+HeroImage.propTypes = {
+  heroApod: PropTypes.object,
+  onClick: PropTypes.func,
+  isLoading: PropTypes.bool,
+};
 
 export default HeroImage;

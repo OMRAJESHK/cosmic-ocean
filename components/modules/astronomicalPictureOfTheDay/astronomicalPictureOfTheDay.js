@@ -9,54 +9,33 @@ import apiLocations from "@/api/apiDirectory";
 import HeroImage from "./components/heroImage";
 import GalleryLoader from "./components/galleryLoader";
 import ApodGallery from "./components/apodGallery";
-import { multiApiCall } from "@/utils/commons";
+import { GET, withCatch } from "@/api/services";
 
-function getLastFourDates(currentDate) {
-  let lastFourDates = [];
-  [1, 2, 3, 4].forEach((dateItem) => {
-    const date = new Date(currentDate);
-    date.setDate(currentDate.getDate() - dateItem);
-    lastFourDates = [...lastFourDates, date.toISOString().split("T")[0]];
-  });
-  return lastFourDates;
-}
-
-function getMultiApis(lastFourDates) {
-  let urlList = [];
-  lastFourDates.forEach((date) => {
-    urlList = [...urlList, apiLocations.GET_APOD(date)];
-  });
-  return urlList;
-}
 const AstronomicalPictureOfTheDay = () => {
   const [modalShow, setModalShow] = useState(false);
   const [apodState, setApodState] = useState([]);
-  const [heroApod, setheroApod] = useState({});
   const [selectedApod, setSelectedApod] = useState({});
+  const [isLoading, setIsLoading] = useState(true);
 
-  const onCardClickHandler = (id, isHero = false) => {
-    setModalShow(true);
-    const selected = isHero
-      ? heroApod
-      : apodState.find((apod) => apod.id === id);
+  const onCardClickHandler = (id) => {
+    const selected = apodState.find((apod) => apod.id === id);
     setSelectedApod(selected);
+    setModalShow(true);
   };
 
   const getApods = async () => {
-    const currentDate = new Date();
-    const lastFourDates = getLastFourDates(currentDate);
-    const multiApis = getMultiApis(lastFourDates);
-    const resultResponses = await multiApiCall(multiApis);
-    Promise.allSettled(resultResponses).then((result) => {
-      result.map(async ({ status, value }) => {
-        if (status === "fulfilled" && value?.status === 200) {
-          setApodState((prev) => [
-            ...prev,
-            { ...value?.data, id: crypto.randomUUID() },
-          ]);
-        }
-      });
-    });
+    try {
+      setIsLoading(true);
+      const { response } = await withCatch(GET, apiLocations.GET_APOD());
+      if (response?.status === 200) {
+        setApodState(response?.data || []);
+        setIsLoading(false);
+      }
+    } catch (error) {
+      console.error(error);
+      setApodState([]);
+      setIsLoading(false);
+    }
   };
   useEffect(() => {
     getApods();
@@ -70,17 +49,19 @@ const AstronomicalPictureOfTheDay = () => {
       <Flexbox gap={20}>
         <Card className={classes["img-card-wrapper"]}>
           <HeroImage
-            heroApod={heroApod}
-            setheroApod={setheroApod}
+            heroApod={apodState[0]}
             onClick={onCardClickHandler}
+            isLoading={isLoading}
           />
         </Card>
         <Flexbox gap={10} classProp={classes["img-gallery-item-wrapper"]}>
-          <ApodGallery apodState={apodState} onClick={onCardClickHandler} />
-          <GalleryLoader apodState={apodState} />
+          <ApodGallery
+            apodState={[...apodState.slice(1)]}
+            onClick={onCardClickHandler}
+          />
+          <GalleryLoader isLoading={isLoading} />
         </Flexbox>
       </Flexbox>
-
       <CustomModal
         title="The Astronomical Picture Of The Day"
         show={modalShow}

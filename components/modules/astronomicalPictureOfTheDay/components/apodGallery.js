@@ -26,12 +26,16 @@ const ApodGallery = ({ apodState = [], onClick = () => {} }) => {
                 />
               )}
               {apod.media_type === "video" && (
-                <div style={{ height: "17.2rem" }}>
-                  <VideoPlayer name={apod?.title} src={apod?.url} />
+                <div style={{ height: "14.8rem", padding: "1rem" }}>
+                  <VideoPlayer
+                    name={apod?.title}
+                    src={apod?.url}
+                    styleProp={{ borderBottomRightRadius: "6.5rem" }}
+                  />
                 </div>
               )}
             </div>
-            <Card.Body>
+            <Card.Body className={classes["gallery-item-text-wrapper"]}>
               <Card.Title>{apod.title}</Card.Title>
               <Card.Text>{apod.date}</Card.Text>
             </Card.Body>

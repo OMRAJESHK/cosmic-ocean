@@ -21,18 +21,24 @@ const CustomModal = (props) => {
       show={show}
       onHide={onHide}
       size={size}
-      aria-labelledby="contained-modal-title-vcenter"
+      aria-labelledby={`custom-modal-${title}`}
       centered
     >
       <Modal.Header closeButton>
-        <div>
-          <Modal.Title id="contained-modal-title-vcenter">{title}</Modal.Title>
+        <div className={classes["modal-title-wrapper"]}>
+          <h3 id={`custom-modal-${title}`}>{title}</h3>
           <p className={classes["modal-subtitle"]}>{subtitle}</p>
         </div>
       </Modal.Header>
       <Modal.Body>{children}</Modal.Body>
       <Modal.Footer>
-        <Button onClick={onHide}>Close</Button>
+        <Button
+          onClick={onHide}
+          variant="warning"
+          style={{ backgroundColor: "var(--orange)", color: "var(--white)" }}
+        >
+          Close
+        </Button>
       </Modal.Footer>
     </Modal>
   );

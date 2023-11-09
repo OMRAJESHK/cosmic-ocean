@@ -63,7 +63,14 @@ const CosmicNavbar = () => {
                 aria-label="Search"
                 onChange={onQueryChangeHandler}
               />
-              <Button variant="outline-success" onClick={onSearchHandler}>
+              <Button
+                variant="warning"
+                onClick={onSearchHandler}
+                style={{
+                  backgroundColor: "var(--orange)",
+                  color: "var(--white)",
+                }}
+              >
                 Search
               </Button>
             </Form>

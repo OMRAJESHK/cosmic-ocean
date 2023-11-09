@@ -2,7 +2,6 @@
 import React, { useEffect, useState } from "react";
 import SearchList from "./searchList";
 import classes from "./spaceSearch.module.css";
-import Button from "react-bootstrap/Button";
 import Flexbox from "@/components/ui/flexbox/flexbox";
 import { useSearchParams } from "next/navigation";
 import { GET, withCatch } from "@/api/services";
@@ -26,6 +25,7 @@ const SpaceSearch = () => {
     try {
       setQueryResults([]);
       setIsLoading(true);
+      // eslint-disable-next-line no-unused-vars
       const { error, response } = await withCatch(
         GET,
         apiLocations.GET_SPACE_SEARCH(),
@@ -58,7 +58,9 @@ const SpaceSearch = () => {
 
   return (
     <div className={classes["space-search-wrapper"]}>
-      <h1>Search Results</h1>
+      <div className={classes["title-wrapper"]}>
+        <h1>Search Results</h1>
+      </div>
       <form>
         <Flexbox alignItems="center">
           <input

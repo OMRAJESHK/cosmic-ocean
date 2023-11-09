@@ -45,7 +45,7 @@ export const getUrl = (location) => {
 };
 
 const apiLocations = {
-  GET_APOD: (date) => getUrl(`${apiBaseUrl}apod?date=${date}`),
+  GET_APOD: () => getUrl(`${apiBaseUrl}apod`),
   GET_MARS_PHOTOS: () => getUrl(`${apiBaseUrl}marsExploration`),
   GET_NEO: () => getUrl(`${apiBaseUrl}neo`),
   GET_SPACE_SEARCH: () => getUrl(`${apiBaseUrl}spaceSearch`),

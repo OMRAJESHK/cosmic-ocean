@@ -18,5 +18,5 @@ const CustomTableHead = (props) => {
 };
 
 CustomTableHead.propTypes = { columns: PropTypes.array, rows: PropTypes.array };
-
+TH.propTypes = { children: PropTypes.node };
 export default CustomTableHead;

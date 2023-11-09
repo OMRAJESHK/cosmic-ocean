@@ -1,10 +1,9 @@
 import React from "react";
 import PropTypes from "prop-types";
 
+const TH = ({ children }) => <th>{children}</th>;
 const CustomTableHead = (props) => {
   const { columns = [] } = props;
-
-  const TH = ({ children }) => <th>{children}</th>;
 
   return (
     <thead>

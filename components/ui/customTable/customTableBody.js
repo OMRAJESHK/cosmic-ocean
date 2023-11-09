@@ -13,7 +13,9 @@ const CustomTableBody = (props) => {
     ));
     return <tr onClick={() => onRowClickHandler(row.id)}>{Row}</tr>;
   };
-
+  TD.propTypes = {
+    row: PropTypes.object,
+  };
   return (
     <tbody>
       {rows.map((row) => (
@@ -27,9 +29,6 @@ CustomTableBody.propTypes = {
   columns: PropTypes.array,
   rows: PropTypes.array,
   onRowClick: PropTypes.func,
-};
-TD.propTypes = {
-  row: PropTypes.object,
 };
 
 export default CustomTableBody;

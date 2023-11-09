@@ -26,7 +26,9 @@ const ApodGallery = ({ apodState = [], onClick = () => {} }) => {
                 />
               )}
               {apod.media_type === "video" && (
-                <VideoPlayer name={apod?.title} src={apod?.url} />
+                <div style={{ height: "17.2rem" }}>
+                  <VideoPlayer name={apod?.title} src={apod?.url} />
+                </div>
               )}
             </div>
             <Card.Body>

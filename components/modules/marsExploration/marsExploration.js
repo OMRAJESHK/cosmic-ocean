@@ -9,6 +9,9 @@ import MarsImageGallery from "./marsImageGallery";
 import { roverCameras, rovers } from "./constants";
 import { GET, withCatch } from "@/api/services";
 import apiLocations from "@/api/apiDirectory";
+import RoverModel from "./components/roverModel";
+import RoverInfoWrapper from "./components/roverInfoWrapper";
+import Select from "./components/select";
 
 const MarsExploration = () => {
   const defaultCameras = roverCameras.filter((camera) =>
@@ -35,10 +38,7 @@ const MarsExploration = () => {
   const selectedRoverObj = rovers.find(
     (rover) => rover.value === selectedRover,
   );
-  const roverModel = selectedRoverObj?.model;
-  const landingSite = rovers.find(
-    (rover) => rover.value === selectedRover,
-  )?.landingSite;
+
   const clearPhotos = () => setMarsPhotos([]);
 
   const getMarsPhotos = async (params = {}) => {
@@ -110,44 +110,16 @@ const MarsExploration = () => {
           <Card.Header>
             <Card.Title>Mars Exploration</Card.Title>
             <Flexbox gap={10} justifyContent="space-between">
-              <Flexbox
-                gap={10}
-                alignItems="center"
-                justifyContent="space-between"
-                classProp={classes["rover-select-wrapper"]}
-              >
-                <label>Rover</label>
-                <Form.Select
-                  aria-label="Rover"
-                  className={classes["rover-select"]}
-                  onChange={onRoverChangeHandler}
-                >
-                  {rovers.map((rover) => (
-                    <option key={rover.value} value={rover.value}>
-                      {rover.name}
-                    </option>
-                  ))}
-                </Form.Select>
-              </Flexbox>
-              <Flexbox
-                justifyContent="space-between"
-                alignItems="center"
-                gap={10}
-                classProp={classes["camera-select-wrapper"]}
-              >
-                <label>Camera</label>
-                <Form.Select
-                  aria-label="Camera"
-                  className={classes["camera-select"]}
-                  onChange={onCameraChangeHandler}
-                >
-                  {selectedRoverCameras.map((camera) => (
-                    <option key={camera.value} value={camera.value}>
-                      {camera.name}
-                    </option>
-                  ))}
-                </Form.Select>
-              </Flexbox>
+              <Select
+                label="Rover"
+                data={rovers}
+                onChange={onRoverChangeHandler}
+              />
+              <Select
+                label="Camera"
+                data={selectedRoverCameras}
+                onChange={onCameraChangeHandler}
+              />
               <Flexbox
                 justifyContent="space-between"
                 alignItems="center"
@@ -157,10 +129,10 @@ const MarsExploration = () => {
               >
                 <label>Sol</label>
                 <Form.Control
+                  id="sol-input"
                   value={sol}
                   type="number"
                   maxLength={4}
-                  id="sol-input"
                   className={classes["sol-input"]}
                   onChange={onSolChangeHandler}
                   placeholder="day on mars"
@@ -173,33 +145,8 @@ const MarsExploration = () => {
           </Card.Body>
         </Card>
         <div className={classes["rover-model-wrapper"]}>
-          <div className={classes["rover-model"]}>
-            <iframe src={selectedRoverObj?.model} width="100%" height="500px" />
-          </div>
-          <div className={classes["rover-additional-info-wrapper"]}>
-            <Flexbox justifyContent="initial">
-              <div className={classes["model-flex-item-wrapper"]}>
-                <h5>Is Active</h5>
-                <label>{selectedRoverObj?.isActive ? "Yes" : "No"}</label>
-                <hr />
-                <h5>Landing Site</h5>
-                <label>{selectedRoverObj?.landingSite}</label>
-                <hr />
-              </div>
-              <div className={classes["model-flex-item-wrapper"]}>
-                <h5>Launch Date</h5>
-                <label>{selectedRoverObj?.launchDate}</label>
-                <hr />
-                <h5>Landing Date</h5>
-                <label>{selectedRoverObj?.landingDate}</label>
-                <hr />
-              </div>
-            </Flexbox>
-            <p>
-              <strong>*Sol</strong> is a solar day on Mars.A sol is slightly
-              longer than an Earth day.
-            </p>
-          </div>
+          <RoverModel selectedRoverObj={selectedRoverObj} />
+          <RoverInfoWrapper roverObj={selectedRoverObj} />
         </div>
       </Flexbox>
     </div>

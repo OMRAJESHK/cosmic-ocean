@@ -1,9 +1,14 @@
 .mars-exploration-wrapper {
   margin: 1rem 0.5rem;
 }
+.camera-select{
+  width: 11rem;
+}
 
-.rover-select,
-.camera-select,
+.select{
+  width: 11rem;
+}
+
 .sol-input {
   width: 12rem;
 }
@@ -13,14 +18,12 @@
 }
 
 .rover-model-wrapper {
+  background-color: var(--white);
   flex-basis: 100%;
 }
 
-.rover-model {
-  margin-bottom: 1rem;
-}
 
-.rover-select-wrapper,
+.select-wrapper,
 .camera-select-wrapper {
   flex-basis: 100%;
 }
@@ -60,8 +63,12 @@
 
 .rover-additional-info-wrapper {
   padding: 1rem;
+  background-color: var(--white);
 }
 
+.sol-info{
+  margin-bottom: 0;
+}
 
 .slider-container {
   max-width: 100vw;
@@ -79,7 +86,7 @@
   .rover-model-wrapper {
     flex-basis: 39%;
   }
-  .rover-select-wrapper,
+  .select-wrapper,
   .camera-select-wrapper {
     flex-basis: 30%;
   }

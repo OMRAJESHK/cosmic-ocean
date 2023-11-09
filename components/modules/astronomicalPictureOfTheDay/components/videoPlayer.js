@@ -3,10 +3,12 @@ import PropTypes from "prop-types";
 
 const VideoPlayer = ({ name = "", src = "" }) => {
   return (
-    <object width="100%" height="100%">
-      <param name={name} value={src} />
-      <embed src={src} width="100%" height="100%" />
-    </object>
+    <div style={{ height: "100%" }}>
+      <object width="100%" height="100%">
+        <param name={name} value={src} />
+        <embed src={src} width="100%" height="100%" />
+      </object>
+    </div>
   );
 };
 

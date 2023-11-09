@@ -7,11 +7,9 @@ import { GET, withCatch } from "@/api/services";
 import { Card } from "react-bootstrap";
 import VideoPlayer from "./videoPlayer";
 
-const HeroImage = ({
-  heroApod = {},
-  setheroApod = () => {},
-  onClick = () => {},
-}) => {
+const HeroImage = ({ onClick = () => {} }) => {
+  const [heroApod, setheroApod] = useState({});
+
   const getHeroApod = async () => {
     const currentDate = new Date().toISOString().split("T")[0];
     try {
@@ -19,9 +17,12 @@ const HeroImage = ({
         GET,
         apiLocations.GET_APOD(currentDate),
       );
+
       if (response?.status === 200) {
         const resp = response.data;
+
         if (resp.id === undefined) resp.id = crypto.randomUUID();
+
         setheroApod(resp);
       }
       if (error) {

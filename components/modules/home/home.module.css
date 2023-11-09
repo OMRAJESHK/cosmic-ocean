@@ -52,11 +52,6 @@
   height: 22rem;
 }
 
-.celestial-img-wrapper {
-  position: relative;
-  width: 100%;
-  height: 10rem;
-}
 
 .solar-system-img {
   object-fit: fill;
@@ -109,6 +104,12 @@
 .celestials-desc-wrapper{
   padding:1rem;
   text-align: justify;
+}
+
+.celestial-img-wrapper {
+  position: relative;
+  width: 100%;
+  height: auto;
 }
 
 /* Quote section */

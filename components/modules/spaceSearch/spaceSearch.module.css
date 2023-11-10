@@ -70,9 +70,9 @@
   flex-basis: 100%;
   padding: 1rem;
   border: 1px solid rgba(0, 0, 0, 0.175);
-  color: var(--grey);
 }
 .search-listitem-text-wrapper {
+  color: var(--grey);
   flex-basis: 100%;
 }
 .search-listitem-text-wrapper p {

@@ -1,4 +1,5 @@
-export const baseUrl = "http://localhost:3000";
+// export const baseUrl = "http://localhost:3000";
+export const baseUrl = "https://cosmic-ocean.vercel.app";
 export const apiBaseUrl = `${baseUrl}/api/`;
 
 // https://api.nasa.gov/

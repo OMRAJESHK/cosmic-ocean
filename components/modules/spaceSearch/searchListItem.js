@@ -29,7 +29,7 @@ const SearchListItem = (props) => {
           {selectedQueryItem.data[0]?.location && (
             <>
               <span>Credit : </span>
-              <strong>{`${selectedQueryItem.data[0]?.location}`}yui</strong>
+              <strong>{`${selectedQueryItem.data[0]?.location}`}</strong>
             </>
           )}
           <br />

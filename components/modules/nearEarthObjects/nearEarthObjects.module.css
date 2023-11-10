@@ -117,6 +117,7 @@
 }
 .neo-title-wrapper p {
   text-align:justify;
+  color: var(--grey);
 }
 .orbit-class-title-wrapper {
   padding: 1rem 0rem 0rem 1rem;

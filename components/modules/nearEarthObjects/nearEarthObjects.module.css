@@ -115,6 +115,9 @@
 .neo-title-wrapper h2 {
   color: var(--orange);
 }
+.neo-title-wrapper p {
+  text-align:justify;
+}
 .orbit-class-title-wrapper {
   padding: 1rem 0rem 0rem 1rem;
   border-bottom: 1px solid var(--border);

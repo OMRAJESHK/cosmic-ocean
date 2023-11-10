@@ -62,7 +62,7 @@ const CustomImage = (props) => {
 };
 
 CustomImage.propTypes = {
-  src: PropTypes.string,
+  src: PropTypes.oneOfType([PropTypes.string, PropTypes.object]),
   alt: PropTypes.string,
   classProp: PropTypes.string,
   styleProp: PropTypes.object,

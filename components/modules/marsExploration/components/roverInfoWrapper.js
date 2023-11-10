@@ -26,6 +26,7 @@ const RoverInfoWrapper = ({ roverObj = {} }) => {
             title="Is Active"
             subTitle={roverObj?.isActive ? "Yes" : "No"}
           />
+          <div></div>
           <OrbitalTitle title="Landing Site" subTitle={roverObj?.landingSite} />
         </ModelItemWrapper>
         <ModelItemWrapper>
@@ -36,7 +37,7 @@ const RoverInfoWrapper = ({ roverObj = {} }) => {
       <p className={classes["sol-info"]}>
         <strong>*Sol</strong> is a solar day on Mars. A sol is slightly longer
         than an Earth day. It is approximately 24 hours, 39 minutes, 35 seconds
-        long
+        long.
       </p>
     </div>
   );

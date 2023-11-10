@@ -8,9 +8,13 @@ const CustomTableBody = (props) => {
     onRowClick(id);
   };
   const TD = ({ row }) => {
-    const Row = columns.map((column) => (
-      <td key={`${column.key}-${row.id}`}>{String(row[column.key])}</td>
-    ));
+    const Row = columns.map((column) => {
+      return (
+        <td key={`${row[column.key]}-${row.epoch_date_close_approach}`}>
+          {String(row[column.key])}
+        </td>
+      );
+    });
     return <tr onClick={() => onRowClickHandler(row.id)}>{Row}</tr>;
   };
   TD.propTypes = {
@@ -18,8 +22,8 @@ const CustomTableBody = (props) => {
   };
   return (
     <tbody>
-      {rows.map((row) => (
-        <TD key={`${row.id}-${row.name}`} row={row} />
+      {rows.map((row, index) => (
+        <TD key={index} row={row} />
       ))}
     </tbody>
   );

@@ -99,7 +99,7 @@ SolarSystemHeader.propTypes = {
   title: PropTypes.string,
 };
 SolarSystemImgWrapper.propTypes = {
-  src: PropTypes.string,
+  src: PropTypes.object,
 };
 
 export default SolarSystem;

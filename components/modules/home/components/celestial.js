@@ -32,11 +32,11 @@ const Celestial = ({ url, title, description }) => {
 };
 
 Celestial.propTypes = {
-  url: PropTypes.string,
+  url: PropTypes.oneOfType([PropTypes.string, PropTypes.object]),
   title: PropTypes.string,
   description: PropTypes.string,
 };
 CelestialImgWrapper.propTypes = {
-  src: PropTypes.string,
+  src: PropTypes.oneOfType([PropTypes.string, PropTypes.object]),
 };
 export default Celestial;

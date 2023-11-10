@@ -13,7 +13,7 @@ import { GET, withCatch } from "@/api/services";
 
 const AstronomicalPictureOfTheDay = () => {
   const [modalShow, setModalShow] = useState(false);
-  const DEFAULT_STATE = { apod: [], gallery: [] };
+  const DEFAULT_STATE = { apod: {}, gallery: [] };
   const [apodState, setApodState] = useState(DEFAULT_STATE);
   const [selectedApod, setSelectedApod] = useState({});
   const [isLoading, setIsLoading] = useState(true);
@@ -69,7 +69,8 @@ const AstronomicalPictureOfTheDay = () => {
         </Flexbox>
       </Flexbox>
       <CustomModal
-        title="The Astronomical Picture Of The Day"
+        title={selectedApod.title}
+        subtitle={selectedApod.date}
         show={modalShow}
         onHide={() => setModalShow(false)}
         fullscreen

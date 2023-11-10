@@ -68,7 +68,7 @@ export const orbitClasses = [
     title: "Aten Asteroids",
     subTitle: "ATE",
     range: "Less than 1 Astronomical Unit",
-    description: `Aten asteroids are similar to Apollo asteroids. Tthey spend
+    description: `Aten asteroids are similar to Apollo asteroids. They spend
     more time within Earth  's orbit. They often have orbits
     that bring them within Earth  's vicinity.`,
     url: aten,

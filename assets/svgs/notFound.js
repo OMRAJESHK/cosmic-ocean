@@ -16,7 +16,7 @@ const NotFound = ({ width = 50, height = 50 }) => {
 };
 
 NotFound.propTypes = {
-  width: PropTypes.number,
-  height: PropTypes.number,
+  width: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
+  height: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
 };
 export default NotFound;

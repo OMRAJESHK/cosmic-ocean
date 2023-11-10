@@ -45,6 +45,7 @@
 .img-gallery-item-card-wrapper{
   flex-basis: 48%;
   border-radius: 15px;
+  overflow: hidden;
 }
 
 .apod-hero-img{

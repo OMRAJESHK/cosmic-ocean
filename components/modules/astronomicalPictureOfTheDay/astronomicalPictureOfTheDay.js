@@ -13,12 +13,15 @@ import { GET, withCatch } from "@/api/services";
 
 const AstronomicalPictureOfTheDay = () => {
   const [modalShow, setModalShow] = useState(false);
-  const [apodState, setApodState] = useState([]);
+  const DEFAULT_STATE = { apod: [], gallery: [] };
+  const [apodState, setApodState] = useState(DEFAULT_STATE);
   const [selectedApod, setSelectedApod] = useState({});
   const [isLoading, setIsLoading] = useState(true);
 
-  const onCardClickHandler = (id) => {
-    const selected = apodState.find((apod) => apod.id === id);
+  const onCardClickHandler = (id, isApod = false) => {
+    const selected = isApod
+      ? apodState.apod
+      : apodState.gallery.find((apod) => apod.id === id);
     setSelectedApod(selected);
     setModalShow(true);
   };
@@ -28,38 +31,41 @@ const AstronomicalPictureOfTheDay = () => {
       setIsLoading(true);
       const { response } = await withCatch(GET, apiLocations.GET_APOD());
       if (response?.status === 200) {
-        setApodState(response?.data || []);
+        setApodState((prev) => ({
+          ...prev,
+          apod: response?.data.apod || {},
+          gallery: response?.data.gallery || [],
+        }));
         setIsLoading(false);
       }
     } catch (error) {
       console.error(error);
-      setApodState([]);
+      setApodState(DEFAULT_STATE);
       setIsLoading(false);
     }
   };
   useEffect(() => {
     getApods();
     return () => {
-      setApodState([]);
+      setApodState(DEFAULT_STATE);
     };
   }, []);
-
   return (
     <div className={classes["apod-wrapper"]}>
       <Flexbox gap={20}>
         <Card className={classes["img-card-wrapper"]}>
           <HeroImage
-            heroApod={apodState[0]}
+            heroApod={apodState.apod}
             onClick={onCardClickHandler}
             isLoading={isLoading}
           />
         </Card>
         <Flexbox gap={10} classProp={classes["img-gallery-item-wrapper"]}>
           <ApodGallery
-            apodState={[...apodState.slice(1)]}
+            apodState={apodState.gallery}
             onClick={onCardClickHandler}
           />
-          <GalleryLoader isLoading={isLoading} />
+          <GalleryLoader isLoading={isLoading} apodState={apodState.gallery} />
         </Flexbox>
       </Flexbox>
       <CustomModal

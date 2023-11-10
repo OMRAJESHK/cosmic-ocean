@@ -1,7 +1,6 @@
 import { pageRoutes } from "@/routes/routes";
 
 export const cosmicNavbars = [
-  { id: 0, path: pageRoutes.home, label: "Home", isActive: true },
   {
     id: 1,
     path: pageRoutes.apod,

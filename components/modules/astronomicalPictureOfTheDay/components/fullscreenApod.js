@@ -14,7 +14,9 @@ const FullscreenApod = ({ apodState = {} }) => {
           <span>{apodState.copyright}</span>
           <span>{apodState.date}</span>
         </div>
-        <Card.Text>{apodState.explanation ?? ""}</Card.Text>
+        <Card.Text style={{ textAlign: "justify" }}>
+          {apodState.explanation ?? ""}
+        </Card.Text>
       </Card.Body>
       <div className={classes["fullscreen-img-gallery-wrapper"]}>
         {apodState.media_type === "image" && (

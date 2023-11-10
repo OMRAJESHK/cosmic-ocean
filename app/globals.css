@@ -134,7 +134,6 @@ img {
 #solarSystemAccordion .accordion-header > button{
   padding: 1.5rem;
   font-weight: 700;
+  letter-spacing: 1px;
  }
- #solarSystemAccordion .accordion-body{
-   padding:1rem
- }
+

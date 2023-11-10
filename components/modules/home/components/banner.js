@@ -7,7 +7,7 @@ const BannerSection = () => {
       <div className={classes["banner-content"]}>
         <h1>A Cosmic Odyssey: Touring the Celestial Neighborhood.</h1>
         <p>
-          Set Sail on a Cosmic Quest for Knowledge. Discover the Universe from
+          Fuel Your Passion for Space Exploration. Discover the Universe from
           the Comfort of Your Screen.
         </p>
       </div>

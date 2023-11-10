@@ -16,7 +16,7 @@ export const quotes = [
   },
   {
     id: 1,
-    quote: `The universe is a pretty big place. If it’s just us, seems like an
+    quote: `The universe is a pretty big place. If it's just us, seems like an
   awful waste of space.`,
     by: "Carl Segan",
   },

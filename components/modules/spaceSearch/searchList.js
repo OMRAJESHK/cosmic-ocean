@@ -56,9 +56,9 @@ const SearchList = (props) => {
         {Object.keys(selectedQueryItem).length > 0 && (
           <CustomModal
             title={selectedQueryItem?.data[0]?.title || ""}
+            subtitle={selectedQueryItem?.data[0]?.date_created.split("T")[0]}
             show={modalShow}
             onHide={() => setModalShow(false)}
-            fullscreen
           >
             <SearchListItem selectedQueryItem={selectedQueryItem} />
           </CustomModal>

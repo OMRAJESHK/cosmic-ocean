@@ -10,6 +10,6 @@ const Loader = ({ height = "200px" }) => {
   );
 };
 Loader.propTypes = {
-  height: PropTypes.string,
+  height: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
 };
 export default Loader;

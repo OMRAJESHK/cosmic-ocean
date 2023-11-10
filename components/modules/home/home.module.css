@@ -75,6 +75,7 @@
   font-weight: 700;
   color: var(--grey);
   background-color: var(--orange);
+  letter-spacing: 1px;
  }
 
 .celestials-card-body{
@@ -93,6 +94,7 @@
   display: flex;    
   gap: 10px;
   height: 100%;
+  flex-direction: column;
 }
 
 .celestials-item-wrapper > div:first-child{
@@ -120,11 +122,11 @@
   font-family:Open Sans;
   font-style:italic;
   color: var(--grey);
-  padding:1.2em 30px 1.2em 75px;
+  padding: 1.2em 30px 1.2em 75px;
   border-left:8px solid var(--orange);
   line-height:1.6;
   position: relative;
-  background:#EDEDED;
+  background: var(--white);
   margin: 2rem 0rem 2rem 0rem;
   border-radius: 5px;
 }
@@ -187,7 +189,9 @@
 }
 @media (min-width: 961px) {
   /* tablet, landscape iPad, lo-res laptops ands desktops */
-  
+  .celestials-item-wrapper{
+    flex-direction: row;
+  }
 }
 @media (min-width: 1025px) {
   /* big landscape tablets, laptops, and desktops */

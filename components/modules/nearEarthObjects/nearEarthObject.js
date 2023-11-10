@@ -117,7 +117,7 @@ NearEarthObject.propTypes = {
 };
 NeoDetailsDescWrapper.propTypes = {
   title: PropTypes.string,
-  value: PropTypes.string,
+  value: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
 };
 NeoDistanceWrapper.propTypes = {
   data: PropTypes.array,

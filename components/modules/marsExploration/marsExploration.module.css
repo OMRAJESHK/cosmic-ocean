@@ -1,28 +1,24 @@
-.mars-title-wrapper{
-  padding: .5rem;
+.mars-title-wrapper {
+  padding: 0.5rem;
   padding-bottom: 0;
   border-radius: 10px;
   background-color: var(--white);
   width: 100%;
-  color:var(--orange);
+  color: var(--orange);
 }
-.mars-title-wrapper h2{
+.mars-title-wrapper h2 {
   padding: 0;
   margin: 0;
 }
 .mars-exploration-wrapper {
   margin: 1rem 0.5rem;
 }
-.camera-select{
+.camera-select {
   width: 11rem;
 }
 
-.select{
+.select, .sol-input {
   width: 11rem;
-}
-
-.sol-input {
-  width: 12rem;
 }
 
 .rover-gallery-wrapper {
@@ -33,7 +29,6 @@
   background-color: var(--white);
   flex-basis: 100%;
 }
-
 
 .select-wrapper,
 .camera-select-wrapper {
@@ -70,7 +65,7 @@
 }
 
 .model-flex-item-wrapper {
-  flex-basis: 49%;
+  flex-basis: 50%;
 }
 
 .rover-additional-info-wrapper {
@@ -78,9 +73,11 @@
   background-color: var(--white);
 }
 
-.sol-info{
-  margin: 2rem 1rem 0rem 1rem;
-  color:var(--orange)
+.sol-info {
+  text-align: justify;
+  margin: 1rem 1rem 0rem 1rem;
+  color: var(--orange);
+  font-size: 1.1rem;
 }
 
 .slider-container {

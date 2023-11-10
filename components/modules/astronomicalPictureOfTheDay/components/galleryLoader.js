@@ -1,30 +1,27 @@
 import React, { Fragment } from "react";
 import PropTypes from "prop-types";
-import CustomImage from "@/components/ui/customImage";
 import classes from "../apod.module.css";
 import Flexbox from "@/components/ui/flexbox/flexbox";
 import { Card } from "react-bootstrap";
+import Loader from "@/components/ui/loader";
 
-const GalleryLoader = ({ isLoading = [] }) => {
+const GalleryLoader = ({ isLoading = [], apodState = [] }) => {
   return (
     <Fragment>
-      {isLoading && (
+      {(isLoading || apodState.length === 0) && (
         <Flexbox gap={10}>
           {[1, 2, 3, 4].map((item) => (
             <Card
               key={item}
               className={classes["img-gallery-item-card-wrapper"]}
             >
-              <div
-                className={classes["img-gallery-wrapper"]}
-                style={{ height: "21.5rem" }}
+              <Flexbox
+                justifyContent="center"
+                alignItems="center"
+                styleProp={{ height: "22rem", width: "100%" }}
               >
-                <CustomImage
-                  classProp={classes["gallery-img"]}
-                  width={10}
-                  height={10}
-                />
-              </div>
+                <Loader width={150} height={150} />
+              </Flexbox>
             </Card>
           ))}
         </Flexbox>
@@ -32,5 +29,8 @@ const GalleryLoader = ({ isLoading = [] }) => {
     </Fragment>
   );
 };
-GalleryLoader.propTypes = { isLoading: PropTypes.bool };
+GalleryLoader.propTypes = {
+  isLoading: PropTypes.bool,
+  apodState: PropTypes.array,
+};
 export default GalleryLoader;

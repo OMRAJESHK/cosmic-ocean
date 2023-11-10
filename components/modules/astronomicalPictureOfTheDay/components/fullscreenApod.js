@@ -9,12 +9,10 @@ const FullscreenApod = ({ apodState = {} }) => {
   return (
     <Card>
       <Card.Body>
-        <Card.Title>{apodState.title}</Card.Title>
-        <div>
-          <span>{apodState.copyright}</span>
-          <span>{apodState.date}</span>
-        </div>
-        <Card.Text>{apodState.explanation ?? ""}</Card.Text>
+        <span>{apodState.copyright}</span>
+        <Card.Text style={{ textAlign: "justify" }}>
+          {apodState.explanation ?? ""}
+        </Card.Text>
       </Card.Body>
       <div className={classes["fullscreen-img-gallery-wrapper"]}>
         {apodState.media_type === "image" && (
@@ -35,7 +33,7 @@ const FullscreenApod = ({ apodState = {} }) => {
 };
 
 FullscreenApod.propTypes = {
-  apodState: PropTypes.string.isRequired,
+  apodState: PropTypes.object.isRequired,
 };
 
 export default FullscreenApod;

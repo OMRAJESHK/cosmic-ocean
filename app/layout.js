@@ -22,8 +22,8 @@ const montserrat = Montserrat({
 });
 
 export const metadata = {
-  title: "Cosmic Ocean",
-  description: "The absence of evidence is not evidence of absence.",
+  title: "Cosmic Ocean | Dive into the Cosmos",
+  description: `Fuel Your Passion for Space Exploration. Discover the Universe from the Comfort of Your Screen.`,
 };
 
 export default function RootLayout({ children = undefined }) {

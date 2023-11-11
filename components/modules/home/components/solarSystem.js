@@ -47,7 +47,7 @@ const SolarSystem = () => {
   return (
     <Accordion defaultActiveKey="0" id="solarSystemAccordion">
       <Accordion.Item eventKey="0">
-        <SolarSystemHeader title="Understanding Solar System as Kids" />
+        <SolarSystemHeader title="Navigating the Solar System: For Kids" />
         <Accordion.Body className={classes["accordion-body"]}>
           <div className={classes["solar-system-wrapper"]}>
             <article className={classes["article-wrapper"]}>
@@ -66,7 +66,7 @@ const SolarSystem = () => {
         </Accordion.Body>
       </Accordion.Item>
       <Accordion.Item eventKey="1">
-        <SolarSystemHeader title="Understanding Solar System as amature Astronomers" />
+        <SolarSystemHeader title="Navigating the Solar System: For Astrophiles" />
         <Accordion.Body className={classes["accordion-body"]}>
           <div className={classes["solar-system-wrapper"]}>
             <article className={classes["article-wrapper"]}>

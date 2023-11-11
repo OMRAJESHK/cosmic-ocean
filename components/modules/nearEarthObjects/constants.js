@@ -50,7 +50,7 @@ export const orbitClasses = [
     description: `Amor asteroids have orbits that approach but do not cross
     Earth 's orbit. Their orbits typically have a perihelion
     distance (closest approach to the Sun). They come close to
-    Earth 's orbit without intersecting it.`,
+    Earth 's orbit without intersecting it. The majority of them do cross the orbit of Mars`,
     url: amor,
   },
   {

@@ -13,7 +13,6 @@
     "prettier:file": "npx prettier \"{app, components, api}/**/*.js\" --write",
     "test": "jest",
     "test:watch": "jest --watchAll",
-    "coverage": "nyc --reporter=lcov --reporter=text-summary ava",
     "test:coverage": "jest --coverage"
   },
   "dependencies": {
@@ -47,7 +46,6 @@
     "jest": "^29.7.0",
     "jest-environment-jsdom": "^29.7.0",
     "lint-staged": "^15.0.2",
-    "nyc": "^15.1.0",
     "prettier": "^3.0.3"
   }
 }

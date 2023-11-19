@@ -1,7 +1,7 @@
 name: Cosmic Ocean Actions
 run-name: ${{ github.actor }} is testing out GitHub Actions on Cosmic Ocean 🚀
 on:
-  push:
+  pull_request:
     branches:
       - main
 jobs:

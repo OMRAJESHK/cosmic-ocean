@@ -37,6 +37,7 @@ const CustomImage = (props) => {
       {isLoading && !src && <Loader height={"100%"} />}
       {!isError && src && (
         <Image
+          aria-label={alt}
           className={`${classProp && classProp}`}
           src={src}
           alt={alt}

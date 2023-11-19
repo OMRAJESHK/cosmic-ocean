@@ -10,7 +10,11 @@ const FullscreenApod = ({ apodState = {} }) => {
     <Card>
       <Card.Body>
         <span>{apodState.copyright}</span>
-        <Card.Text style={{ textAlign: "justify" }}>
+        <Card.Text
+          style={{ textAlign: "justify" }}
+          aria-label="fullscreen-explanation"
+          test-id="fullscreen-explanation"
+        >
           {apodState.explanation ?? ""}
         </Card.Text>
       </Card.Body>

@@ -1,36 +1,41 @@
 import React, { Fragment } from "react";
-import PropTypes from "prop-types";
 import classes from "../apod.module.css";
 import Flexbox from "@/components/ui/flexbox/flexbox";
 import { Card } from "react-bootstrap";
-import Loader from "@/components/ui/loader";
 
-const GalleryLoader = ({ isLoading = [], apodState = [] }) => {
+const GalleryLoader = () => {
   return (
     <Fragment>
-      {(isLoading || apodState.length === 0) && (
-        <Flexbox gap={10}>
-          {[1, 2, 3, 4].map((item) => (
-            <Card
-              key={item}
-              className={classes["img-gallery-item-card-wrapper"]}
-            >
-              <Flexbox
-                justifyContent="center"
-                alignItems="center"
-                styleProp={{ height: "22rem", width: "100%" }}
-              >
-                <Loader width={150} height={150} />
-              </Flexbox>
-            </Card>
-          ))}
-        </Flexbox>
-      )}
+      <Flexbox gap={10}>
+        {[1, 2, 3, 4].map((item) => (
+          <Card key={item} className={classes["img-gallery-item-card-wrapper"]}>
+            <div className={`${classes["media-gallery-wrapper"]}`}>
+              <div
+                className={`${classes["gallery-img"]} ${classes["skeleton"]}`}
+              />
+            </div>
+            <Card.Body className={classes["gallery-item-text-wrapper"]}>
+              <Card.Title style={{ marginTop: "0.65rem" }}>
+                <div
+                  className={`${classes["skeleton"]} ${classes["skeleton-text"]}`}
+                />
+                <div
+                  className={`${classes["skeleton"]} ${classes["skeleton-text"]}`}
+                />
+              </Card.Title>
+              <div
+                className={`${classes["skeleton"]} ${classes["skeleton-text"]}`}
+              />
+
+              <div
+                className={`${classes["skeleton"]} ${classes["skeleton-text"]}`}
+              />
+            </Card.Body>
+          </Card>
+        ))}
+      </Flexbox>
     </Fragment>
   );
 };
-GalleryLoader.propTypes = {
-  isLoading: PropTypes.bool,
-  apodState: PropTypes.array,
-};
+
 export default GalleryLoader;

@@ -65,7 +65,7 @@ const AstronomicalPictureOfTheDay = () => {
             apodState={apodState.gallery}
             onClick={onCardClickHandler}
           />
-          <GalleryLoader isLoading={isLoading} apodState={apodState.gallery} />
+          {(isLoading || apodState.length === 0) && <GalleryLoader />}
         </Flexbox>
       </Flexbox>
       <CustomModal

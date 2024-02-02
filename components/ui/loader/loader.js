@@ -4,7 +4,11 @@ import classes from "./loader.module.css";
 
 const Loader = ({ height = "200px" }) => {
   return (
-    <section className={classes["loader-wrapper"]} style={{ height }}>
+    <section
+      className={classes["loader-wrapper"]}
+      style={{ height }}
+      data-testid="spinning-loader"
+    >
       <span className={classes["loader"]} />
     </section>
   );

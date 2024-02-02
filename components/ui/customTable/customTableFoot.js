@@ -6,9 +6,9 @@ const CustomTableFoot = (props) => {
   const { columnCount = 0, onBack, onNext } = props;
 
   return (
-    <tfoot>
+    <tfoot data-testid="table-foot">
       <tr>
-        <td colSpan={columnCount}>
+        <td colSpan={columnCount} data-testid="footer-row">
           <BasicPagination onBack={onBack} onNext={onNext} />
         </td>
       </tr>

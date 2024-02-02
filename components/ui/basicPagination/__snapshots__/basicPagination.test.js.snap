@@ -1,0 +1,8 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Basic Pagination Testing should render Basic Pagination Component 1`] = `
+<BasicPagination
+  onBack={[MockFunction]}
+  onNext={[MockFunction]}
+/>
+`;

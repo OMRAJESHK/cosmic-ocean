@@ -12,12 +12,30 @@ const CustomTable = (props) => {
     pagination = true,
     columns = [],
     rows = [],
-    onClick = () => {},
     classProp = "",
     onRowClick = () => {},
     onBack,
     onNext,
   } = props;
+
+  const TBody = ({ children }) => {
+    return (
+      <tbody>
+        <tr>
+          <td style={{ textAlign: "center" }} colSpan={columns.length}>
+            {children}
+          </td>
+        </tr>
+      </tbody>
+    );
+  };
+
+  TBody.propTypes = {
+    children: PropTypes.oneOfType([
+      PropTypes.arrayOf(PropTypes.node),
+      PropTypes.node,
+    ]),
+  };
 
   return (
     <Table
@@ -30,13 +48,9 @@ const CustomTable = (props) => {
     >
       {columns.length > 0 && <CustomTableHead columns={columns} />}
       {isLoading && (
-        <tbody>
-          <tr>
-            <td style={{ textAlign: "center" }} colSpan={columns.length}>
-              <Loader />
-            </td>
-          </tr>
-        </tbody>
+        <TBody>
+          <Loader />
+        </TBody>
       )}
       {!isLoading && rows.length > 0 && (
         <CustomTableBody
@@ -49,21 +63,11 @@ const CustomTable = (props) => {
       {pagination && rows.length > 0 && (
         <CustomTableFoot
           columnCount={columns.length}
-          rowCount={rows.length}
-          onClick={onClick}
           onBack={onBack}
           onNext={onNext}
         />
       )}
-      {!isLoading && rows.length === 0 && (
-        <tbody>
-          <tr>
-            <td style={{ textAlign: "center" }} colSpan={columns.length}>
-              No Records Found
-            </td>
-          </tr>
-        </tbody>
-      )}
+      {!isLoading && rows.length === 0 && <TBody>{"No Records Found"}</TBody>}
     </Table>
   );
 };
@@ -72,7 +76,6 @@ CustomTable.propTypes = {
   isLoading: PropTypes.bool,
   columns: PropTypes.array,
   rows: PropTypes.array,
-  onClick: PropTypes.func,
   classProp: PropTypes.string,
   pagination: PropTypes.bool,
   onRowClick: PropTypes.func,

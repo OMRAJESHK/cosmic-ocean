@@ -1,0 +1,11 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`FlexBox Testing should render Basic Pagination Component 1`] = `
+<Flexbox
+  alignItems="center"
+  gap={5}
+  justifyContent="center"
+>
+  <MockItems />
+</Flexbox>
+`;

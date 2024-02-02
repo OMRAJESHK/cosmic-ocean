@@ -3,7 +3,6 @@ import PropTypes from "prop-types";
 
 const CustomTableBody = (props) => {
   const { columns = [], rows = [], onRowClick = () => {} } = props;
-
   const onRowClickHandler = (id) => {
     onRowClick(id);
   };
@@ -17,11 +16,11 @@ const CustomTableBody = (props) => {
     });
     return <tr onClick={() => onRowClickHandler(row.id)}>{Row}</tr>;
   };
-  TD.propTypes = {
-    row: PropTypes.object,
-  };
+
+  TD.propTypes = { row: PropTypes.object };
+
   return (
-    <tbody>
+    <tbody data-testid="table-body">
       {rows.map((row, index) => (
         <TD key={index} row={row} />
       ))}

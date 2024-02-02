@@ -6,7 +6,7 @@ const CustomTableHead = (props) => {
   const { columns = [] } = props;
 
   return (
-    <thead>
+    <thead data-testid="thead">
       <tr>
         {columns.map((column) => (
           <TH key={column.id}>{column.name}</TH>

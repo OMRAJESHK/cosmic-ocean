@@ -16,6 +16,7 @@ const Flexbox = (props) => {
   } = props;
   return (
     <div
+      data-testid="flex-box"
       title={title}
       className={`${classes.flex} ${classProp && classProp}`}
       style={{

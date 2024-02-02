@@ -30,7 +30,7 @@ const apodState = [
   },
 ];
 
-describe("APOD Image Gallery Testsing", () => {
+describe("APOD Image Gallery Testing", () => {
   it("should render full Image", () => {
     render(<ApodGallery apodState={apodState} onClick={mockOnClick} />);
     expect(1).toBe(1);

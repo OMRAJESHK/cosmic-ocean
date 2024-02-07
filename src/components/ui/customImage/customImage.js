@@ -1,9 +1,9 @@
 import React, { useState } from "react";
 import PropTypes from "prop-types";
 import Image from "next/image";
-import NotFound from "@/assets/svgs/notFound";
 import Flexbox from "../flexbox/flexbox";
 import Loader from "../loader";
+import NotFound from "../../../../assets/svgs/notFound";
 
 const CustomImage = (props) => {
   const [isLoading, setIsLoading] = useState(true);

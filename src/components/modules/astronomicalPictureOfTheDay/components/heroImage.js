@@ -5,7 +5,7 @@ import classes from "../apod.module.css";
 import { Card } from "react-bootstrap";
 import VideoPlayer from "./videoPlayer";
 import Loader from "@/components/ui/loader";
-import NotFound from "@/assets/svgs/notFound";
+import NotFound from "assets/svgs/notFound";
 import Flexbox from "@/components/ui/flexbox/flexbox";
 
 const HeroImage = ({

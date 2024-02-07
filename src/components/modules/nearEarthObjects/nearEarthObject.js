@@ -4,7 +4,7 @@ import Image from "next/image";
 import PropTypes from "prop-types";
 
 import classes from "./nearEarthObjects.module.css";
-import Astroid from "@/assets/svgs/astroid";
+import Astroid from "assets/svgs/astroid";
 import Flexbox from "@/components/ui/flexbox/flexbox";
 
 import earth from "assets/images/neo/earth.png";

@@ -5,7 +5,7 @@ import CustomImage from "@/components/ui/customImage";
 import PropTypes from "prop-types";
 import Loader from "@/components/ui/loader";
 import Flexbox from "@/components/ui/flexbox/flexbox";
-import NotFound from "@/assets/svgs/notFound";
+import NotFound from "assets/svgs/notFound";
 
 const MarsImageGallery = (props) => {
   const { marsPhotos = [], isLoading } = props;

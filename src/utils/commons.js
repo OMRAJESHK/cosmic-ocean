@@ -1,4 +1,4 @@
-import apiLocations from "@/api/apiDirectory";
+// import apiLocations from "@/api/apiDirectory";
 import axios from "axios";
 
 export const formatDecimal = (number, decimalPlace = 2) => {
@@ -18,7 +18,7 @@ export const multiApiCall = async (apis = []) => {
 
 export const getMultiApis = (lastFourDates) => {
   let urlList = [];
-  lastFourDates.forEach((date = "", url = "") => {
+  lastFourDates.forEach((url = "") => {
     urlList = [...urlList, url];
   });
   return urlList;

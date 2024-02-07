@@ -11,6 +11,7 @@ import "react-datepicker/dist/react-datepicker.css";
 /* React Slick */
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
+// import CosmicNavbar from "../components/ui/navbar";
 
 import CosmicNavbar from "@/components/ui/navbar";
 
